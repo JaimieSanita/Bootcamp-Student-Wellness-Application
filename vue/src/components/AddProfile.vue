@@ -25,6 +25,7 @@
             <b-numberinput step="0.1">
             </b-numberinput>
         </b-field>
+        <button class="button is-link">Submit</button>
         <!-- Add sex? -->
        </form>
 
