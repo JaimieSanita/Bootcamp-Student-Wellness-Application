@@ -1,5 +1,5 @@
 <template>
-  
+   <p>Edit Food</p>
 </template>
 
 <script>

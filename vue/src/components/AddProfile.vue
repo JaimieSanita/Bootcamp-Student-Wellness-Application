@@ -1,5 +1,5 @@
 <template>
-  
+   <p>Add Profile</p>
 </template>
 
 <script>

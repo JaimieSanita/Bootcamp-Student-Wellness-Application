@@ -1,5 +1,5 @@
 <template>
-  
+   <p>Weight Summary</p>
 </template>
 
 <script>
