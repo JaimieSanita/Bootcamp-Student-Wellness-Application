@@ -42,7 +42,7 @@
       </b-field>
       </b-field>
 
-      <b-field label="Birthday">
+      <b-field label="Current Date">
         <b-datepicker
           placeholder="Click to select..."
           :min-date="minDate"

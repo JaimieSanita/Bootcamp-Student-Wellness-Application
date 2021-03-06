@@ -8,7 +8,8 @@ import com.techelevator.model.Profile;
 
 public interface ProfileDAO {
 	
-	boolean create(String name, String email, int age, int feet, int inches, Date birthday, BigDecimal weight);
-	Profile getByUsername(String username) throws ProfileNotFoundException;
-	Profile updateProfile(Profile profile, String username) throws ProfileNotFoundException;
+	int create(Profile newProfile);
+	int getByUsername(String username) throws ProfileNotFoundException;
+	int updateProfile(Profile profile, String username) throws ProfileNotFoundException;
+	int findIdByUsername(String username);
 }

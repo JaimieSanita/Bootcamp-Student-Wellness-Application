@@ -4,13 +4,14 @@ import java.math.BigDecimal;
 import java.sql.Date;
 
 public class Profile {
+	private int id;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private int age;
 	private int feet;
 	private int inches;
-	private Date birthday;
+	private Date currentDate;
 	private BigDecimal weight;
 	
 	
@@ -22,17 +23,46 @@ public class Profile {
 	
 	
 	
-	public Profile(String firstName, String lastName, String email, int age, int feet, int inches, Date birthday,
-			BigDecimal weight) {
+	
+
+
+
+	public Profile(int id, String firstName, String lastName, String email, int age, int feet, int inches,
+			Date currentDate, BigDecimal weight) {
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.age = age;
 		this.feet = feet;
 		this.inches = inches;
-		this.birthday = birthday;
+		this.currentDate = currentDate;
 		this.weight = weight;
 	}
+
+
+
+
+
+
+
+	public int getId() {
+		return id;
+	}
+
+
+
+
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
+
 
 
 
@@ -84,11 +114,11 @@ public class Profile {
 	public void setInches(int inches) {
 		this.inches = inches;
 	}
-	public Date getBirthday() {
-		return birthday;
+	public Date getCurrentDate() {
+		return currentDate;
 	}
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
+	public void setCurrentDate(Date currentDate) {
+		this.currentDate = currentDate;
 	}
 	public BigDecimal getWeight() {
 		return weight;
