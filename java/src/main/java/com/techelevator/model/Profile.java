@@ -4,7 +4,8 @@ import java.math.BigDecimal;
 import java.sql.Date;
 
 public class Profile {
-	private String name;
+	private String firstName;
+	private String lastName;
 	private String email;
 	private int age;
 	private int feet;
@@ -20,8 +21,11 @@ public class Profile {
 	}
 	
 	
-	public Profile(String name, String email, int age, int feet, int inches, Date birthday, BigDecimal weight) {
-		this.name = name;
+	
+	public Profile(String firstName, String lastName, String email, int age, int feet, int inches, Date birthday,
+			BigDecimal weight) {
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.email = email;
 		this.age = age;
 		this.feet = feet;
@@ -31,12 +35,31 @@ public class Profile {
 	}
 
 
-	public String getName() {
-		return name;
+
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
+
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+
 	public String getEmail() {
 		return email;
 	}

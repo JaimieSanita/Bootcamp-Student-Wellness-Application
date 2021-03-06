@@ -1,7 +1,10 @@
 <template>
   <section>
     <form class="box form">
-      <b-field label="Name">
+      <b-field label="First Name">
+        <b-input></b-input>
+      </b-field>
+       <b-field label="Last Name">
         <b-input></b-input>
       </b-field>
 
