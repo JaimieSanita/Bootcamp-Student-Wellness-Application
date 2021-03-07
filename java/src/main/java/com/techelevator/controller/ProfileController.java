@@ -19,7 +19,7 @@ public class ProfileController {
 		this.dao = dao;
 	}
 
-	@RequestMapping(path="/profile/{username}", method = RequestMethod.GET)
+	@RequestMapping(path="/profile/id/{username}", method = RequestMethod.GET)
 	public int getProfileId(@PathVariable String username) {
 		return dao.findIdByUsername(username);
 	}
@@ -35,5 +35,8 @@ public class ProfileController {
 	public int updateProfile(Profile profile, String username) throws ProfileNotFoundException {
 		return this.dao.updateProfile(profile, username);
 	}
-	
+	@RequestMapping(path="/profile/{username}", method = RequestMethod.GET)
+	public Profile getProfileFromUsername(String username) throws ProfileNotFoundException {
+		return this.dao.getByUsername(username);
+	}
 }

@@ -27,9 +27,9 @@ select * from user_profile;
 select * from users;
 ROLLBACK;
 
+SELECT first_name, last_name, age, feet, inches, current_weight FROM user_profile JOIN users ON user_profile.profile_id = users.user_id WHERE username = 'Miked';
 
-
-select first_name,last_name,age,feet,inches,create_date,current_weight
+select *
 From user_profile
 join users
 On user_profile.profile_id = users.user_id
@@ -42,6 +42,5 @@ SET first_name = 'steve',last_name = 'jobs', age=2,feet=2,inches=2,current_weigh
 WHERE profile_id = 3;
 
 
-select * from users;
-select * from user_profile;
+
 Rollback;
