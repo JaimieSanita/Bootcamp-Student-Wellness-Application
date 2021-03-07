@@ -9,7 +9,7 @@ import com.techelevator.model.Profile;
 
 public interface ProfileDAO {
 	
-	int create(Profile newProfile);
+	Profile create(Profile newProfile) throws Exception;
 	
 	int updateProfile(Profile profile, String username) throws ProfileNotFoundException;
 	int findIdByUsername(String username);

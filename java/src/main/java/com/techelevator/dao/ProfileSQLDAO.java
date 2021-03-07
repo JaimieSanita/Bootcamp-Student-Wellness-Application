@@ -1,7 +1,9 @@
 package com.techelevator.dao;
 
 import java.math.BigDecimal;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,23 +22,42 @@ public class ProfileSQLDAO implements ProfileDAO {
 	}
 
 	@Override
-	public int create(Profile newProfile) {
-		String insertProfile = "INSERT INTO user_profile(profile_id,first_name, last_name, age, feet, inches, current_weight) "
-				+ "VALUES(?,?,?,?,?,?)";
-		newProfile.setId(getNextProfileId());
-		return jdbcTemplate.update(insertProfile, newProfile.getFirstName(), newProfile.getLastName(),
+	public Profile create(Profile newProfile) throws Exception {
+		Profile profile = null;
+		Connection conn = jdbcTemplate.getDataSource().getConnection();
+		try{
+			conn.setAutoCommit(false);
+		String insertProfile = "INSERT INTO user_profile (profile_id, first_name, last_name, email, age, feet, inches, current_weight) "
+				+ "VALUES(?,?,?,?,?,?,?,?)";
+		SqlRowSet results= jdbcTemplate.queryForRowSet(insertProfile, newProfile.getId(), newProfile.getFirstName(), newProfile.getLastName(), newProfile.getEmail(),
 				newProfile.getAge(), newProfile.getFeet(), newProfile.getInches(), newProfile.getWeight());
-
+		if(results.next()) {
+			profile = this.mapRowToProfile(results);
+		}
+		
+			conn.commit();
+			return profile;
+		}
+	catch(Exception e) {
+		if(!conn.getAutoCommit()) {
+			conn.rollback();
+		}
+		throw e;
+	}finally {
+		conn.setAutoCommit(true);
+	}
 	}
 
 	@Override
 	public Profile getByUsername(String username) {
-
-		SqlRowSet results =jdbcTemplate.queryForRowSet("SELECT first_name, last_name, age, feet, inches, current_weight " + "FROM user_profile "
-				+ "JOIN users " + "ON user_profile.profile_id = users.user_id " + "WHERE username = ?", username);
+		Profile profile = null;
+		
+		String query = "SELECT profile_id, first_name, last_name, email, age, feet, inches, current_weight " + "FROM user_profile "
+			+ "JOIN users " + "ON user_profile.profile_id = users.user_id " + "WHERE username = ?";
+		SqlRowSet results = this.jdbcTemplate.queryForRowSet(query, username);
 		if(results.next()) {
-			return mapRowToProfile(results);
-		}return null;
+			profile = this.mapRowToProfile(results);
+		} return profile;
 	}
 
 	@Override
@@ -46,20 +67,21 @@ public class ProfileSQLDAO implements ProfileDAO {
 
 	@Override
 	public int updateProfile(Profile profile, String username) {
-		String query = "UPDATE user_profile SET first_name = ?, last_name = ?, age = ?, feet = ?, inches = ?, current_weight = ? "
+		String query = "UPDATE user_profile SET first_name = ?, last_name = ?, email = ?, age = ?, feet = ?, inches = ?, current_weight = ? "
 				+ "WHERE profile_id = ?";
-		return jdbcTemplate.update(query, profile.getFirstName(), profile.getLastName(), profile.getAge(),
-				profile.getFeet(), profile.getInches(), profile.getWeight(), getByUsername(username));
+		return jdbcTemplate.update(query, profile.getFirstName(), profile.getLastName(), profile.getEmail(), profile.getAge(),
+				profile.getFeet(), profile.getInches(), profile.getWeight(), findIdByUsername(username));
 	}
 
 	private Profile mapRowToProfile(SqlRowSet rs) {
 		Profile profile = new Profile();
+		profile.setId(rs.getInt("profile_id"));
 		profile.setFirstName(rs.getString("first_name"));
 		profile.setLastName(rs.getString("last_name"));
+		profile.setEmail(rs.getString("email"));
 		profile.setAge(rs.getInt("age"));
 		profile.setFeet(rs.getInt("feet"));
 		profile.setInches(rs.getInt("inches"));
-		profile.setCurrentDate(rs.getDate("create_date"));
 		profile.setWeight(rs.getBigDecimal("current_weight"));
 		return profile;
 
@@ -70,7 +92,7 @@ public class ProfileSQLDAO implements ProfileDAO {
 		if (nextIdResult.next()) {
 			return nextIdResult.getInt(1);
 		} else {
-			throw new RuntimeException("Something went wrong while getting an id for the new department");
+			throw new RuntimeException("Something went wrong while getting an id for the new profile");
 		}
 	}
 

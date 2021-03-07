@@ -11,7 +11,6 @@ public class Profile {
 	private int age;
 	private int feet;
 	private int inches;
-	private Date currentDate;
 	private BigDecimal weight;
 	
 	
@@ -28,7 +27,7 @@ public class Profile {
 
 
 	public Profile(int id, String firstName, String lastName, String email, int age, int feet, int inches,
-			Date currentDate, BigDecimal weight) {
+			 BigDecimal weight) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -36,7 +35,6 @@ public class Profile {
 		this.age = age;
 		this.feet = feet;
 		this.inches = inches;
-		this.currentDate = currentDate;
 		this.weight = weight;
 	}
 
@@ -113,12 +111,7 @@ public class Profile {
 	}
 	public void setInches(int inches) {
 		this.inches = inches;
-	}
-	public Date getCurrentDate() {
-		return currentDate;
-	}
-	public void setCurrentDate(Date currentDate) {
-		this.currentDate = currentDate;
+	
 	}
 	public BigDecimal getWeight() {
 		return weight;
