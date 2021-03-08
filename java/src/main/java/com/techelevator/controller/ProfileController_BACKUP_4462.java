@@ -28,6 +28,19 @@ public class ProfileController {
 	public int getProfileId(@PathVariable String username) {
 		return dao.findIdByUsername(username);
 	}
+<<<<<<< HEAD
+
+	@ResponseStatus(HttpStatus.CREATED)
+	@RequestMapping(path = "/profile/create", method = RequestMethod.POST)
+	public Profile createProfile(@RequestBody Profile newProfile, Principal principal) throws Exception {
+		String username = principal.getName();
+		int userId = this.dao.findIdByUsername(username);
+		if (userId != newProfile.getId()) {
+			// throw exception
+		}
+		return this.dao.create(newProfile);
+
+=======
 	
 	
 	@ResponseStatus(HttpStatus.CREATED)
@@ -35,7 +48,8 @@ public class ProfileController {
 	public void createProfile(@RequestBody Profile newProfile) throws Exception {
 		this.dao.create(newProfile);
 		
-	
+		
+>>>>>>> a546527b576e9f021acaf248237c1cf9521b59a9
 	}
 
 	@ResponseStatus(HttpStatus.OK)

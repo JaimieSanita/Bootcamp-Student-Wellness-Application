@@ -27,9 +27,9 @@ public class ProfileSQLDAO implements ProfileDAO {
 		Connection conn = jdbcTemplate.getDataSource().getConnection();
 		try{
 			conn.setAutoCommit(false);
-		String insertProfile = "INSERT INTO user_profile (profile_id, first_name, last_name, email, age, feet, inches, current_weight) "
-				+ "VALUES(?,?,?,?,?,?,?,?)";
-		SqlRowSet results= jdbcTemplate.queryForRowSet(insertProfile, newProfile.getId(), newProfile.getFirstName(), newProfile.getLastName(), newProfile.getEmail(),
+		String insertProfile = "INSERT INTO user_profile ( first_name, last_name, email, age, feet, inches, current_weight) "
+				+ "VALUES(?,?,?,?,?,?,?)";
+		SqlRowSet results= jdbcTemplate.queryForRowSet(insertProfile,  newProfile.getFirstName(), newProfile.getLastName(), newProfile.getEmail(),
 				newProfile.getAge(), newProfile.getFeet(), newProfile.getInches(), newProfile.getWeight());
 		if(results.next()) {
 			profile = this.mapRowToProfile(results);
