@@ -23,14 +23,11 @@ public class ProfileController {
 		this.dao = dao;
 	}
 
-	@RequestMapping(path = "/profile/id/{username}", method = RequestMethod.GET)
-	public int getProfileId(@PathVariable String username) {
-		return dao.findIdByUsername(username);
-	}
+	
 	
 	
 	@ResponseStatus(HttpStatus.CREATED)
-	@RequestMapping(path="/profile/create", method = RequestMethod.POST)
+	@RequestMapping(path="/profile/", method = RequestMethod.POST)
 	public void createProfile(@RequestBody Profile newProfile) throws Exception {
 		this.dao.create(newProfile);
 		
@@ -38,8 +35,8 @@ public class ProfileController {
 	}
 
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping(path = "/profile/update/{username}", method = RequestMethod.PUT)
-	public void updateProfile(@RequestBody Profile profile, String username) throws ProfileNotFoundException {
+	@RequestMapping(path = "/profile/{username}", method = RequestMethod.PUT)
+	public void updateProfile(@RequestBody Profile profile, @PathVariable String username) throws ProfileNotFoundException {
 		this.dao.updateProfile(profile, username);
 	}
 

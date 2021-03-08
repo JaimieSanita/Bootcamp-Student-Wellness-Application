@@ -21,7 +21,10 @@ public class Profile {
 		
 	}
 	
-	
+	public static Profile createEmptyProfile() {
+		Profile p = new Profile("","","",0,0,0,BigDecimal.ZERO);
+		return p;
+	}
 	
 	
 

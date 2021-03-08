@@ -67,7 +67,7 @@ public class AuthenticationController {
             throw new UserAlreadyExistsException();
         } catch (UsernameNotFoundException e) {
         	
-        	Profile newProfile = new Profile();
+        	Profile newProfile = Profile.createEmptyProfile();
             userDAO.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
             try {
             	 user = userDAO.findByUsername(newUser.getUsername());

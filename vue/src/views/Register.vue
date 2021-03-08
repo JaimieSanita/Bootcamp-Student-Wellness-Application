@@ -168,12 +168,8 @@ export default {
         authService
           .register(this.user)
           .then((response) => {
-            if (response.status == 200) {
-              profileService.update(this.profile).then((response) => {
-                if (response.status == 201) {
-                  this.isCreated = true;
-                }
-              });
+            if (response.status == 201) {
+              return profileService.update(this.user.username, this.profile)
             }
           })
           .then((response) => {
