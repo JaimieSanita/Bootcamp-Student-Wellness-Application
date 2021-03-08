@@ -3,7 +3,6 @@
     <h1>Home</h1>
     <p>You must be authenticated to see this</p>
     <add-food/>
-    <add-profile/>
     <edit-food/>
     <edit-profile/>
     <food-summary/>
@@ -16,7 +15,6 @@
 
 <script>
 import AddFood from "../components/AddFood"
-import AddProfile from '../components/AddProfile.vue';
 import EditFood from '../components/EditFood.vue';
 import EditProfile from '../components/EditProfile.vue';
 import FoodSummary from '../components/FoodSummary.vue';
@@ -28,7 +26,6 @@ export default {
   name: "home",
   components: { 
     AddFood,
-    AddProfile,
     EditFood,
     EditProfile,
     FoodSummary,
