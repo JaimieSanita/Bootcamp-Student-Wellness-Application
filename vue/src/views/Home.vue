@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
+    <h1>Welcome</h1>
     <add-food/>
+    <add-exercise/>
     <edit-food/>
     <edit-profile/>
     <food-summary/>
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import AddExercise from '../components/AddExercise.vue';
 import AddFood from "../components/AddFood"
 import EditFood from '../components/EditFood.vue';
 import EditProfile from '../components/EditProfile.vue';
@@ -32,6 +33,7 @@ export default {
     ProfileSummary,
     SaveMeal,
     StarSummary,
-    WeightSummary },
+    WeightSummary,
+    AddExercise },
 };
 </script>
