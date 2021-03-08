@@ -9,7 +9,7 @@ export default {
         return http.post('/profile/create')
     },
     update(username, profile){
-        return http.put(`profile/${username}`,profile);
+        return http.put(`profile/${username}`, profile);
     }
    
     

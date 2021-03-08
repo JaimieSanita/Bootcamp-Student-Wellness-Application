@@ -36,6 +36,9 @@
           v-model="user.confirmPassword"
           required
         ></b-input>
+        <b-field label="Email">
+          <b-input></b-input>
+        </b-field>
 
         <b-field label="First Name">
           <b-input></b-input>
@@ -127,7 +130,7 @@
 </template>
 
 <script>
-import ProfileService from "../services/ProfileService";
+import profileService from "../services/ProfileService";
 import authService from "../services/AuthService";
 
 export default {
@@ -166,7 +169,7 @@ export default {
           .register(this.user)
           .then((response) => {
             if (response.status == 200) {
-              ProfileService.update(this.profile).then((response) => {
+              profileService.update(this.profile).then((response) => {
                 if (response.status == 201) {
                   this.isCreated = true;
                 }
