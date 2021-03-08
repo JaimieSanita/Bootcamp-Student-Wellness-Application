@@ -1,8 +1,10 @@
 <template>
   <div class="home">
-    <h1>Welcome</h1>
+    <h1>Welcome to {{Name}}'s TE Wellness Tracker!</h1>
+    <div class="container">
     <add-food/>
     <add-exercise/>
+    </div>
     <edit-food/>
     <edit-profile/>
     <food-summary/>
@@ -37,3 +39,10 @@ export default {
     AddExercise },
 };
 </script>
+<style scoped>
+.container{
+  display: flex;
+  justify-content: center;
+}
+
+</style>

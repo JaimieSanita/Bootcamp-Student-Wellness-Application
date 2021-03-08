@@ -1,6 +1,6 @@
 <template>
   <form class="box form">
-    <b-field label="ADD FOOD ITEM"></b-field>
+    <b-field label="ADD FOOD"></b-field>
       <b-field label="Category" type="is-info">
       <b-select placeholder="Type of Meal" expanded="true">
         <option value="Breakfast">Breakfast</option>
