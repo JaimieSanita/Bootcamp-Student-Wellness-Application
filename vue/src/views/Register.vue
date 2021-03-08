@@ -10,7 +10,7 @@
           {{ registrationErrorMsg }}
         </div>
 
-        <b-field label="Username" ></b-field>
+        <b-field label="Username"></b-field>
         <b-input
           type="text"
           id="username"
@@ -20,7 +20,7 @@
           autofocus
         ></b-input>
 
-        <b-field label="Password" ></b-field>
+        <b-field label="Password"></b-field>
         <b-input
           type="password"
           id="password"
@@ -28,7 +28,7 @@
           v-model="user.password"
           required
         ></b-input>
-        <b-field label=" Confirm Password" ></b-field>
+        <b-field label=" Confirm Password"></b-field>
         <b-input
           type="password"
           id="confirmPassword"
@@ -45,12 +45,12 @@
         </b-field>
 
         <b-field label="Age">
-          <b-numberinput min="13" type="is-info" > </b-numberinput>
+          <b-numberinput min="13" type="is-info"> </b-numberinput>
         </b-field>
 
         <b-field label="Height"
           ><b-field class="height" type="is-info">
-            <b-select placeholder="Feet"  expanded=true>
+            <b-select placeholder="Feet" expanded="true">
               <option value="1">1 ft</option>
               <option value="2">2 ft</option>
               <option value="3">3 ft</option>
@@ -59,7 +59,7 @@
               <option value="6">6 ft</option>
               <option value="7">7 ft</option>
             </b-select>
-            <b-select placeholder="Inches" expanded=true>
+            <b-select placeholder="Inches" expanded="true">
               <option value="1">1 in</option>
               <option value="2">2 in</option>
               <option value="3">3 in</option>
@@ -109,7 +109,10 @@
       />
       -->
         <div class="btn">
-          <b-button v-on:click="register" class="btn btn-lg btn-primary btn-block" type="is-info"
+          <b-button
+            v-on:click="register"
+            class="btn btn-lg btn-primary btn-block"
+            type="is-info"
             >Create Account</b-button
           >
         </div>
@@ -124,6 +127,7 @@
 </template>
 
 <script>
+import ProfileService from "../services/ProfileService";
 import authService from "../services/AuthService";
 
 export default {
@@ -131,6 +135,7 @@ export default {
   components: {},
   data() {
     return {
+      isCreated: false,
       user: {
         username: "",
         password: "",
@@ -140,12 +145,11 @@ export default {
       profile: {
         firstName: "",
         lastName: "",
-        email:"",
-        age:"",
-        feet:"",
-        inches:"",
-        weight:""
-
+        email: "",
+        age: "",
+        feet: "",
+        inches: "",
+        weight: "",
       },
       registrationErrors: false,
       registrationErrorMsg: "There were problems registering this user.",
@@ -160,9 +164,13 @@ export default {
         //successful
         authService
           .register(this.user)
-          .then((response)=> {
-            if (response.status == 201){
-              //return profile service update
+          .then((response) => {
+            if (response.status == 200) {
+              ProfileService.update(this.profile).then((response) => {
+                if (response.status == 201) {
+                  this.isCreated = true;
+                }
+              });
             }
           })
           .then((response) => {
