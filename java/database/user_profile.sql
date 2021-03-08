@@ -5,7 +5,7 @@ BEGIN TRANSACTION;
 
 CREATE TABLE user_profile
 (
-profile_id      int          PRIMARY KEY,
+profile_id      serial        NOT NULL  PRIMARY KEY,
 first_name      varchar(128)    NOT NULL,
 last_name       varchar(128)    NOT NULL,
 email           varchar(128)   NOT NULL,
