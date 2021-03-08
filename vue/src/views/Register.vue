@@ -54,8 +54,8 @@
 
         <b-field label="Height"
           ><b-field class="height" type="is-info">
-            <b-numberinput type="is-info" controls-alignment="left" v-model="profile.feet"> </b-numberinput>
-           <b-numberinput type="is-info" controls-alignment="right" v-model="profile.inches"> </b-numberinput>
+            <b-numberinput placeholder="Feet" type="is-info" controls-alignment="left" v-model="profile.feet"> </b-numberinput>
+           <b-numberinput placeholder="Inches" type="is-info" controls-alignment="right" v-model="profile.inches"> </b-numberinput>
           </b-field>
         </b-field>
 
