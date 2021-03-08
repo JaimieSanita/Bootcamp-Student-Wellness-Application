@@ -5,6 +5,7 @@ import java.sql.Date;
 
 public class Profile {
 	private int id;
+	private long userId;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -36,6 +37,26 @@ public class Profile {
 		this.feet = feet;
 		this.inches = inches;
 		this.weight = weight;
+	}
+
+
+
+
+
+
+
+	public long getUserId() {
+		return userId;
+	}
+
+
+
+
+
+
+
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
 

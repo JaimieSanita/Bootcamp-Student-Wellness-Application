@@ -137,6 +137,16 @@ export default {
         confirmPassword: "",
         role: "user",
       },
+      profile: {
+        firstName: "",
+        lastName: "",
+        email:"",
+        age:"",
+        feet:"",
+        inches:"",
+        weight:""
+
+      },
       registrationErrors: false,
       registrationErrorMsg: "There were problems registering this user.",
     };
@@ -150,8 +160,13 @@ export default {
         //successful
         authService
           .register(this.user)
+          .then((response)=> {
+            if (response.status == 201){
+              //return profile service update
+            }
+          })
           .then((response) => {
-            if (response.status == 201) {
+            if (response.status == 200) {
               this.$router.push({
                 path: "/login",
                 query: { registration: "success" }, //where to insert save profile

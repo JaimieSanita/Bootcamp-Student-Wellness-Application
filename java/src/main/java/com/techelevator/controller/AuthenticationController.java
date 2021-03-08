@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.techelevator.dao.ProfileDAO;
 import com.techelevator.dao.ProfileSQLDAO;
 import com.techelevator.dao.UserDAO;
 import com.techelevator.model.LoginDTO;
@@ -30,12 +31,14 @@ public class AuthenticationController {
     private final TokenProvider tokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private UserDAO userDAO;
+    private ProfileDAO dao;
     
 
-    public AuthenticationController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, UserDAO userDAO) {
+    public AuthenticationController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, UserDAO userDAO, ProfileDAO dao) {
         this.tokenProvider = tokenProvider;
         this.authenticationManagerBuilder = authenticationManagerBuilder;
         this.userDAO = userDAO;
+        this.dao = dao;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -58,11 +61,23 @@ public class AuthenticationController {
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public void register(@Valid @RequestBody RegisterUserDTO newUser) {
+    	User user;
         try {
-            User user = userDAO.findByUsername(newUser.getUsername());
+            user = userDAO.findByUsername(newUser.getUsername());
             throw new UserAlreadyExistsException();
         } catch (UsernameNotFoundException e) {
+        	
+        	Profile newProfile = new Profile();
             userDAO.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
+            try {
+            	 user = userDAO.findByUsername(newUser.getUsername());
+            	newProfile.setUserId(user.getId());
+				dao.create(newProfile);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+            
         }
     }
 

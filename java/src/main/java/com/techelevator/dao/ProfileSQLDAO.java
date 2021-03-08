@@ -28,9 +28,9 @@ public class ProfileSQLDAO implements ProfileDAO {
 		Connection conn = jdbcTemplate.getDataSource().getConnection();
 		try{
 			conn.setAutoCommit(false);
-		String insertProfile = "INSERT INTO user_profile ( first_name, last_name, email, age, feet, inches, current_weight) "
-				+ "VALUES(?,?,?,?,?,?,?)";
-		SqlRowSet results= jdbcTemplate.queryForRowSet(insertProfile,  newProfile.getFirstName(), newProfile.getLastName(), newProfile.getEmail(),
+		String insertProfile = "INSERT INTO user_profile (user_id, first_name, last_name, email, age, feet, inches, current_weight) "
+				+ "VALUES(?,?,?,?,?,?,?,?) RETURNING *";
+		SqlRowSet results= jdbcTemplate.queryForRowSet(insertProfile, newProfile.getUserId(), newProfile.getFirstName(), newProfile.getLastName(), newProfile.getEmail(),
 				newProfile.getAge(), newProfile.getFeet(), newProfile.getInches(), newProfile.getWeight());
 		if(results.next()) {
 			profile = this.mapRowToProfile(results);
@@ -69,7 +69,7 @@ public class ProfileSQLDAO implements ProfileDAO {
 	@Override
 	public int updateProfile(Profile profile, String username) {
 		String query = "UPDATE user_profile SET first_name = ?, last_name = ?, email = ?, age = ?, feet = ?, inches = ?, current_weight = ? "
-				+ "WHERE profile_id = ?";
+				+ "WHERE user_id = ?";
 		return jdbcTemplate.update(query, profile.getFirstName(), profile.getLastName(), profile.getEmail(), profile.getAge(),
 				profile.getFeet(), profile.getInches(), profile.getWeight(), findIdByUsername(username));
 	}

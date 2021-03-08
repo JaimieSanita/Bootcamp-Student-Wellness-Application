@@ -38,7 +38,7 @@ public class ProfileController {
 	}
 
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping(path = "/profile/update/{username}", method = RequestMethod.POST)
+	@RequestMapping(path = "/profile/update/{username}", method = RequestMethod.PUT)
 	public void updateProfile(@RequestBody Profile profile, String username) throws ProfileNotFoundException {
 		this.dao.updateProfile(profile, username);
 	}
