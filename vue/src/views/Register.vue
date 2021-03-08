@@ -37,49 +37,30 @@
           required
         ></b-input>
         <b-field label="Email">
-          <b-input></b-input>
+          <b-input v-model="profile.email"></b-input>
         </b-field>
 
         <b-field label="First Name">
-          <b-input></b-input>
+          <b-input
+          v-model="profile.firstName"></b-input>
         </b-field>
         <b-field label="Last Name">
-          <b-input></b-input>
+          <b-input v-model="profile.lastName"></b-input>
         </b-field>
 
         <b-field label="Age">
-          <b-numberinput min="13" type="is-info"> </b-numberinput>
+          <b-numberinput min="13" type="is-info" v-model="profile.age"> </b-numberinput>
         </b-field>
 
         <b-field label="Height"
           ><b-field class="height" type="is-info">
-            <b-select placeholder="Feet" expanded="true">
-              <option value="1">1 ft</option>
-              <option value="2">2 ft</option>
-              <option value="3">3 ft</option>
-              <option value="4">4 ft</option>
-              <option value="5">5 ft</option>
-              <option value="6">6 ft</option>
-              <option value="7">7 ft</option>
-            </b-select>
-            <b-select placeholder="Inches" expanded="true">
-              <option value="1">1 in</option>
-              <option value="2">2 in</option>
-              <option value="3">3 in</option>
-              <option value="4">4 in</option>
-              <option value="5">5 in</option>
-              <option value="6">6 in</option>
-              <option value="7">7 in</option>
-              <option value="8">8 in</option>
-              <option value="9">9 in</option>
-              <option value="10">10 in</option>
-              <option value="11">11 in</option>
-            </b-select>
+            <b-numberinput type="is-info" controls-alignment="left" v-model="profile.feet"> </b-numberinput>
+           <b-numberinput type="is-info" controls-alignment="right" v-model="profile.inches"> </b-numberinput>
           </b-field>
         </b-field>
 
         <b-field label="Current Weight">
-          <b-numberinput step="0.1" type="is-info"> </b-numberinput>
+          <b-numberinput step="0.1" type="is-info" v-model="profile.weight"> </b-numberinput>
         </b-field>
 
         <!--
