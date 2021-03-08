@@ -1,9 +1,7 @@
 package com.techelevator.controller;
 
-import java.security.Principal;
-
 import org.springframework.http.HttpStatus;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +14,7 @@ import com.techelevator.dao.ProfileDAO;
 import com.techelevator.exception.ProfileNotFoundException;
 import com.techelevator.model.Profile;
 
+@CrossOrigin
 @RestController
 public class ProfileController {
 	private ProfileDAO dao;

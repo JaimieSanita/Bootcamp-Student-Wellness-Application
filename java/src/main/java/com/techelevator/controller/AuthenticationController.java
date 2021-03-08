@@ -13,8 +13,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.techelevator.dao.ProfileSQLDAO;
 import com.techelevator.dao.UserDAO;
 import com.techelevator.model.LoginDTO;
+import com.techelevator.model.Profile;
 import com.techelevator.model.RegisterUserDTO;
 import com.techelevator.model.User;
 import com.techelevator.model.UserAlreadyExistsException;
@@ -28,6 +30,7 @@ public class AuthenticationController {
     private final TokenProvider tokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private UserDAO userDAO;
+    
 
     public AuthenticationController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, UserDAO userDAO) {
         this.tokenProvider = tokenProvider;
