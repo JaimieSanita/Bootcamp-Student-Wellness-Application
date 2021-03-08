@@ -26,9 +26,9 @@ public class Profile {
 
 
 
-	public Profile(int id, String firstName, String lastName, String email, int age, int feet, int inches,
+	public Profile( String firstName, String lastName, String email, int age, int feet, int inches,
 			 BigDecimal weight) {
-		this.id = id;
+	
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;

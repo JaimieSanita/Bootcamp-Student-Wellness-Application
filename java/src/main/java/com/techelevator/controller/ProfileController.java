@@ -3,11 +3,12 @@ package com.techelevator.controller;
 import java.security.Principal;
 
 import org.springframework.http.HttpStatus;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,15 +29,12 @@ public class ProfileController {
 	public int getProfileId(@PathVariable String username) {
 		return dao.findIdByUsername(username);
 	}
+	
+	
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(path="/profile/create", method = RequestMethod.POST)
-	public Profile createProfile(@RequestBody Profile newProfile, Principal principal) throws Exception {
-		String username = principal.getName();
-		int userId = this.dao.findIdByUsername(username);
-		if(userId != newProfile.getId()) {
-			//throw exception
-		}
-		return this.dao.create(newProfile);
+	public void createProfile(@RequestBody Profile newProfile) throws Exception {
+		this.dao.create(newProfile);
 		
 		
 	}
