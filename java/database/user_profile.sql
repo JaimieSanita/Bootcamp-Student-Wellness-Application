@@ -5,7 +5,7 @@ BEGIN TRANSACTION;
 
 CREATE TABLE user_profile
 (
-profile_id      serial        NOT NULL  PRIMARY KEY,
+profile_id      INT GENERATED ALWAYS AS IDENTITY  NOT NULL  PRIMARY KEY,
 first_name      varchar(128)    NOT NULL,
 last_name       varchar(128)    NOT NULL,
 email           varchar(128)   NOT NULL,
@@ -22,14 +22,14 @@ ALTER TABLE user_profile
 
 
 
-COMMIT;
+
 select * from user_profile;
-Start transaction;
-INSERT INTO user_profile(profile_id,first_name, last_name, email, age, feet, inches, current_weight)
-VALUES (1,'Joe', 'Smith','joe@gmail.com', 1, 1, 1, 1), (2,'Bill', 'Gates','bill@gmail.com', 1,1,1,1),(3,'Mike','Drew','werdekim@gmail.com', 39, 5, 8, 165);
+
+INSERT INTO user_profile(first_name, last_name, email, age, feet, inches, current_weight)
+VALUES ('Joe', 'Smith','joe@gmail.com', 1, 1, 1, 1), ('Bill', 'Gates','bill@gmail.com', 1,1,1,1),('Mike','Drew','werdekim@gmail.com', 39, 5, 8, 165);
 select * from user_profile;
 select * from users;
-ROLLBACK;
+COMMIT;
 
 SELECT first_name, last_name, age, feet, inches, current_weight FROM user_profile JOIN users ON user_profile.profile_id = users.user_id WHERE username = 'Miked';
 
@@ -65,3 +65,10 @@ Drop column create_date;
 Delete
 From users
 where user_id = 4;
+
+
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON user_profile 
+TO final_capstone_appuser;
+grant all on sequence user_profile_profile_id_seq to final_capstone_appuser;
