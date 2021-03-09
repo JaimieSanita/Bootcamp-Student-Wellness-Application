@@ -68,7 +68,7 @@ Drop column create_date;
 
 Delete
 From users
-where user_id >3;
+where user_id >2;
 
 
 
