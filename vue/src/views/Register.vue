@@ -92,7 +92,7 @@ export default {
           .register(this.user)
           .then((response) => {
             if (response.status == 201) {
-              return profileService.update(this.user.username, this.profile)
+              return profileService.update(this.user.username, this.createProfile)
             }
           })
           .then((response) => {
