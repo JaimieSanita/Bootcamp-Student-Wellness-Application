@@ -49,7 +49,7 @@
         </b-field>
 
         <b-field label="Age">
-          <b-numberinput min="13" type="is-info" v-model="profile.age"> </b-numberinput>
+          <b-numberinput type="is-info" v-model="profile.age"> </b-numberinput>
         </b-field>
 
         <b-field label="Height"
