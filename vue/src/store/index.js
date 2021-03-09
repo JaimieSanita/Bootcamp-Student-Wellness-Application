@@ -19,7 +19,16 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    profile: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      age: 0,
+      feet: 0,
+      inches: 0,
+      weight: 0,
+    },
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -37,6 +46,9 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    UPDATE_PROFILE(state, profile){
+      state.profile=profile;
     }
   }
 })

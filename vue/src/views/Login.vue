@@ -60,8 +60,10 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            this.$router.push("/");
-          }
+            //TODO return calling the profile api
+           
+          }//.then if valid profile call vuex mutation to set profile
+           //this.$router.push("/");
         })
         .catch(error => {
           const response = error.response;

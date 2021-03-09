@@ -37,7 +37,7 @@
           required
         ></b-input>
 
-       <create-profile/>
+       <create-profile :isEdit="false"/>
 
         <div class="btn">
           <b-button
@@ -77,6 +77,7 @@ export default {
         confirmPassword: "",
         role: "user",
       },
+      
       registrationErrors: false,
       registrationErrorMsg: "There were problems registering this user.",
     };
@@ -92,10 +93,10 @@ export default {
           .register(this.user)
           .then((response) => {
             if (response.status == 201) {
-              return profileService.update(this.user.username, this.createProfile)
+              return profileService.update(this.user.username, this.$store.state.profile);
             }
           })
-          .then((response) => {
+          .then((response) => {                
             if (response.status == 200) {
               this.$router.push({
                 path: "/login",
