@@ -36,62 +36,9 @@
           v-model="user.confirmPassword"
           required
         ></b-input>
-        <b-field label="Email">
-          <b-input v-model="profile.email"></b-input>
-        </b-field>
 
-        <b-field label="First Name">
-          <b-input
-          v-model="profile.firstName"></b-input>
-        </b-field>
-        <b-field label="Last Name">
-          <b-input v-model="profile.lastName"></b-input>
-        </b-field>
+       <create-profile/>
 
-        <b-field label="Age">
-          <b-numberinput type="is-info" v-model="profile.age"> </b-numberinput>
-        </b-field>
-
-        <b-field label="Height"
-          ><b-field class="height" type="is-info">
-            <b-numberinput placeholder="Feet" type="is-info" controls-alignment="left" v-model="profile.feet"> </b-numberinput>
-           <b-numberinput placeholder="Inches" type="is-info" controls-alignment="right" v-model="profile.inches"> </b-numberinput>
-          </b-field>
-        </b-field>
-
-        <b-field label="Current Weight">
-          <b-numberinput step="0.1" type="is-info" v-model="profile.weight"> </b-numberinput>
-        </b-field>
-
-        <!--
-      <label for="username" class="sr-only">Username</label>
-      <input
-        type="text"
-        id="username"
-        class="form-control"
-        placeholder="Username"
-        v-model="user.username"
-        required
-        autofocus
-      />
-      <label for="password" class="sr-only">Password</label>
-      <input
-        type="password"
-        id="password"
-        class="form-control"
-        placeholder="Password"
-        v-model="user.password"
-        required
-      />
-      <input
-        type="password"
-        id="confirmPassword"
-        class="form-control"
-        placeholder="Confirm Password"
-        v-model="user.confirmPassword"
-        required
-      />
-      -->
         <div class="btn">
           <b-button
             v-on:click="register"
@@ -113,10 +60,14 @@
 <script>
 import profileService from "../services/ProfileService";
 import authService from "../services/AuthService";
+import CreateProfile from '../components/CreateProfile.vue';
 
 export default {
   name: "register",
-  components: {},
+  props: ["createProfile"],
+  components: {
+    CreateProfile
+  },
   data() {
     return {
       isCreated: false,
@@ -125,15 +76,6 @@ export default {
         password: "",
         confirmPassword: "",
         role: "user",
-      },
-      profile: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        age: 0,
-        feet: 0,
-        inches: 0,
-        weight: 0,
       },
       registrationErrors: false,
       registrationErrorMsg: "There were problems registering this user.",
