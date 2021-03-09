@@ -49,7 +49,7 @@
         </b-field>
 
         <b-field label="Age">
-          <b-numberinput min="13" type="is-info" v-model="profile.age"> </b-numberinput>
+          <b-numberinput type="is-info" v-model="profile.age"> </b-numberinput>
         </b-field>
 
         <b-field label="Height"
@@ -130,10 +130,10 @@ export default {
         firstName: "",
         lastName: "",
         email: "",
-        age: "",
-        feet: "",
-        inches: "",
-        weight: "",
+        age: 0,
+        feet: 0,
+        inches: 0,
+        weight: 0,
       },
       registrationErrors: false,
       registrationErrorMsg: "There were problems registering this user.",
