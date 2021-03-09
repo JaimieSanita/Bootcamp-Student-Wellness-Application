@@ -5,9 +5,9 @@
           <b-field label="Category" type="is-info">
         <b-select placeholder="Category" expanded=true>
           <option value="Endurance">Endurance</option>
-          <option value="Endurance">Balance</option>
-          <option value="Endurance">Strength</option>
-          <option value="Endurance">Flexibility</option>
+          <option value="Balance">Balance</option>
+          <option value="Strength">Strength</option>
+          <option value="Flexibility">Flexibility</option>
         </b-select>
           </b-field>
       </b-field>
