@@ -6,6 +6,8 @@ public class Exercise {
 	private int duration;
 	private String description;
 	private int caloriesBurned;
+	private  String username;
+	
 	public String getCategory() {
 		return category;
 	}
@@ -36,6 +38,13 @@ public class Exercise {
 	public void setCaloriesBurned(int caloriesBurned) {
 		this.caloriesBurned = caloriesBurned;
 	}
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public Exercise(String category, String name, int duration, String description, int caloriesBurned) {
 		this.category = category;
 		this.name = name;
@@ -44,6 +53,7 @@ public class Exercise {
 		this.caloriesBurned = caloriesBurned;
 	}
 	public Exercise() {}
+	
 	
 	
 
