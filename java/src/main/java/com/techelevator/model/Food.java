@@ -1,10 +1,19 @@
 package com.techelevator.model;
 
-public class Meals {
+public class Food {
 	
 	private String foodName;
 	private int servings;
 	private String mealCategory;
+	private int calories;
+	
+	
+	public int getCalories() {
+		return calories;
+	}
+	public void setCalories(int calories) {
+		this.calories = calories;
+	}
 	public String getFoodName() {
 		return foodName;
 	}
@@ -23,13 +32,16 @@ public class Meals {
 	public void setMealCategory(String mealCategory) {
 		this.mealCategory = mealCategory;
 	}
-	public Meals(String foodName, int servings, String mealCategory) {
+	public Food(String foodName, int servings, String mealCategory, int calories) {
 		
 		this.foodName = foodName;
 		this.servings = servings;
 		this.mealCategory = mealCategory;
+		this.calories = calories;
 	}
-	public Meals() {}
+	public Food() {}
 	
 	
-}
+	}
+	
+
