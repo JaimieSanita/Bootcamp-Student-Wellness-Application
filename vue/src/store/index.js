@@ -12,7 +12,7 @@ Vue.use(Vuex)
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user'));
 
-if(currentToken != null) {
+if (currentToken != null) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${currentToken}`;
 }
 
@@ -29,6 +29,32 @@ export default new Vuex.Store({
       inches: 0,
       weight: 0,
     },
+    goals: [
+      {
+        category: "Exercise",
+        activity: "Walking",
+        dayAssigned: "3/8/2021",
+        perWeek: 5,
+        duration: 10,
+        complete: false,
+      },
+      {
+        category: "Nutrition",
+        activity: "Banana",
+        dayAssigned: "3/6/2021",
+        perWeek: 5,
+        duration: 0,
+        complete: false,
+      },
+      {
+        category: "Wellness",
+        activity: "Meditation",
+        dayAssigned: "3/8/2021",
+        perWeek: 3,
+        duration: 20,
+        complete: false,
+      }
+    ],
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -38,7 +64,7 @@ export default new Vuex.Store({
     },
     SET_USER(state, user) {
       state.user = user;
-      localStorage.setItem('user',JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(user));
     },
     LOGOUT(state) {
       localStorage.removeItem('token');
@@ -47,8 +73,14 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
     },
-    UPDATE_PROFILE(state, profile){
-      state.profile=profile;
+    UPDATE_PROFILE(state, profile) {
+      state.profile = profile;
+    },
+    FLIP_STATUS(state, goalToChange) {
+      goalToChange.complete = !goalToChange.complete;
+    },
+    ADD_NEW(state, goal){
+      state.goals.push(goal);
     }
   }
 })
