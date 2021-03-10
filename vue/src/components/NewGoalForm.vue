@@ -39,7 +39,7 @@
           <b-select placeholder="Category" expanded="true">
             <option value="Endurance">Exercise</option>
             <option value="Balance">Nutrition</option>
-            <option value="Strength">Mental</option>
+            <option value="Strength">Sanity</option>
           </b-select>
         </b-field>
       </section>

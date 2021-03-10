@@ -17,5 +17,7 @@ export default {
 </script>
 
 <style scoped>
-
+*{
+  font-family: "proxima nova", sans-serif;
+}
 </style>
