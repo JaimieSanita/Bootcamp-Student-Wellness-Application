@@ -31,6 +31,7 @@ export default new Vuex.Store({
     },
     goals: [
       {
+        id: 1,
         category: "Exercise",
         activity: "Walking",
         dayAssigned: "3/8/2021",
@@ -39,6 +40,7 @@ export default new Vuex.Store({
         complete: false,
       },
       {
+        id: 2,
         category: "Nutrition",
         activity: "Banana",
         dayAssigned: "3/6/2021",
@@ -47,6 +49,7 @@ export default new Vuex.Store({
         complete: false,
       },
       {
+        id: 3,
         category: "Wellness",
         activity: "Meditation",
         dayAssigned: "3/8/2021",
@@ -55,6 +58,7 @@ export default new Vuex.Store({
         complete: false,
       }
     ],
+   
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -81,6 +85,6 @@ export default new Vuex.Store({
     },
     ADD_NEW(state, goal){
       state.goals.push(goal);
-    }
+    },
   }
 })

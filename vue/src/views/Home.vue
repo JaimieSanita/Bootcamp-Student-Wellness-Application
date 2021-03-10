@@ -11,11 +11,6 @@
     </div>
     <new-goal-form />
     <goal-list />
-
-    <div class="container">
-      <add-food />
-      <add-exercise />
-    </div>
   </div>
 </template>
 
