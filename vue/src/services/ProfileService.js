@@ -5,11 +5,12 @@ const http = axios.create({
   });
 
 export default {
-    create(){
-        return http.post('/profile/create')
-    },
+
     update(username, profile){
         return http.put(`profile/${username}`, profile);
+    },
+    get(username){
+        return http.get(`profile/${username}`);
     }
    
     
