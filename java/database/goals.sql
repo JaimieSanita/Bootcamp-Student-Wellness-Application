@@ -28,4 +28,9 @@ VALUES (1, '5/24/2020' , 'exercise', 'burpees', 3, 30, false);
 
 
 
-SELECT * FROM goals;
+SELECT goal_setter, date_assigned, category, activity, times_per_week, duration, is_completed FROM goals
+JOIN user_profile
+ON goals.goal_setter = user_profile.profile_id
+JOIN users
+ON users.user_id = user_profile.profile_id
+WHERE username = 'user';

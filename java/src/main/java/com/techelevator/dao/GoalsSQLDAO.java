@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import com.techelevator.model.Goals;
-
+@Component
 public class GoalsSQLDAO implements GoalsDAO{
 	private JdbcTemplate jdbcTemplate;
 	
@@ -28,7 +29,7 @@ public class GoalsSQLDAO implements GoalsDAO{
 
 	@Override
 	public int findGoalSetterIdByUsername(String username) {
-		return jdbcTemplate.queryForObject("SELECT goal_setter, date_assigned, category, activity, times_per_week, duration, is_completed FROM goals "+
+		return jdbcTemplate.queryForObject("SELECT goal_id, goal_setter, date_assigned, category, activity, times_per_week, duration, is_completed FROM goals "+
 				"JOIN user_profile ON goals.goal_setter = user_profile.profile_id JOIN users ON users.user_id = user_profile.profile_id "+
 				"WHERE username =?", int.class, username);
 	}
@@ -36,7 +37,7 @@ public class GoalsSQLDAO implements GoalsDAO{
 	@Override
 	public Goals getByUsername(String username) {
 		Goals goals = null;
-		String query = "SELECT goal_setter, date_assigned, category, activity, times_per_week, duration, is_completed FROM goals "+
+		String query = "SELECT goal_id, goal_setter, date_assigned, category, activity, times_per_week, duration, is_completed FROM goals "+
 				"JOIN user_profile ON goals.goal_setter = user_profile.profile_id JOIN users ON users.user_id = user_profile.profile_id "+
 				"WHERE username =?";
 		SqlRowSet results = this.jdbcTemplate.queryForRowSet(query, username);

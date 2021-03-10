@@ -54,7 +54,7 @@ public class ProfileSQLDAO implements ProfileDAO {
 		Profile profile = null;
 		
 		String query = "SELECT profile_id, first_name, last_name, email, age, feet, inches, current_weight " + "FROM user_profile "
-			+ "JOIN users " + "ON user_profile.profile_id = users.user_id " + "WHERE username = ?";
+			+ "JOIN users " + "ON user_profile.user_id = users.user_id " + "WHERE username = ?";
 		SqlRowSet results = this.jdbcTemplate.queryForRowSet(query, username);
 		if(results.next()) {
 			profile = this.mapRowToProfile(results);
