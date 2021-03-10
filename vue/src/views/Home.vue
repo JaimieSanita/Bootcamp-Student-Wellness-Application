@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1 class="title">Welcome to {{this.$store.state.user.username}}'s TE Wellness Tracker!</h1>
+    <h1 class="title">Welcome to {{this.$store.state.profile.firstName}}'s TE Wellness Tracker!</h1>
      <new-goal-form/>
      <goal-list/>
     
