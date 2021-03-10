@@ -62,18 +62,18 @@ export default {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
             //TODO return calling the profile api
-           /*return profileService
-              .update(this.user.username, this.$store.state.profile)
-              .then((response) => {
+           return profileService
+              .get(this.user.username);
+             
+          }
+        }) 
+        .then((response) => {
                 if (response.status === 200) {
                   //.then if valid profile call vuex mutation to set profile
-                  this.$store.commit("UPDATE_PROFILE", response.data.profile);
-                  
-                  
+                  this.$store.commit("UPDATE_PROFILE", response.data);
+                  this.$router.push("/");
                 }
-              }); */ this.$router.push("/");
-          }
-        })
+              })
         .catch((error) => {
           const response = error.response;
 

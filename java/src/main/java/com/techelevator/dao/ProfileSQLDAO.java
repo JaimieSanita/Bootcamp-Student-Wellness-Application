@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 
 import com.techelevator.model.Profile;
 
+//SET EXCEPTIONS
+
+
 @Component
 public class ProfileSQLDAO implements ProfileDAO {
 
@@ -53,8 +56,8 @@ public class ProfileSQLDAO implements ProfileDAO {
 	public Profile getByUsername(String username) {
 		Profile profile = null;
 		
-		String query = "SELECT profile_id, first_name, last_name, email, age, feet, inches, current_weight " + "FROM user_profile "
-			+ "JOIN users " + "ON user_profile.profile_id = users.user_id " + "WHERE username = ?";
+		String query = "SELECT user_profile.user_id, profile_id, first_name, last_name, email, age, feet, inches, current_weight " + "FROM user_profile "
+			+ "JOIN users " + "ON user_profile.user_id = users.user_id " + "WHERE username = ?";
 		SqlRowSet results = this.jdbcTemplate.queryForRowSet(query, username);
 		if(results.next()) {
 			profile = this.mapRowToProfile(results);
@@ -76,6 +79,7 @@ public class ProfileSQLDAO implements ProfileDAO {
 
 	private Profile mapRowToProfile(SqlRowSet rs) {
 		Profile profile = new Profile();
+		profile.setUserId(rs.getInt("user_id"));
 		profile.setId(rs.getInt("profile_id"));
 		profile.setFirstName(rs.getString("first_name"));
 		profile.setLastName(rs.getString("last_name"));
