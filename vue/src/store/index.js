@@ -58,7 +58,25 @@ export default new Vuex.Store({
         complete: false,
       }
     ],
-   
+    filterOptions: [
+      {
+        name: 'Category',
+        isActive: false,
+        values: [
+          {
+            name: 'Exercise',
+            selected : false
+          },
+          {
+            name: 'Nutrition',
+            selected : false
+          },
+          {
+            name: 'Sanity',
+            selected : false
+          }
+        ]
+      }]
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -86,5 +104,11 @@ export default new Vuex.Store({
     ADD_NEW(state, goal){
       state.goals.push(goal);
     },
+    DELETE_GOAL(state, id){
+      state.goals.splice(
+        state.goals.findIndex(goal => goal.id === id),
+        1
+      )
+    }
   }
 })

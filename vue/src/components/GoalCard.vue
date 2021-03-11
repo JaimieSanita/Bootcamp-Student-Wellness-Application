@@ -12,7 +12,6 @@
       </div>
     </div>
     <b-button
-      
       v-bind:class="{
         'goal-incomplete': goal.complete,
         'goal-complete': !goal.complete,
@@ -24,18 +23,36 @@
     </b-button>
     <footer class="card-footer">
       <a href="#" class="card-footer-item">Edit</a>
-      <a href="#" class="card-footer-item">Delete</a>
+      <a href="#" class="card-footer-item" v-on:click="deleteGoal(goal.id)"
+        >Delete</a
+      >
     </footer>
   </div>
 </template>
 
 <script>
+//import goalService from "../services/GoalService.js";
+
 export default {
   name: "goal-card",
   props: ["goal"],
   methods: {
     goalStatusChanger() {
       this.$store.commit("FLIP_STATUS", this.goal);
+    },
+    deleteGoal(id) {
+      // goalService.deleteGoal(id).then((response)=>{
+      //if(response.status === 200){
+      this.$store.commit("DELETE_GOAL", id);
+      // }
+      // });
+    }, //not sure if this method is necessary yet
+    calcGoalClasses() {
+      return {
+        'exercise': this.goal.category === 'Exercise',
+        'nutrition': this.goal.category === 'Nutrition',
+        'sanity': this.goal.category === 'Sanity',
+      };
     },
   },
 };
