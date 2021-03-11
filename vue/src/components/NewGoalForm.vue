@@ -37,7 +37,7 @@
     <form class="box form">
       <section>
         <b-field label="Let's set a goal!" type="is-info">
-          <b-select v-model="selectedCategory" placeholder="Category" expanded="true" >
+          <b-select v-model="selectedCategory" placeholder="Category" :expanded="true" >
             <option value=""></option>
             <option value="Exercise">Exercise</option>
             <option value="Nutrition">Nutrition</option>
@@ -67,12 +67,22 @@ export default {
       newGoal: {
         category: "",
         activtity: "",
-        dayAssigned: "",
+        dayAssigned: "03/11/2021",
         perWeek: 0,
         duration: 0,
       },
       selectedCategory: '',
     };
+  },
+  computed:{
+    assignDate:{
+      get:()=>{
+        return date.parse(this.dateAssigned);
+      },
+      set:(dt) =>{
+        this.dateAssigned = dt.toString();
+      },
+    },
   },
   methods: {
     saveGoal() {
@@ -81,16 +91,12 @@ export default {
       this.newGoal = {
         category: "",
         activtity: "",
-        dayAssigned: "",
+        dayAssigned: "01/01/1900",
         perWeek: 0,
         duration: 0,
       };
     },
-    toggleCategoryForm(category){
-      this.selectedCategory = category;
-          this.isActive  = !this.isActive;
-         this.activeitem = item.name
-    }
+
 
   },
 };
