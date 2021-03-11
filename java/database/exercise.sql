@@ -1,6 +1,9 @@
+DROP TABLE IF EXISTS exercise;
+
 CREATE TABLE exercise 
 (
-exercise_id                    int     NOT NULL,
+
+exercise_id                    int generated always as identity,
 exercise_category              varchar(32) NOT NULL, 
 exercise_name                  varchar(64)   NOT NULL,
 exercise_length               int NOT NULL, 
@@ -11,6 +14,7 @@ equipment                     boolean
 );
 
 alter table exercise 
-add constraint fk_exercise_id_id foreign key (exercise_id) references users (user_id);
+add constraint pk_exercise PRIMARY KEY (exercise_id);
+
 
 COMMIT; 
