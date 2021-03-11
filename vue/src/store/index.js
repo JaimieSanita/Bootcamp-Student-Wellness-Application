@@ -58,7 +58,25 @@ export default new Vuex.Store({
         complete: false,
       }
     ],
-   
+    filterOptions: [
+      {
+        name: 'Category',
+        isActive: false,
+        values: [
+          {
+            name: 'Exercise',
+            selected : false
+          },
+          {
+            name: 'Nutrition',
+            selected : false
+          },
+          {
+            name: 'Sanity',
+            selected : false
+          }
+        ]
+      }]
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
