@@ -86,5 +86,11 @@ export default new Vuex.Store({
     ADD_NEW(state, goal){
       state.goals.push(goal);
     },
+    DELETE_GOAL(state, id){
+      state.goals.splice(
+        state.goals.findIndex(goal => goal.id === id),
+        1
+      )
+    }
   }
 })

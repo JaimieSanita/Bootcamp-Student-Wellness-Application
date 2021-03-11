@@ -1,6 +1,8 @@
 DROP TABLE IF EXISTS food_items, meals;
 
+
 BEGIN TRANSACTION;
+
 
 CREATE TABLE food_items
 (
@@ -17,7 +19,9 @@ CREATE TABLE meals
 meal_id      serial     NOT NULL PRIMARY KEY,
 meal_category              varchar(32) NOT NULL,
 meal_name                  varchar(64)   NOT NULL
+
 );
+
 
 COMMIT;
 
@@ -29,3 +33,5 @@ COMMIT;
 
 //SELECT * FROM food_items;
 //SELECT * FROM meals;
+
+
