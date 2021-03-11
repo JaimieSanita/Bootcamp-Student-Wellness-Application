@@ -1,32 +1,34 @@
 package com.techelevator.model;
 
+import java.sql.Date;
+
 public class Goals {
-	private int goalId;
-	private int goalSetterId;
-	private String date;
+	private int userGoalsId;
+	private int userId;
+	private Date date;
 	private String category;
 	private String activity;
 	private int timesPerWeek;
 	private int duration;
 	private boolean isCompleted;
-	public int getGoalSetterId() {
-		return goalSetterId;
+	public int getuserId() {
+		return userId;
 	}
-	public void setGoalSetterId(int goalSetterId) {
-		this.goalSetterId = goalSetterId;
+	public void setuserId(int userId) {
+		this.userId = userId;
 	}
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	
-	public int getGoalId() {
-		return goalId;
+	public int getUserGoalsId() {
+		return userGoalsId;
 	}
-	public void setGoalId(int goalId) {
-		this.goalId = goalId;
+	public void setUserGoalsId(int userGoalsId) {
+		this.userGoalsId = userGoalsId;
 	}
 	public String getCategory() {
 		return category;

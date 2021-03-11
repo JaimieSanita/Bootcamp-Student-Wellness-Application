@@ -7,8 +7,8 @@ import com.techelevator.model.Goals;
 public interface GoalsDAO {
 	Goals create(Goals newGoals);
 	int updateGoals(Goals goals, String username);
-	int findGoalSetterIdByUsername(String username);
+	int findUserIdByUsername(String username);
 	Goals getByUsername(String Username);
-	List<Goals> listAllGoals();
+	List<Goals> listAllGoalsByUsername(String username);
 
 }
