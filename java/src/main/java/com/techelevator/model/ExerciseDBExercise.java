@@ -34,6 +34,8 @@ public class ExerciseDBExercise {
 		this.nf_calories = nf_calories;
 	}
 	
-	
+	public Exercise convertToExercise() {
+		return null;	
+	}
 
 }
