@@ -1,5 +1,7 @@
 package com.techelevator.dao;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,18 +19,40 @@ public class GoalsSQLDAO implements GoalsDAO{
 	}
 
 	@Override
-	public Goals create(Goals newGoals) {
-		// TODO Auto-generated method stub
-		return null;
+	public Goals create(Goals newGoals) throws SQLException {
+		Goals goals = null;
+		Connection conn = jdbcTemplate.getDataSource().getConnection();
+		try {
+			conn.setAutoCommit(false);
+			String insertGoals = "INSERT INTO user_goals (user_id, date_assigned, category_id, activity, times_per_week, duration, is_completed) "+
+			"VALUES (?,?,?,?,?,?,?) RETURNING *";
+			SqlRowSet results = jdbcTemplate.queryForRowSet(insertGoals, newGoals.getUserId(), newGoals.getDate(), newGoals.getCategoryId(), newGoals.getActivity(),
+															newGoals.getTimesPerWeek(), newGoals.getDuration(), newGoals.isCompleted());
+			if(results.next()) {
+				goals= this.mapRowToGoals(results);
+			}
+			conn.commit();
+			return goals;			
+		}
+		catch(Exception e) {
+			if(!conn.getAutoCommit()) {
+				conn.rollback();
+			}
+			throw e;
+		}finally {
+			conn.setAutoCommit(true);
+		}
+		
+		
 	}
 
 	@Override
 	public int updateGoals(Goals goals, String username) {
-		String query = "UPDATE  user_goals SET date_assigned = ?, category = ?, activity = ?, times_per_week = ?, duration = ?, is_completed = ? " + 
+		String query = "UPDATE  user_goals SET date_assigned = ?, category_id = ?, activity = ?, times_per_week = ?, duration = ?, is_completed = ? " + 
 				"FROM user_goals AS g JOIN users ON users.user_id = g.user_id  WHERE username = ?"
 				;
 		return jdbcTemplate.update(query, goals.getDate(), 
-				goals.getCategory(), goals.getActivity(), goals.getTimesPerWeek(),
+				goals.getCategoryId(), goals.getActivity(), goals.getTimesPerWeek(),
 				goals.getDuration(),goals.isCompleted(), findUserIdByUsername(username));
 	}
 
@@ -42,7 +66,7 @@ public class GoalsSQLDAO implements GoalsDAO{
 	@Override
 	public Goals getByUsername(String username) {
 		Goals goals = null;
-		String query = "SELECT user_goals_id,  date_assigned, category, activity, times_per_week, duration, is_completed FROM user_goals "+
+		String query = "SELECT user_goals_id,  date_assigned, category_id, activity, times_per_week, duration, is_completed FROM user_goals "+
 				"JOIN users ON users.user_id = user_goals.user_id  "+
 				"WHERE username =?";
 		SqlRowSet results = this.jdbcTemplate.queryForRowSet(query, username);
@@ -65,15 +89,31 @@ public class GoalsSQLDAO implements GoalsDAO{
 	private Goals mapRowToGoals(SqlRowSet rs) {
 		Goals goals = new Goals();
 		goals.setUserGoalsId(rs.getInt("user_goals_id"));
-		goals.setuserId(rs.getInt("user_id"));
+		goals.setUserId(rs.getInt("user_id"));
 		goals.setDate(rs.getDate("date_assigned"));
-		goals.setCategory(rs.getString("category"));
+		goals.setCategoryId(rs.getInt("category_id"));
 		goals.setActivity(rs.getString("activity"));
 		goals.setTimesPerWeek(rs.getInt("times_per_week"));
 		goals.setDuration(rs.getInt("duration"));
 		goals.setCompleted(rs.getBoolean("is_completed"));
 		return goals;	
 		
+	}
+	
+
+	@Override
+	public void delete(int userGoalsId) {
+		String query = "DELETE FROM user_goals WHERE user_goals_id = ?";
+		this.jdbcTemplate.update(query, userGoalsId);
+		
+	}
+
+	@Override
+	public boolean userOwnsGoal(String username, int goalId) {
+		String query = "SELECT count(*) FROM user_goals AS ug JOIN users AS u ON ug.user_id = u.user_id "+
+						" WHERE u.username = ? AND ug.user_goals_id = ?";
+		int rowCount = this.jdbcTemplate.queryForObject(query, Integer.class, username,goalId);
+		return rowCount ==1;
 	}
 	
 }

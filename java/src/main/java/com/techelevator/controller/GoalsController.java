@@ -1,6 +1,7 @@
 package com.techelevator.controller;
 
 import java.security.Principal;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +40,33 @@ public class GoalsController {
 		if(username != null && loggedIn != null && loggedIn.equalsIgnoreCase(username)) {
 		return dao.listAllGoalsByUsername(username);
 		
-	} return new ArrayList<Goals>();
-		
+	} return new ArrayList<Goals>();// throw forbidden exception	
+	}
+	@ResponseStatus(HttpStatus.CREATED)
+	@RequestMapping(path="/user/goals/{username}", method = RequestMethod.POST)
+	public Goals createGoals(@RequestBody Goals newGoals) throws SQLException {
+			return dao.create(newGoals);
+		}
 	
-}}
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@RequestMapping(path="/user/goals/{goalId}", method = RequestMethod.DELETE)
+	public void delete(Principal principal,@PathVariable int goalId) {
+		if(dao.userOwnsGoal(principal.getName(), goalId)){
+			this.dao.delete(goalId);
+		}else {
+			//throw forbidden exception
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	}
+
+

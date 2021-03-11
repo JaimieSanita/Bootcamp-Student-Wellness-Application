@@ -1,20 +1,24 @@
 package com.techelevator.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Goals {
 	private int userGoalsId;
 	private int userId;
+	@JsonFormat(shape = JsonFormat.Shape.STRING , pattern="yyyy-MM-dd")
 	private Date date;
-	private String category;
+	private int categoryId;
 	private String activity;
 	private int timesPerWeek;
 	private int duration;
 	private boolean isCompleted;
-	public int getuserId() {
+	public int getUserId() {
 		return userId;
 	}
-	public void setuserId(int userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 	public Date getDate() {
@@ -30,11 +34,12 @@ public class Goals {
 	public void setUserGoalsId(int userGoalsId) {
 		this.userGoalsId = userGoalsId;
 	}
-	public String getCategory() {
-		return category;
+	
+	public int getCategoryId() {
+		return categoryId;
 	}
-	public void setCategory(String category) {
-		this.category = category;
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 	public String getActivity() {
 		return activity;
