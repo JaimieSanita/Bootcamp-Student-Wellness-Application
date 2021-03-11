@@ -17,7 +17,7 @@
         'goal-complete': !goal.complete,
       }"
       v-on:click="goalStatusChanger()"
-      expanded="true"
+      :expanded="true"
     >
       {{ goal.complete ? "Complete" : "Incomplete" }}
     </b-button>
