@@ -5,26 +5,24 @@
     </div>
     <div class="welcome-container">
       <h1 class="title">
-        Welcome to {{ this.$store.state.profile.firstName }}'s TE Wellness
-        Tracker!
+        Welcome to {{ this.$store.state.profile.firstName }}'s Tech Elevator's Wellovater!
       </h1>
     </div>
     <new-goal-form />
-    <goal-list />
+    <div class="goal-container">
+      <goal-list />
+    </div>
   </div>
+  
 </template>
 
 <script>
-import AddExercise from "../components/AddExercise.vue";
-import AddFood from "../components/AddFood";
 import GoalList from "../components/GoalList";
 import NewGoalForm from "../components/NewGoalForm.vue";
 
 export default {
   name: "home",
   components: {
-    AddFood,
-    AddExercise,
     GoalList,
     NewGoalForm,
   },
@@ -46,15 +44,18 @@ export default {
   background-color: #00adee;
   display: flex;
   justify-content: space-around;
- 
+
   height: 90px;
   margin: 10px;
 }
-h1{
+h1 {
   color: white;
   display: flex;
   padding: 30px;
-
 }
-
+.goal-container{
+  margin-top: 20px;
+  display: flex;
+  
+}
 </style>

@@ -41,18 +41,10 @@ export default new Vuex.Store({
         duration: 10,
         complete: false,
       },
+      
       {
         id: 2,
-        category: "Nutrition",
-        activity: "Banana",
-        dayAssigned: "3/6/2021",
-        perWeek: 5,
-        duration: 0,
-        complete: false,
-      },
-      {
-        id: 3,
-        category: "Wellness",
+        category: "Exercise",
         activity: "Meditation",
         dayAssigned: "3/8/2021",
         perWeek: 3,
@@ -60,25 +52,7 @@ export default new Vuex.Store({
         complete: false,
       }
     ],
-    filterOptions: [
-      {
-        name: 'Category',
-        isActive: false,
-        values: [
-          {
-            name: 'Exercise',
-            selected : false
-          },
-          {
-            name: 'Nutrition',
-            selected : false
-          },
-          {
-            name: 'Sanity',
-            selected : false
-          }
-        ]
-      }]
+   
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -102,6 +76,15 @@ export default new Vuex.Store({
     },
     FLIP_STATUS(state, goalToChange) {
       goalToChange.complete = !goalToChange.complete;
+    },
+    CHANGE_COLOR(state, goalToChange){
+      if(goalToChange.category === 'Sanity'){
+        goalToChange.classList.add("sanity-goal");
+      } else if (goalToChange.category === 'Exercise'){
+        goalToChange.classList.add("exercise-goal");
+      } else {
+        goalToChange.classList.add("nutrition-goal");
+      }
     },
     ADD_NEW(state, goal){
       state.goals.push(goal);

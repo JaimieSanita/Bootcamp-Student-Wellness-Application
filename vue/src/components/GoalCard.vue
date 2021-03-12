@@ -1,17 +1,20 @@
 <template>
   <div class="card">
-    <header class="card-header">
+    <header v-bind:class="{
+        'exercise-goal': goal.category === 'Exercise',
+        'nutrition-goal': goal.category === 'Nutrition',
+        'sanity-goal': goal.category === 'Sanity',
+      }">
       <p class="card-header-title">{{ goal.dayAssigned }}'s Goal</p>
     </header>
     <div class="card-content">
       <div class="content">
         <p>{{ goal.category }}</p>
         <p>{{ goal.activity }}</p>
-        <p>{{ goal.perWeek }} per Week</p>
-        <p>{{ goal.duration }} minutes per Day</p>
+        <p>{{ goal.duration }} minutes</p>
       </div>
     </div>
-    <b-button
+  <!--  <b-button
       v-bind:class="{
         'goal-incomplete': goal.complete,
         'goal-complete': !goal.complete,
@@ -20,7 +23,8 @@
       :expanded="true"
     >
       {{ goal.complete ? "Complete" : "Incomplete" }}
-    </b-button>
+    </b-button> -->
+
     <footer class="card-footer">
       <a href="#" class="card-footer-item">Edit</a>
       <a href="#" class="card-footer-item" v-on:click="deleteGoal(goal.id)"
@@ -36,23 +40,27 @@
 export default {
   name: "goal-card",
   props: ["goal"],
+  data() {
+    return {
+      selectedCategory: "",
+      isComplete: false,
+    };
+  },
+
   methods: {
+    goalColorChanger() {
+      this.$store.commit("CHANGE_COLOR", this.goal);
+    },
     goalStatusChanger() {
       this.$store.commit("FLIP_STATUS", this.goal);
+      alert("Congrats! You did it!");
     },
     deleteGoal(id) {
-      // goalService.deleteGoal(id).then((response)=>{
-      //if(response.status === 200){
+      goalService.deleteGoal(id).then((response)=>{
+      if(response.status === 200){
       this.$store.commit("DELETE_GOAL", id);
-      // }
-      // });
-    }, //not sure if this method is necessary yet
-    calcGoalClasses() {
-      return {
-        'exercise': this.goal.category === 'Exercise',
-        'nutrition': this.goal.category === 'Nutrition',
-        'sanity': this.goal.category === 'Sanity',
-      };
+       }
+       });
     },
   },
 };
@@ -69,5 +77,14 @@ export default {
 
 .goal .goal-complete {
   font-size: 1.5rem;
+}
+.exercise-goal {
+  background-color: lightgreen;
+}
+.nutrition-goal {
+  background-color: lightsalmon;
+}
+.sanity-goal {
+  background-color: lightyellow;
 }
 </style>
