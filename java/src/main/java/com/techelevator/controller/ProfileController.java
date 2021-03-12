@@ -1,6 +1,7 @@
 package com.techelevator.controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.techelevator.dao.ProfileDAO;
 import com.techelevator.exception.ProfileNotFoundException;
 import com.techelevator.model.Profile;
-
+@PreAuthorize("isAuthenticated()")
 @CrossOrigin
 @RestController
 public class ProfileController {

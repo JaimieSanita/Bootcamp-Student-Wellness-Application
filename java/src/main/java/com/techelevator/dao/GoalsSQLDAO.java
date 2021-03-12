@@ -90,7 +90,7 @@ public class GoalsSQLDAO implements GoalsDAO{
 		Goals goals = new Goals();
 		goals.setUserGoalsId(rs.getInt("user_goals_id"));
 		goals.setUserId(rs.getInt("user_id"));
-		goals.setDate(rs.getDate("date_assigned"));
+		goals.setDate(rs.getDate("date_assigned").toLocalDate());
 		goals.setCategoryId(rs.getInt("category_id"));
 		goals.setActivity(rs.getString("activity"));
 		goals.setTimesPerWeek(rs.getInt("times_per_week"));

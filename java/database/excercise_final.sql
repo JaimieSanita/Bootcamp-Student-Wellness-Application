@@ -16,7 +16,7 @@ exercise_category              varchar(32) NOT NULL
 
 CREATE TABLE user_exercises
 (
-exercise_id      INT GENERATED ALWAYS AS IDENTITY ,
+user_exercise_id      INT GENERATED ALWAYS AS IDENTITY ,
 user_id int NOT NULL, 
 exercise_category_id             int NOT NULL,
 exercise_name                  varchar(64)   NOT NULL,
@@ -26,16 +26,16 @@ calories_burn                 int NOT NULL,
 equipment                     boolean,
 
 
-CONSTRAINT PK_user_exercises PRIMARY KEY (exercise_id),
+CONSTRAINT PK_user_exercises PRIMARY KEY (user_exercise_id),
 CONSTRAINT FK_user_id_id FOREIGN KEY(user_id) REFERENCES users(user_id),
-CONSTRAINT FK_excercise_id_id FOREIGN KEY (exercise_id) REFERENCES exercise (exercise_id)
+CONSTRAINT FK_excercise_id_id FOREIGN KEY (exercise_category_id) REFERENCES exercise (exercise_id)
 
 );
 
 
 
 GRANT SELECT, INSERT, UPDATE, DELETE
-ON exercise
+ON user_exercises
 TO final_capstone_appuser;
 
 
@@ -54,12 +54,12 @@ INSERT INTO user_exercises(user_id, exercise_category_id, exercise_name, exercis
 VALUES(1,1,'eating', 1, 'I ate a bunch of chicken', 7, false),(1,2,'sleeping', 1, 'had a good nap', 7, false),(1,3,'eating', 1, 'I ate a bunch of cheese', 7, false);
 
 
-
+SELECT * FROM user_goals;
 
 SELECT * FROM exercise;
 SELECT * FROM user_exercises;
 SELECT * FROM users;
-SELECT user_exercises.* FROM user_exercises JOIN users ON user_exercises.user_id = users.user_id WHERE users.username = user;
+SELECT user_exercises.* FROM user_exercises JOIN users ON user_exercises.user_id = users.user_id WHERE users.username = 'user';
 
 
 ROLLBACK;

@@ -90,10 +90,10 @@ export default new Vuex.Store({
       state.goals.push(goal);
     },
     DELETE_GOAL(state, id){
-      state.goals.splice(
-        state.goals.findIndex(goal => goal.id === id),
-        1
-      )
+     state.goals = state.goals.filter((goal)=>{
+       return goal.userGoalsId !=    id;
+        });
+      
     }
   }
 })

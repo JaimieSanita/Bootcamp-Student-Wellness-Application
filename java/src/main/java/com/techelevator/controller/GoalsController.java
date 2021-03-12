@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techelevator.dao.GoalsDAO;
+import com.techelevator.dao.UserDAO;
 import com.techelevator.exception.ProfileNotFoundException;
 import com.techelevator.model.Goals;
 @PreAuthorize("isAuthenticated()")
@@ -23,9 +24,11 @@ import com.techelevator.model.Goals;
 @CrossOrigin()
 public class GoalsController {
 	private GoalsDAO dao;
+	private UserDAO uDao;
 	
-	public GoalsController(GoalsDAO dao) {
+	public GoalsController(GoalsDAO dao, UserDAO uDao) {
 		this.dao = dao;
+		this.uDao = uDao;
 	}
 	
 	@ResponseStatus(HttpStatus.OK)
@@ -43,8 +46,10 @@ public class GoalsController {
 	} return new ArrayList<Goals>();// throw forbidden exception	
 	}
 	@ResponseStatus(HttpStatus.CREATED)
-	@RequestMapping(path="/user/goals/{username}", method = RequestMethod.POST)
-	public Goals createGoals(@RequestBody Goals newGoals) throws SQLException {
+	@RequestMapping(path="/user/goals", method = RequestMethod.POST)
+	public Goals createGoals(Principal principal, @RequestBody Goals newGoals) throws SQLException {
+		int userId = this.uDao.findIdByUsername(principal.getName());
+		newGoals.setUserId(userId);
 			return dao.create(newGoals);
 		}
 	

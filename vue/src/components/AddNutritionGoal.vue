@@ -60,6 +60,7 @@ export default {
   data() {
     return {
       newGoal: {
+        userId: '',
         category: "Nutrition",
         activity: "",
         dayAssigned: (new Date()).toLocaleDateString(),
@@ -113,6 +114,8 @@ export default {
       this.newGoal.complete = false;
       this.$store.commit("ADD_NEW", this.newGoal);
       this.newGoal = {
+        userId: '',
+        categoryId: 2,
         category: "Nutrition",
         activity: "",
         dayAssigned: (new Date()).toLocaleDateString(),

@@ -5,7 +5,7 @@
         'nutrition-goal': goal.category === 'Nutrition',
         'sanity-goal': goal.category === 'Sanity',
       }">
-      <p class="card-header-title">{{ goal.dayAssigned }}'s Goal</p>
+      <p class="card-header-title">{{ goal.date }}'s Goal</p>
     </header>
     <div class="card-content">
       <div class="content">
@@ -27,7 +27,7 @@
 
     <footer class="card-footer">
       <a href="#" class="card-footer-item">Edit</a>
-      <a href="#" class="card-footer-item" v-on:click="deleteGoal(goal.id)"
+      <a href="#" class="card-footer-item" v-on:click="deleteGoal(goal.userGoalsId)"
         >Delete</a
       >
     </footer>
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-//import goalService from "../services/GoalService.js";
+import goalService from "../services/GoalService.js";
 
 export default {
   name: "goal-card",
@@ -56,8 +56,8 @@ export default {
       alert("Congrats! You did it!");
     },
     deleteGoal(id) {
-      goalService.deleteGoal(id).then((response)=>{
-      if(response.status === 200){
+      goalService.delete(id).then((response)=>{
+      if(response.status === 204){
       this.$store.commit("DELETE_GOAL", id);
        }
        });
