@@ -56,11 +56,11 @@ export default {
       alert("Congrats! You did it!");
     },
     deleteGoal(id) {
-      //goalService.deleteGoal(id).then((response)=>{
-      //if(response.status === 200){
+      goalService.deleteGoal(id).then((response)=>{
+      if(response.status === 200){
       this.$store.commit("DELETE_GOAL", id);
-      // }
-      // });
+       }
+       });
     },
   },
 };
