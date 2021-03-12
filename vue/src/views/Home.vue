@@ -15,16 +15,14 @@
 </template>
 
 <script>
-import AddExercise from "../components/AddExercise.vue";
-import AddFood from "../components/AddFood";
+
 import GoalList from "../components/GoalList";
 import NewGoalForm from "../components/NewGoalForm.vue";
 
 export default {
   name: "home",
   components: {
-    AddFood,
-    AddExercise,
+
     GoalList,
     NewGoalForm,
   },

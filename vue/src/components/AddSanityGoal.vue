@@ -1,7 +1,7 @@
 <template>
   <form class="box form" v-on:submit.prevent>
     <section>
-      <b-field label="ADD EXERCISE GOAL"> </b-field>
+      <b-field label="ADD SANITY GOAL"> </b-field>
 
       <b-field label="Name" type="is-info">
         <b-select
@@ -10,14 +10,11 @@
           class="activity-input"
           v-model="newGoal.activity"
         >
-          <option value="Running">Running</option>
-          <option value="Walking">Walking</option>
+          <option value="Meditiate">Meditate</option>
           <option value="Yoga">Yoga</option>
-          <option value="Weight-Lifting">Weight Lifting</option>
-          <option value="Swimming">Swimming</option>
-          <option value="Meditation">Meditation</option>
-          <option value="Stretching">Stretching</option>
-          <option value="Pilates">Pilates</option>
+          <option value="Go Outside">Go Outside</option>
+          <option value="Breathing Exercises">Breathing Exercises</option>
+
         </b-select>
       </b-field>
 
@@ -26,14 +23,7 @@
           class="duration-input"
           v-model="newGoal.duration"
           type="is-info"
-        ></b-numberinput>
-      </b-field>
-
-      <b-field label="Times per Week">
-        <b-numberinput
-          class="times-input"
-          v-model="newGoal.perWeek"
-          type="is-info"
+          value="times"
         ></b-numberinput>
       </b-field>
 
@@ -60,8 +50,8 @@
           </b-field>
         </b-datepicker>
       </b-field>
-      <b-button v-on:click="saveGoal" class="button is-link" type="is-info"
-        >Add Exercise Goal</b-button
+      <b-button v-on:click="saveGoal " class="button is-link" type="is-info"
+        >Add Sanity Goal</b-button
       >
     </section>
   </form>
@@ -72,11 +62,12 @@ export default {
   data() {
     return {
       newGoal: {
-        category: "",
+        category: "Sanity",
         activity: "",
         dayAssigned: (new Date()).toLocaleDateString(),
         perWeek: 0,
         duration: 0,
+        complete: false,
       },
       date: new Date(),
       month: null,
@@ -108,6 +99,9 @@ export default {
     },
   },
   methods: {
+    goalColorChanger() {
+    this.$store.commit("CHANGE_COLOR", this.goal);
+    },
     selectMonth(option) {
       if (option) {
         this.date = new Date(this.date);
@@ -124,7 +118,7 @@ export default {
       this.newGoal.complete = false;
       this.$store.commit("ADD_NEW", this.newGoal);
       this.newGoal = {
-        category: "",
+        category: "Sanity",
         activity: "",
         dayAssigned: (new Date()).toLocaleDateString(),
         perWeek: 0,

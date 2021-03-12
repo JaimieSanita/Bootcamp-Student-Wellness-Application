@@ -6,10 +6,13 @@
 </template>
 
 <script>
-import GoalCard from '../components/GoalCard.vue';
+import GoalCard from './GoalCard.vue';
+
+
 export default {
   components: { 
-      GoalCard 
+      GoalCard,
+     
       },
   name: "goal-list",
 };

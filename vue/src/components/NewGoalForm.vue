@@ -11,22 +11,24 @@
           </b-select>
         </b-field>
    
-        <add-exercise v-if="selectedCategory === 'Exercise'"/>
-        <add-food v-if="selectedCategory === 'Nutrition'"/>
-        <!--add-sanity-->
+        <add-exercise-goal v-if="selectedCategory === 'Exercise'"/>
+        <add-nutrition-goal v-if="selectedCategory === 'Nutrition'"/>
+        <add-sanity-goal v-if="selectedCategory === 'Sanity'"/>
       </section>
     </form>
   </div>
 </template>
 
 <script>
-import AddExercise from '../components/AddExercise.vue';
-import AddFood from './AddFood.vue';
+import AddExerciseGoal from './AddExerciseGoal.vue';
+import AddNutritionGoal from './AddNutritionGoal.vue';
+import AddSanityGoal from './AddSanityGoal.vue';
 
 export default {
   components: { 
-      AddExercise,
-      AddFood
+      AddExerciseGoal,
+      AddNutritionGoal,
+      AddSanityGoal,
       },
   data() {
     return {

@@ -1,14 +1,13 @@
 <template>
   <div class="card">
-    <header class="card-header">
+    <header class="card-header" >
       <p class="card-header-title">{{ goal.dayAssigned }}'s Goal</p>
     </header>
     <div class="card-content">
       <div class="content">
         <p>{{ goal.category }}</p>
         <p>{{ goal.activity }}</p>
-        <p>{{ goal.perWeek }} per Week</p>
-        <p>{{ goal.duration }} minutes per Day</p>
+        <p>{{ goal.duration }} minutes</p>
       </div>
     </div>
     <b-button
@@ -34,11 +33,22 @@
 //import goalService from "../services/GoalService.js";
 
 export default {
-  name: "goal-card",
+  name: "exercise-goal-card",
   props: ["goal"],
+  data() {
+    return {
+      selectedCategory: "",
+      isComplete: false,
+    };
+  },
+
   methods: {
+    goalColorChanger() {
+      this.$store.commit("CHANGE_COLOR", this.goal);
+    },
     goalStatusChanger() {
       this.$store.commit("FLIP_STATUS", this.goal);
+      alert("Congrats! You did it!");
     },
     deleteGoal(id) {
       // goalService.deleteGoal(id).then((response)=>{
@@ -46,13 +56,6 @@ export default {
       this.$store.commit("DELETE_GOAL", id);
       // }
       // });
-    }, //not sure if this method is necessary yet
-    calcGoalClasses() {
-      return {
-        'exercise': this.goal.category === 'Exercise',
-        'nutrition': this.goal.category === 'Nutrition',
-        'sanity': this.goal.category === 'Sanity',
-      };
     },
   },
 };
@@ -69,5 +72,14 @@ export default {
 
 .goal .goal-complete {
   font-size: 1.5rem;
+}
+.exercise-goal {
+  background-color: aqua;
+}
+.nutrition-goal {
+  background-color: blue;
+}
+.sanity-goal {
+  background-color: brown;
 }
 </style>
