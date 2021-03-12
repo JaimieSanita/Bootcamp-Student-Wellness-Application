@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import Buefy from 'buefy'
 
 Vue.use(Vuex)
+Vue.use(Buefy)
 
 /*
  * The authorization header is set for axios when you login but what happens when you come back or

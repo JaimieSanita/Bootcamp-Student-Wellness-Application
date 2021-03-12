@@ -29,9 +29,9 @@ public class GoalsController {
 	}
 	
 	@ResponseStatus(HttpStatus.OK)
-	@RequestMapping(path = "user/goals/{username}", method = RequestMethod.PUT) 
-	public void updateGoals(@RequestBody Goals goals, @PathVariable String username)  throws ProfileNotFoundException{
-		this.dao.updateGoals(goals, username);
+	@RequestMapping(path = "user/goals/{userGoalsId}", method = RequestMethod.PUT) 
+	public void updateGoals(@RequestBody Goals goals, @PathVariable int userGoalsId)  throws ProfileNotFoundException{
+		this.dao.updateGoals(goals, userGoalsId);
 	}
 	
 	@RequestMapping(path = "/user/goals/{username}", method = RequestMethod.GET)

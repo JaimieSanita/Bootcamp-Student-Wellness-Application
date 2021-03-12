@@ -1,68 +1,88 @@
 package com.techelevator.model;
 
 public class Exercise {
-	private String category;
-	private String name;
-	private int duration;
-	private String description;
-	private int caloriesBurned;
-	private  String username;
-	private int exerciseId;
+	private int userExerciseId;
+	private int userId;
+	private int exerciseCategoryId;
+	private String exerciseName;
+	private int exerciseLength;
+	private String exerciseDescription;
+	private int caloriedBurned;
+	private boolean equipmentUsed;
 	
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public int getDuration() {
-		return duration;
-	}
-	public void setDuration(int duration) {
-		this.duration = duration;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public int getCaloriesBurned() {
-		return caloriesBurned;
-	}
-	public void setCaloriesBurned(int caloriesBurned) {
-		this.caloriesBurned = caloriesBurned;
-	}
 	
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
 	
-	public int getExerciseId() {
-		return exerciseId;
-	}
-	public void setExerciseId(int exerciseId) {
-		this.exerciseId = exerciseId;
-	}
 	
-	public Exercise(String username, String category, String name, int duration, String description, int caloriesBurned) {
-		this.category = category;
-		this.name = name;
-		this.duration = duration;
-		this.description = description;
-		this.caloriesBurned = caloriesBurned;
-		this.username = username;
+	public int getUserExerciseId() {
+		return userExerciseId;
+	}
+	public void setUserExerciseId(int userExerciseId) {
+		this.userExerciseId = userExerciseId;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	public int getExerciseCategoryId() {
+		return exerciseCategoryId;
+	}
+	public void setExerciseCategoryId(int exerciseCategoryId) {
+		this.exerciseCategoryId = exerciseCategoryId;
+	}
+	public String getExerciseName() {
+		return exerciseName;
+	}
+	public void setExerciseName(String exerciseName) {
+		this.exerciseName = exerciseName;
+	}
+	public int getExerciseLength() {
+		return exerciseLength;
+	}
+	public void setExerciseLength(int exerciseLength) {
+		this.exerciseLength = exerciseLength;
+	}
+	public String getExerciseDescription() {
+		return exerciseDescription;
+	}
+	public void setExerciseDescription(String exerciseDescription) {
+		this.exerciseDescription = exerciseDescription;
+	}
+	public boolean isEquipmentUsed() {
+		return equipmentUsed;
+	}
+	public void setEquipmentUsed(boolean equipmentUsed) {
+		this.equipmentUsed = equipmentUsed;
+	}
+	public int getCaloriedBurned() {
+		return caloriedBurned;
+	}
+	public void setCaloriedBurned(int caloriedBurned) {
+		this.caloriedBurned = caloriedBurned;
 	}
 	public Exercise() {
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -1,4 +1,4 @@
-package com.techelevator.model;
+package com.techelevator.dao;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +14,8 @@ import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
-import com.techelevator.dao.FoodDBApiService;
+import com.techelevator.model.ExerciseDBExercise;
+import com.techelevator.model.ExerciseDBWrapper;
 
 @Component
 public class ExerciseDBApiService {

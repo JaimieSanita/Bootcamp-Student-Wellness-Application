@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS goal_category;
-DROP TABLE IF EXISTS user_goals;
 
+DROP TABLE IF EXISTS user_goals;
+DROP TABLE IF EXISTS goal_category;
 BEGIN TRANSACTION;
 
 CREATE TABLE goal_category
@@ -18,8 +18,8 @@ user_id int NOT NULL,
 date_assigned DATE NOT NULL,
 category_id      int    NOT NULL,
 activity      varchar(128) NOT NULL,
-times_per_week      int    NOT NULL,
-duration          int   NOT NULL,
+times_per_week      int    ,
+duration          int   ,
 is_completed         boolean            NOT NULL,
 CONSTRAINT PK_goals PRIMARY KEY (user_goals_id),
 CONSTRAINT FK_goals_user FOREIGN KEY(user_id) REFERENCES users(user_id),
@@ -40,6 +40,8 @@ ON user_goals
 TO final_capstone_appuser;
 
 INSERT INTO goal_category(category) Values ('exercise');
+INSERT INTO goal_category(category) Values ('nutrition');
+INSERT INTO goal_category(category) Values ('sanity');
 
 INSERT INTO user_goals(user_id, date_assigned, category_id, activity, times_per_week, duration, is_completed)
 VALUES (1, '05/24/2020' , 1, 'running', 2, 10, false);

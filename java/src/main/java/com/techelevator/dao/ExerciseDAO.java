@@ -1,22 +1,24 @@
 package com.techelevator.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 import com.techelevator.model.Exercise;
 
 public interface ExerciseDAO {
 	
 	
-	Exercise create(Exercise exercise);
+	Exercise create(Exercise exercise) throws SQLException;
 	
-	String updateExercise(Exercise exercise, String username);
+	int updateExercise(Exercise exercise, int exerciseId);
 	
 	Exercise findExerciseByName(String name);
 	
-	int findExerciseIdByUsername(String username);
-	
-	Exercise getExerciseByUsername(String Username);
+	void delete(int userExerciseId);
 	
 	List<Exercise>listAllExercises();
+
+	List<Exercise> listAllExercisesByUsername(String username);
+	public boolean userOwnsExercise(String username, int exerciseId);
 
 	
 }

@@ -47,13 +47,13 @@ public class GoalsSQLDAO implements GoalsDAO{
 	}
 
 	@Override
-	public int updateGoals(Goals goals, String username) {
+	public int updateGoals(Goals goals, int userGoalsId) {
 		String query = "UPDATE  user_goals SET date_assigned = ?, category_id = ?, activity = ?, times_per_week = ?, duration = ?, is_completed = ? " + 
-				"FROM user_goals AS g JOIN users ON users.user_id = g.user_id  WHERE username = ?"
+				" WHERE user_goals_id = ?"
 				;
 		return jdbcTemplate.update(query, goals.getDate(), 
 				goals.getCategoryId(), goals.getActivity(), goals.getTimesPerWeek(),
-				goals.getDuration(),goals.isCompleted(), findUserIdByUsername(username));
+				goals.getDuration(),goals.isCompleted(), userGoalsId);
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class GoalsSQLDAO implements GoalsDAO{
 	@Override
 	public List<Goals> listAllGoalsByUsername(String username) {
 		List<Goals> goals = new ArrayList<>();
-		String query = "SELECT user_goals.* FROM user_goals JOIN users ON user_goals.user_id = users.user_id WHERE users.username = ?";
+		String query = "";
 		SqlRowSet results = this.jdbcTemplate.queryForRowSet(query, username);
 		while(results.next()) {
 			Goals resultGoals = this.mapRowToGoals(results);
