@@ -42,7 +42,7 @@ export default new Vuex.Store({
       
       {
         id: 2,
-        category: "Sanity",
+        category: "Exercise",
         activity: "Meditation",
         dayAssigned: "3/8/2021",
         perWeek: 3,

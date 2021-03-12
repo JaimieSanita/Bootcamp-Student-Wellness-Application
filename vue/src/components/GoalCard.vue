@@ -1,6 +1,10 @@
 <template>
   <div class="card">
-    <header class="card-header" >
+    <header v-bind:class="{
+        'exercise-goal': goal.category === 'Exercise',
+        'nutrition-goal': goal.category === 'Nutrition',
+        'sanity-goal': goal.category === 'Sanity',
+      }">
       <p class="card-header-title">{{ goal.dayAssigned }}'s Goal</p>
     </header>
     <div class="card-content">
@@ -10,7 +14,7 @@
         <p>{{ goal.duration }} minutes</p>
       </div>
     </div>
-    <b-button
+  <!--  <b-button
       v-bind:class="{
         'goal-incomplete': goal.complete,
         'goal-complete': !goal.complete,
@@ -19,7 +23,8 @@
       :expanded="true"
     >
       {{ goal.complete ? "Complete" : "Incomplete" }}
-    </b-button>
+    </b-button> -->
+
     <footer class="card-footer">
       <a href="#" class="card-footer-item">Edit</a>
       <a href="#" class="card-footer-item" v-on:click="deleteGoal(goal.id)"
@@ -33,7 +38,7 @@
 //import goalService from "../services/GoalService.js";
 
 export default {
-  name: "exercise-goal-card",
+  name: "goal-card",
   props: ["goal"],
   data() {
     return {
@@ -51,7 +56,7 @@ export default {
       alert("Congrats! You did it!");
     },
     deleteGoal(id) {
-      // goalService.deleteGoal(id).then((response)=>{
+      //goalService.deleteGoal(id).then((response)=>{
       //if(response.status === 200){
       this.$store.commit("DELETE_GOAL", id);
       // }
@@ -74,12 +79,12 @@ export default {
   font-size: 1.5rem;
 }
 .exercise-goal {
-  background-color: aqua;
+  background-color: lightgreen;
 }
 .nutrition-goal {
-  background-color: blue;
+  background-color: lightsalmon;
 }
 .sanity-goal {
-  background-color: brown;
+  background-color: lightyellow;
 }
 </style>
