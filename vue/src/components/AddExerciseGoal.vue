@@ -3,7 +3,7 @@
     <section>
       <b-field label="ADD EXERCISE GOAL"> </b-field>
 
-      <b-field label="Name" type="is-info">
+      <b-field label="Name" type="is-primary">
         <b-select
           placeholder="Activity"
           :expanded="true"
@@ -21,7 +21,7 @@
         <b-numberinput
           class="duration-input"
           v-model="newGoal.duration"
-          type="is-info"
+          type="is-primary"
           value="minutes"
         ></b-numberinput>
       </b-field>
@@ -49,7 +49,7 @@
           </b-field>
         </b-datepicker>
       </b-field>
-      <b-button v-on:click="saveGoal" class="button is-link" type="is-info"
+      <b-button v-on:click="saveGoal" class="button is-link" type="is-primary"
         >Add Exercise Goal</b-button
       >
     </section>

@@ -3,7 +3,7 @@
     <section>
       <b-field label="ADD NUTRITION GOAL"> </b-field>
 
-      <b-field label="Name" type="is-info">
+      <b-field label="Name" type="is-primary">
         <b-select
           placeholder="Activity"
           :expanded="true"
@@ -11,7 +11,7 @@
           v-model="newGoal.activity"
         >
           <option value=""></option>
-          <option value="drink">Min Water Intake</option>
+          <option value="minimum calorie intake" >Min Calorie Intake</option>
           <option value="maximum calorie intake">Max Calorie Intake</option>
          
         </b-select>
@@ -21,7 +21,8 @@
         <b-numberinput
           class="duration-input"
           v-model="newGoal.duration"
-          type="is-info"
+          type="is-primary"
+         
         ></b-numberinput>
       </b-field>
 
@@ -48,7 +49,7 @@
           </b-field>
         </b-datepicker>
       </b-field>
-      <b-button v-on:click="saveGoal" class="button is-link" type="is-info"
+      <b-button v-on:click="saveGoal" class="button is-link" type="is-primary"
         >Add Nutrition Goal</b-button
       >
     </section>

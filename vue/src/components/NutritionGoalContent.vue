@@ -31,4 +31,7 @@ img {
   height: 50px;
   width: 50px;
 }
+.content-container{
+ 
+}
 </style>

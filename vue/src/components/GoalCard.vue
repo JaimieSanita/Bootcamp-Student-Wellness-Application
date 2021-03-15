@@ -76,7 +76,7 @@ export default {
 .goal {
   border: 2px solid black;
   border-radius: 10px;
-  width: 250px;
+  width: 200px;
   height: auto;
   margin: 20px;
 }
