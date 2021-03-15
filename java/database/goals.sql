@@ -14,10 +14,10 @@ CONSTRAINT PK_goal_category PRIMARY KEY (goal_category_id)
 CREATE TABLE user_goals
 (
 user_goals_id      INT GENERATED ALWAYS AS IDENTITY ,
-user_id int NOT NULL, 
-date_assigned DATE NOT NULL,
-category_id      int    NOT NULL,
-activity      varchar(128) NOT NULL,
+user_id int , 
+date_assigned DATE ,
+category_id      int    ,
+activity      varchar(128) ,
 times_per_week      int    ,
 duration          int   ,
 is_completed         boolean            NOT NULL,
@@ -71,6 +71,6 @@ FROM user_goals AS g
 JOIN users
 ON users.user_id = g.user_id
 WHERE user_id= 1;
-
+DELETE FROM user_goals WHERE user_id =1;
 
 SELECT count(*) FROM user_goals AS ug JOIN users AS u ON ug.user_id = u.user_id WHERE u.username= 'user' AND ug.user_goals_id =1;
