@@ -39,14 +39,13 @@ public class GoalsController {
 	@RequestMapping(path="user/goals/{userGoalsId}", method = RequestMethod.GET)
 	public Goals getGoalByUserGoalsId( @PathVariable int userGoalsId) {
 		 return this.dao.getByUserGoalsId( userGoalsId);
-	}
-	@RequestMapping(path = "/user/goals/all/{username}", method = RequestMethod.GET)
-	public List<Goals> getAllGoals(Principal principal, @PathVariable String username){
+	}  
+	@RequestMapping(path = "/user/goals", method = RequestMethod.GET)
+	public List<Goals> getAllGoals(Principal principal){
 		String loggedIn = principal.getName();
-		if(username != null && loggedIn != null && loggedIn.equalsIgnoreCase(username)) {
-		return dao.listAllGoalsByUsername(username);
 		
-	} return new ArrayList<Goals>();// throw forbidden exception	
+		return dao.listAllGoalsByUsername(loggedIn);
+		
 	}
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(path="/user/goals", method = RequestMethod.POST)

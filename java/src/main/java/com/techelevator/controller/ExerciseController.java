@@ -27,13 +27,12 @@ public class ExerciseController {
 	public ExerciseController(ExerciseDAO dao) {
 		this.dao = dao;
 	}
-	@RequestMapping(path = "/user/exercise/{username}", method = RequestMethod.GET)
-	public List<Exercise> getAllExercises(Principal principal, @PathVariable String username){
+	@RequestMapping(path = "/user/exercise", method = RequestMethod.GET)
+	public List<Exercise> getAllExercises(Principal principal){
 		String loggedIn = principal.getName();
-		if(username != null && loggedIn != null && loggedIn.equalsIgnoreCase(username)) {
-			return dao.listAllExercisesByUsername(username);
-		}
-		return new ArrayList<Exercise>();
+		
+			return dao.listAllExercisesByUsername(loggedIn);  
+		
 	}
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(path="/user/exercise/{username}", method = RequestMethod.POST)
