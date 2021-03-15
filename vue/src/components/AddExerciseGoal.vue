@@ -50,7 +50,7 @@
           </b-field>
         </b-datepicker>
       </b-field>
-      <b-button v-on:click="saveGoal" class="button is-link" type="is-primary"
+      <b-button v-on:click="saveGoal" type="is-primary"
         >Add Exercise Goal</b-button
       >
     </section>

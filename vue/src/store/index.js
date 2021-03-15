@@ -32,17 +32,7 @@ export default new Vuex.Store({
       weight: 0,
     },
     goals: [
-      {
-        userGoalsId: "",
-        userId: "",
-        categoryId: 0,
-        category: "",
-        activity: "",
-        date: "",
-        perWeek: 0,
-        duration: 0,
-        complete: false,
-      }
+     
     
     ],
    
