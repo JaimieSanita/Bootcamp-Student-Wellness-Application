@@ -68,6 +68,7 @@ export default {
   data() {
     return {
       newGoal: {
+        userGoalsId: "",
         userId: "",
         categoryId: 3,
         category: "Sanity",
@@ -126,6 +127,7 @@ export default {
         if (response.status === 201) {
           this.$store.commit("ADD_NEW", response.data); 
           this.newGoal = {
+            userGoalsId: "",
             userId: "",
             categoryId: 3,
             category: "Sanity",
