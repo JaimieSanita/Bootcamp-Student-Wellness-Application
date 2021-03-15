@@ -1,24 +1,29 @@
 package com.techelevator.model;
 
 public class Food {
-	
-	private String foodName;
+	private int userFoodsId;
+	private int foodId;
+	private String name;	
 	private int servings;
-	private String mealCategory;
-	private int calories;
-	
-	
-	public int getCalories() {
-		return calories;
+	private int userId;
+	private int userMealsId;
+	public int getUserFoodsId() {
+		return userFoodsId;
 	}
-	public void setCalories(int calories) {
-		this.calories = calories;
+	public void setUserFoodsId(int userFoodsId) {
+		this.userFoodsId = userFoodsId;
 	}
-	public String getFoodName() {
-		return foodName;
+	public int getFoodId() {
+		return foodId;
 	}
-	public void setFoodName(String foodName) {
-		this.foodName = foodName;
+	public void setFoodId(int foodId) {
+		this.foodId = foodId;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public int getServings() {
 		return servings;
@@ -26,22 +31,25 @@ public class Food {
 	public void setServings(int servings) {
 		this.servings = servings;
 	}
-	public String getMealCategory() {
-		return mealCategory;
+	public int getUserId() {
+		return userId;
 	}
-	public void setMealCategory(String mealCategory) {
-		this.mealCategory = mealCategory;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
-	public Food(String foodName, int servings, String mealCategory, int calories) {
+	public int getUserMealsId() {
+		return userMealsId;
+	}
+	public void setUserMealsId(int userMealsId) {
+		this.userMealsId = userMealsId;
+	}
+	public Food() {
 		
-		this.foodName = foodName;
-		this.servings = servings;
-		this.mealCategory = mealCategory;
-		this.calories = calories;
-	}
-	public Food() {}
-	
-	
 	}
 	
+	
+	
+	
+	
+}
 

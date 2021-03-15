@@ -1,30 +1,10 @@
 <template>
-<div class="container">
   <form class="box form" v-on:submit.prevent>
     <section>
-      <b-field label="ADD EXERCISE GOAL"> </b-field>
+      <b-field label="ADD EXERCISE"> </b-field>
 
-      <b-field label="Name" type="is-info">
-        <b-select
-          placeholder="Activity"
-          :expanded="true"
-          class="activity-input"
-          v-model="newGoal.activity"
-        >
-          <option value="Run">Run</option>
-          <option value="Walk">Walk</option>
-          <option value="Stretch">Stretch</option>
-          <option value="Swim">Swim</option>
-        </b-select>
-      </b-field>
-
-      <b-field label="Duration">
-        <b-numberinput
-          class="duration-input"
-          v-model="newGoal.duration"
-          type="is-info"
-          value="minutes"
-        ></b-numberinput>
+      <b-field label="Name">
+        <b-input v-model="name"></b-input>
       </b-field>
 
       <b-field label="Select a date">
@@ -50,16 +30,29 @@
           </b-field>
         </b-datepicker>
       </b-field>
-      <b-button v-on:click="saveGoal" class="button is-link" type="is-info"
-        >Add Exercise Goal</b-button
+      <b-field label="Duration">
+      <b-numberinput v-model="number"></b-numberinput>
+    </b-field>
+      <b-field label="Exercise Descripiton">
+        <b-input maxlength="200" type="textarea"></b-input>
+      </b-field>
+      <b-field label="Calories Burned">
+      <b-numberinput v-model="number"></b-numberinput>
+    </b-field>
+    <b-field label="Was Equipment Used">
+            <b-radio v-model='leftLabel' :native-value='false'>No</b-radio>
+            <b-radio v-model='leftLabel' :native-value='true'>Yes</b-radio>
+        </b-field>
+
+      <b-button v-on:click="saveExercise" class="button is-link" type="is-info"
+        >Add Exercise</b-button
       >
     </section>
   </form>
-</div>
 </template>
 
 <script>
-import goalService from "../services/GoalService.js";
+import exerciseService from "../services/ExerciseService.js";
 const dateFormat = {
   year: "numeric",
   month: "2-digit",
@@ -69,16 +62,17 @@ const locale = "en-US";
 export default {
   data() {
     return {
-      newGoal: {
+      newExercise: {
+        userExerciseId: "",
         userId: "",
-        categoryId: 1,
-        category: "Exercise",
-        activity: "",
+        exerciseCategoryId: "",
+        exerciseName: "",
         date: new Date().toLocaleDateString(locale, dateFormat),
-        perWeek: 0,
         duration: 0,
-        complete: false,
+        caloriesBurned: 0,
+        equipmentUsed: false,
       },
+      leftLabel:false,
       date: new Date(),
       month: null,
       months: [
@@ -100,10 +94,10 @@ export default {
   computed: {
     assignDate: {
       get: function () {
-        return new Date(this.newGoal.date);
+        return new Date(this.newExercise.date);
       },
       set: function (dt) {
-        this.newGoal.date = dt.toLocaleDateString(locale, dateFormat);
+        this.newExercise.date = dt.toLocaleDateString(locale, dateFormat);
       },
     },
   },
@@ -114,25 +108,26 @@ export default {
         this.date.setMonth(option.value);
       }
     },
+
     mounted() {
       this.month = this.months.filter(
         (item) => item.value == this.date.getMonth()
       )[0].name;
     },
-    saveGoal() {
-      this.newGoal.complete = false;
-      goalService.add(this.newGoal).then((response) => {
+    saveExercise() {
+      this.newExercise.complete = false;
+      exerciseService.add(this.newExercise).then((response) => {
         if (response.status === 201) {
-          this.$store.commit("ADD_NEW", response.data); 
-          this.newGoal = {
+          this.$store.commit("ADD_NEW", response.data);
+          this.newExercise = {
+            userExerciseId: "",
             userId: "",
-            categoryId: 1,
-            category: "Exercise",
-            activity: "",
+            exerciseCategoryId: "",
+            exerciseName: "",
             date: new Date().toLocaleDateString(locale, dateFormat),
-            perWeek: 0,
-            duration: 0,
-            complete: false,
+            duration: "",
+            caloriesBurned: "",
+            equipmentUsed: false,
           };
         }
       });

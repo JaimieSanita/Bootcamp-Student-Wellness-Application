@@ -26,9 +26,9 @@ public class ExerciseSqlDAO implements ExerciseDAO {
 		Connection conn = jdbcTemplate.getDataSource().getConnection();
 		try {
 			conn.setAutoCommit(false);
-			String insertExercises = "INSERT INTO user_exercises(user_id, exercise_category_id, exercise_name, exercise_length, exercise_description, calories_burn, equipment) "+
+			String insertExercises = "INSERT INTO user_exercises(user_id, exercise_category_id, exercise_name, date_assigned, exercise_length, exercise_description, calories_burn, equipment) "+
 			"VALUES(?,?,?,?,?,?,?) RETURNING *";
-			SqlRowSet results = jdbcTemplate.queryForRowSet(insertExercises, exercise.getUserId(), exercise.getExerciseCategoryId(),exercise.getExerciseName(),
+			SqlRowSet results = jdbcTemplate.queryForRowSet(insertExercises, exercise.getUserId(), exercise.getExerciseCategoryId(),exercise.getExerciseName(),exercise.getDate(),
 															exercise.getExerciseLength(), exercise.getExerciseDescription(), exercise.getCaloriedBurned(), exercise.isEquipmentUsed());
 			
 			if(results.next()) {
@@ -51,9 +51,9 @@ public class ExerciseSqlDAO implements ExerciseDAO {
 
 	@Override
 	public int updateExercise(Exercise exercise, int exerciseId) {
-		String query = "UPDATE user_exercises SET exercise_category_id =?, exercise_name = ?, exercise_description = ?, calories_burn = ?, equipment = ? "+
+		String query = "UPDATE user_exercises SET exercise_category_id =?, exercise_name = ?, assigned_date=?,exercise_description = ?, calories_burn = ?, equipment = ? "+
 				"WHERE user_exercise_id = ?";
-		return jdbcTemplate.update(query, exercise.getExerciseCategoryId(), exercise.getExerciseName(), exercise.getExerciseDescription(), 
+		return jdbcTemplate.update(query, exercise.getExerciseCategoryId(), exercise.getExerciseName(), exercise.getDate(),exercise.getExerciseDescription(), 
 				exercise.getCaloriedBurned(), exercise.isEquipmentUsed(), exerciseId);
 	}
 
@@ -87,6 +87,7 @@ public class ExerciseSqlDAO implements ExerciseDAO {
 		exercise.setUserId(rs.getInt("user_id"));
 		exercise.setExerciseCategoryId(rs.getInt("exercise_category_id"));
 		exercise.setExerciseName(rs.getString("exercise_name"));
+		exercise.setDate(rs.getDate("date_assigned").toLocalDate());
 		exercise.setExerciseLength(rs.getInt("exercise_length"));
 		exercise.setExerciseDescription(rs.getString("exercise_description"));
 		exercise.setCaloriedBurned(rs.getInt("calories_burn"));
