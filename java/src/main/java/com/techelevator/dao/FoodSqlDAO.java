@@ -31,7 +31,8 @@ public class FoodSqlDAO implements FoodDAO {
 
 		public void delete(int foodId) {
 			// TODO Auto-generated method stub
-			
+			String query = "DELETE FROM food_items WHERE food_id = ?";
+			this.jdbcTemplate.update(query, foodId);
 		}
 
 		@Override
