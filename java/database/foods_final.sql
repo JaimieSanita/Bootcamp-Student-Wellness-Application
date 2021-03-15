@@ -1,6 +1,7 @@
-DROP TABLE IF EXISTS meal_category;
+
 DROP TABLE IF EXISTS food_items;
 DROP TABLE IF EXISTS user_meals;
+DROP TABLE IF EXISTS meal_category;
 DROP TABLE IF EXISTS user_foods;
 
 START TRANSACTION;
@@ -45,7 +46,8 @@ meal_description			varchar(300)   NOT NULL,
 total_calories				int NOT NULL,
 
 
-CONSTRAINT PK_user_meals PRIMARY KEY (user_meals_id)
+CONSTRAINT PK_user_meals PRIMARY KEY (user_meals_id),
+CONSTRAINT FK_user_meals FOREIGN KEY (meal_category_id) REFERENCES meal_category(meal_category_id)
 
 
 );
@@ -63,6 +65,7 @@ CREATE TABLE user_foods
 (
 user_foods_id      INT GENERATED ALWAYS AS IDENTITY ,
 food_id                 int NOT NULL,
+food_name      varchar(64)   NOT NULL,
 number_of_serving                 int NOT NULL,
 user_id				int NOT NULL,
 user_meals_id				int ,
@@ -106,4 +109,4 @@ COMMIT;
 ROLLBACK;
 
 
-SELECT * FROM meal_category;
+SELECT * FROM goal_category;

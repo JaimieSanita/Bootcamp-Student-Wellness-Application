@@ -64,12 +64,12 @@ public class GoalsSQLDAO implements GoalsDAO{
 	}
 
 	@Override
-	public Goals getByUsername(String username) {
+	public Goals getByUserGoalsId(int userGoalsId) {
 		Goals goals = null;
-		String query = "SELECT user_goals_id,  date_assigned, category_id, activity, times_per_week, duration, is_completed FROM user_goals "+
+		String query = "SELECT * FROM user_goals "+
 				"JOIN users ON users.user_id = user_goals.user_id  "+
-				"WHERE username =?";
-		SqlRowSet results = this.jdbcTemplate.queryForRowSet(query, username);
+				"WHERE user_goals_id =?";
+		SqlRowSet results = this.jdbcTemplate.queryForRowSet(query, userGoalsId);
 		if(results.next()) {
 			goals = this.mapRowToGoals(results);
 		}return goals;
@@ -78,7 +78,7 @@ public class GoalsSQLDAO implements GoalsDAO{
 	@Override
 	public List<Goals> listAllGoalsByUsername(String username) {
 		List<Goals> goals = new ArrayList<>();
-		String query = "";
+		String query = "SELECT user_goals.* FROM user_goals JOIN users ON user_goals.user_id = users.user_id WHERE users.username=?";
 		SqlRowSet results = this.jdbcTemplate.queryForRowSet(query, username);
 		while(results.next()) {
 			Goals resultGoals = this.mapRowToGoals(results);

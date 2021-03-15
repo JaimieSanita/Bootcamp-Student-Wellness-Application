@@ -1,15 +1,30 @@
 package com.techelevator.model;
 
+import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Exercise {
 	private int userExerciseId;
 	private int userId;
 	private int exerciseCategoryId;
 	private String exerciseName;
+	@JsonFormat( pattern="MM/dd/yyyy")
+	private LocalDate date;
 	private int exerciseLength;
 	private String exerciseDescription;
 	private int caloriedBurned;
 	private boolean equipmentUsed;
 	
+	
+	@JsonFormat( pattern="MM/dd/yyyy")
+	public LocalDate getDate() {
+		return date;
+	}
+	@JsonFormat( pattern="MM/dd/yyyy")
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
 	
 	
 	

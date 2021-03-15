@@ -36,8 +36,11 @@ public class GoalsController {
 	public void updateGoals(@RequestBody Goals goals, @PathVariable int userGoalsId)  throws ProfileNotFoundException{
 		this.dao.updateGoals(goals, userGoalsId);
 	}
-	
-	@RequestMapping(path = "/user/goals/{username}", method = RequestMethod.GET)
+	@RequestMapping(path="user/goals/{userGoalsId}", method = RequestMethod.GET)
+	public Goals getGoalByUserGoalsId( @PathVariable int userGoalsId) {
+		 return this.dao.getByUserGoalsId( userGoalsId);
+	}
+	@RequestMapping(path = "/user/goals/all/{username}", method = RequestMethod.GET)
 	public List<Goals> getAllGoals(Principal principal, @PathVariable String username){
 		String loggedIn = principal.getName();
 		if(username != null && loggedIn != null && loggedIn.equalsIgnoreCase(username)) {

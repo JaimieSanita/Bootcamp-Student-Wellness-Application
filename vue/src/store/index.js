@@ -95,7 +95,10 @@ export default new Vuex.Store({
          return goal;
        }
         return currentGoal;
-      })
+      });
+    },
+    ADD_NEW_EXERCISE(state, exercise){
+      state.exercise.push(exercise);
     },
   }
 })

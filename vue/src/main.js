@@ -5,6 +5,8 @@ import store from './store/index'
 import axios from 'axios'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
+import '../public/Main.scss'
+
 
 Vue.config.productionTip = false
 Vue.use(Buefy,{
