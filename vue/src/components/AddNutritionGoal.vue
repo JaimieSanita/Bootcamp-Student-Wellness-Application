@@ -56,14 +56,22 @@
 </template>
 
 <script>
+import goalService from "../services/GoalService.js";
+const dateFormat = {
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+};
+const locale = "en-US";
 export default {
   data() {
     return {
       newGoal: {
         userId: '',
+        categoryId: 2,
         category: "Nutrition",
         activity: "",
-        dayAssigned: (new Date()).toLocaleDateString(),
+        date: (new Date()).toLocaleDateString(locale, dateFormat),
         perWeek: 0,
         duration: 0,
         complete: false,
@@ -88,12 +96,11 @@ export default {
   },
   computed: {
     assignDate: {
-      get: function()  {
-        const goal = this.newGoal;
-        return new Date(this.newGoal.dayAssigned);
+      get: function () {
+        return new Date(this.newGoal.date);
       },
       set: function (dt) {
-        this.newGoal.dayAssigned = dt.toLocaleDateString();
+        this.newGoal.date = dt.toLocaleDateString(locale, dateFormat);
       },
     },
   },
@@ -112,16 +119,20 @@ export default {
     },
     saveGoal() {
       this.newGoal.complete = false;
-      this.$store.commit("ADD_NEW", this.newGoal);
-      this.newGoal = {
-        userId: '',
-        categoryId: 2,
-        category: "Nutrition",
-        activity: "",
-        dayAssigned: (new Date()).toLocaleDateString(),
-        perWeek: 0,
-        duration: 0,
-      };
+      goalService.add(this.newGoal).then((response) => {
+        if (response.status === 201) {
+          this.$store.commit("ADD_NEW", response.data); 
+          this.newGoal = {
+            userId: "",
+            categoryId: 2,
+            category: "Nutrition",
+            activity: "",
+            date: new Date().toLocaleDateString(locale, dateFormat),
+            perWeek: 0,
+            duration: 0,
+          };
+        }
+      });
     },
   },
 };

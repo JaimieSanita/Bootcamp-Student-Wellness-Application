@@ -32,25 +32,7 @@ export default new Vuex.Store({
       weight: 0,
     },
     goals: [
-      {
-        id: 1,
-        category: "Exercise",
-        activity: "Walking",
-        dayAssigned: "3/8/2021",
-        perWeek: 5,
-        duration: 10,
-        complete: false,
-      },
-      
-      {
-        id: 2,
-        category: "Exercise",
-        activity: "Meditation",
-        dayAssigned: "3/8/2021",
-        perWeek: 3,
-        duration: 20,
-        complete: false,
-      }
+    {}
     ],
    
   },

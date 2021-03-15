@@ -112,7 +112,6 @@ export default {
         this.date.setMonth(option.value);
       }
     },
-
     mounted() {
       this.month = this.months.filter(
         (item) => item.value == this.date.getMonth()
@@ -131,6 +130,7 @@ export default {
             date: new Date().toLocaleDateString(locale, dateFormat),
             perWeek: 0,
             duration: 0,
+            complete: false,
           };
         }
       });

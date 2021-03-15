@@ -14,7 +14,6 @@
           <option value="Yoga">Yoga</option>
           <option value="Go Outside">Go Outside</option>
           <option value="Breathing Exercises">Breathing Exercises</option>
-
         </b-select>
       </b-field>
 
@@ -50,7 +49,7 @@
           </b-field>
         </b-datepicker>
       </b-field>
-      <b-button v-on:click="saveGoal " class="button is-link" type="is-info"
+      <b-button v-on:click="saveGoal" class="button is-link" type="is-info"
         >Add Sanity Goal</b-button
       >
     </section>
@@ -58,14 +57,22 @@
 </template>
 
 <script>
+import goalService from "../services/GoalService.js";
+const dateFormat = {
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+};
+const locale = "en-US";
 export default {
   data() {
     return {
       newGoal: {
-        userId: '',
+        userId: "",
+        categoryId: 3,
         category: "Sanity",
         activity: "",
-        dayAssigned: (new Date()).toLocaleDateString(),
+        date: new Date().toLocaleDateString(locale, dateFormat),
         perWeek: 0,
         duration: 0,
         complete: false,
@@ -90,18 +97,17 @@ export default {
   },
   computed: {
     assignDate: {
-      get: function()  {
-        const goal = this.newGoal;
-        return new Date(this.newGoal.dayAssigned);
+      get: function () {
+        return new Date(this.newGoal.date);
       },
       set: function (dt) {
-        this.newGoal.dayAssigned = dt.toLocaleDateString();
+        this.newGoal.date = dt.toLocaleDateString(locale, dateFormat);
       },
     },
   },
   methods: {
     goalColorChanger() {
-    this.$store.commit("CHANGE_COLOR", this.goal);
+      this.$store.commit("CHANGE_COLOR", this.goal);
     },
     selectMonth(option) {
       if (option) {
@@ -109,7 +115,6 @@ export default {
         this.date.setMonth(option.value);
       }
     },
-
     mounted() {
       this.month = this.months.filter(
         (item) => item.value == this.date.getMonth()
@@ -117,17 +122,20 @@ export default {
     },
     saveGoal() {
       this.newGoal.complete = false;
-    
-      this.$store.commit("ADD_NEW", this.newGoal);
-      this.newGoal = {
-        userId: '',
-        categoryId: 3,
-        category: "Sanity",
-        activity: "",
-        dayAssigned: (new Date()).toLocaleDateString(),
-        perWeek: 0,
-        duration: 0,
-      };
+      goalService.add(this.newGoal).then((response) => {
+        if (response.status === 201) {
+          this.$store.commit("ADD_NEW", response.data); 
+          this.newGoal = {
+            userId: "",
+            categoryId: 3,
+            category: "Sanity",
+            activity: "",
+            date: new Date().toLocaleDateString(locale, dateFormat),
+            perWeek: 0,
+            duration: 0,
+          };
+        }
+      });
     },
   },
 };

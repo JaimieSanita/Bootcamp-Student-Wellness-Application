@@ -1,9 +1,9 @@
 <template>
   <div class="card">
     <header v-bind:class="{
-        'exercise-goal': goal.category === 'Exercise',
-        'nutrition-goal': goal.category === 'Nutrition',
-        'sanity-goal': goal.category === 'Sanity',
+        'exercise-goal': goal.categoryId === 1,
+        'nutrition-goal': goal.categoryId === 2,
+        'sanity-goal': goal.categoryId === 3,
       }">
       <p class="card-header-title">{{ goal.date }}'s Goal</p>
     </header>
