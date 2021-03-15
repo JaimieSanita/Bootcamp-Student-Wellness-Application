@@ -6,6 +6,7 @@ import axios from 'axios'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 
+
 Vue.config.productionTip = false
 Vue.use(Buefy,{
   defaultIconPack:"fas"
