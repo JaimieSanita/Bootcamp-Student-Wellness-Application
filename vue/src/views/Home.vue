@@ -9,15 +9,20 @@
       </h1>
     </div>
     <new-goal-form />
+    <new-exercise-form/>
     <div class="goal-container">
       <goal-list />
     </div>
+    
   </div>
   
 </template>
 
 <script>
+
 import GoalList from "../components/GoalList";
+import NewExerciseForm from '../components/NewExerciseForm.vue';
+
 import NewGoalForm from "../components/NewGoalForm.vue";
 
 export default {
@@ -25,6 +30,9 @@ export default {
   components: {
     GoalList,
     NewGoalForm,
+    NewExerciseForm,
+    
+  
   },
 };
 </script>
@@ -54,6 +62,11 @@ h1 {
   padding: 30px;
 }
 .goal-container{
+  margin-top: 20px;
+  display: flex;
+  
+}
+.exercise-container{
   margin-top: 20px;
   display: flex;
   

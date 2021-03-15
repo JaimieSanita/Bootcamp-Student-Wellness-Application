@@ -76,6 +76,9 @@ export default new Vuex.Store({
        return goal.userGoalsId !=    id;
         });
       
-    }
+    },
+    ADD_NEW_EXERCISE(state, exercise){
+      state.exercise.push(exercise);
+    },
   }
 })

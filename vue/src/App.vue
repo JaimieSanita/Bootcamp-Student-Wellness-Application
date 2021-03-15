@@ -1,3 +1,4 @@
+@import "~bulma/sass/utilities/_all";
 <template>
   <div id="app">
     <div id="nav">
@@ -16,7 +17,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang = "scss" >
+
+
 *{
   font-family: "proxima nova", sans-serif;
 }
