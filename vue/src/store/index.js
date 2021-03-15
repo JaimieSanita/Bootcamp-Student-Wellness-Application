@@ -32,6 +32,17 @@ export default new Vuex.Store({
       weight: 0,
     },
     goals: [
+      {
+        userGoalsId: "",
+        userId: "",
+        categoryId: 0,
+        category: "",
+        activity: "",
+        date: "",
+        perWeek: 0,
+        duration: 0,
+        complete: false,
+      }
     
     ],
    
@@ -56,6 +67,7 @@ export default new Vuex.Store({
     UPDATE_PROFILE(state, profile) {
       state.profile = profile;
     },
+
     FLIP_STATUS(state, goalToChange) {
       goalToChange.complete = !goalToChange.complete;
     },
@@ -76,6 +88,14 @@ export default new Vuex.Store({
        return goal.userGoalsId !=    id;
         });
       
-    }
+    },
+    UPDATE_GOAL(state, goal) {
+      state.goals = state.goals.map((currentGoal)=>{
+       if(currentGoal.userGoalsId === goal.userGoalsId){
+         return goal;
+       }
+        return currentGoal;
+      })
+    },
   }
 })
