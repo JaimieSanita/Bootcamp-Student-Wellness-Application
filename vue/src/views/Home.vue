@@ -5,7 +5,7 @@
     </div>
     <div class="welcome-container">
       <h1 class="title">
-        Welcome to {{ this.$store.state.profile.firstName }}'s Tech Elevator's Wellovater!
+        Welcome to {{ this.$store.state.profile.firstName }}'s Tech Wellovater!
       </h1>
     </div>
     <new-goal-form />

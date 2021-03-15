@@ -10,10 +10,10 @@
           class="activity-input"
           v-model="newGoal.activity"
         >
-          <option value="Run">Run</option>
-          <option value="Walk">Walk</option>
-          <option value="Stretch">Stretch</option>
-          <option value="Swim">Swim</option>
+          <option value="run">Run</option>
+          <option value="walk">Walk</option>
+          <option value="stretch">Stretch</option>
+          <option value="swim">Swim</option>
         </b-select>
       </b-field>
 

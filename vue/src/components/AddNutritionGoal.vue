@@ -11,8 +11,8 @@
           v-model="newGoal.activity"
         >
           <option value=""></option>
-          <option value="Water intake :">Min Water Intake</option>
-          <option value="Calorie intake:">Max Calorie Intake</option>
+          <option value="drink">Min Water Intake</option>
+          <option value="maximum calorie intake">Max Calorie Intake</option>
          
         </b-select>
       </b-field>
