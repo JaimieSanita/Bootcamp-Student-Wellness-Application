@@ -10,20 +10,20 @@
       <b-input v-model="lastName"></b-input>
     </b-field>
     <b-field label="Age">
-      <b-numberinput type="is-info" v-model="age"> </b-numberinput>
+      <b-numberinput type="is-primary" v-model="age"> </b-numberinput>
     </b-field>
     <b-field label="Height"
-      ><b-field class="height" type="is-info">
+      ><b-field class="height" type="is-primary">
         <b-numberinput
           placeholder="Feet"
-          type="is-info"
+          type="is-primary"
           controls-alignment="left"
           v-model="feet"
         >
         </b-numberinput>
         <b-numberinput
           placeholder="Inches"
-          type="is-info"
+          type="is-primary"
           controls-alignment="right"
           v-model="inches"
         >
@@ -32,7 +32,7 @@
     </b-field>
 
     <b-field label="Current Weight">
-      <b-numberinput step="0.1" type="is-info" v-model="weight">
+      <b-numberinput step="0.1" type="is-primary" v-model="weight">
       </b-numberinput>
     </b-field>
   </div>
