@@ -8,11 +8,9 @@
       <p class="card-header-title">{{ goal.date }}'s Goal</p>
     </header>
     <div class="card-content">
-      <div class="content">
-        <p>{{ goal.category }}</p>
-        <p>{{ goal.activity }}</p>
-        <p>{{ goal.duration }} minutes</p>
-      </div>
+        <exercise-goal-content v-if="goal.categoryId === 1" v-bind:key="goal.userId" v-bind:goal="goal"/>
+        <nutrition-goal-content v-if="goal.categoryId === 2" v-bind:key="goal.userId" v-bind:goal="goal"/>
+        <sanity-goal-content v-if="goal.categoryId === 3" v-bind:key="goal.userId" v-bind:goal="goal"/>
     </div>
   <!--  <b-button
       v-bind:class="{
@@ -36,10 +34,18 @@
 
 <script>
 import goalService from "../services/GoalService.js";
+import exerciseGoalContent from "../components/ExerciseGoalContent.vue";
+import nutritionGoalContent from "../components/NutritionGoalContent.vue";
+import sanityGoalContent from "../components/SanityGoalContent.vue";
 
 export default {
   name: "goal-card",
   props: ["goal"],
+  components: {
+    exerciseGoalContent,
+    nutritionGoalContent,
+    sanityGoalContent
+  },
   data() {
     return {
       selectedCategory: "",
@@ -70,7 +76,7 @@ export default {
 .goal {
   border: 2px solid black;
   border-radius: 10px;
-  width: 250px;
+  width: 200px;
   height: auto;
   margin: 20px;
 }

@@ -3,7 +3,7 @@
     <section>
       <b-field label="ADD SANITY GOAL"> </b-field>
 
-      <b-field label="Name" type="is-info">
+      <b-field label="Name" type="is-primary">
         <b-select
           placeholder="Activity"
           :expanded="true"
@@ -21,7 +21,7 @@
         <b-numberinput
           class="duration-input"
           v-model="newGoal.duration"
-          type="is-info"
+          type="is-primary"
           value="times"
         ></b-numberinput>
       </b-field>
@@ -49,7 +49,7 @@
           </b-field>
         </b-datepicker>
       </b-field>
-      <b-button v-on:click="saveGoal" class="button is-link" type="is-info"
+      <b-button v-on:click="saveGoal" class="button is-link" type="is-primary"
         >Add Sanity Goal</b-button
       >
     </section>
@@ -68,6 +68,7 @@ export default {
   data() {
     return {
       newGoal: {
+        userGoalsId: "",
         userId: "",
         categoryId: 3,
         category: "Sanity",
@@ -126,6 +127,7 @@ export default {
         if (response.status === 201) {
           this.$store.commit("ADD_NEW", response.data); 
           this.newGoal = {
+            userGoalsId: "",
             userId: "",
             categoryId: 3,
             category: "Sanity",

@@ -2,7 +2,7 @@
   <div class="container">
     <form class="box form">
       <section>
-        <b-field label="Let's set a goal!" type="is-info">
+        <b-field label="Let's set a goal!" type="is-primary">
           <b-select
             v-model="selectedCategory"
             placeholder="Category"

@@ -32,7 +32,7 @@ export default new Vuex.Store({
       weight: 0,
     },
     goals: [
-    {}
+    
     ],
    
   },

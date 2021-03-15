@@ -43,7 +43,7 @@
           <b-button
             v-on:click="register"
             class="btn btn-lg btn-primary btn-block"
-            type="is-info"
+            type="is-primary"
             >Create Account</b-button
           >
         </div>

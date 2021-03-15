@@ -25,9 +25,11 @@ public class Food {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public int getServings() {
 		return servings;
 	}
+
 	public void setServings(int servings) {
 		this.servings = servings;
 	}
@@ -52,4 +54,5 @@ public class Food {
 	
 	
 }
+
 
