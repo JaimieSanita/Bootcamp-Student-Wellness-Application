@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-  <form class="box form" v-on:submit.prevent>
+  <form class="box form" v-on:submit.prevent v-if="showForm">
     <section>
       <b-field label="ADD EXERCISE GOAL"> </b-field>
 
@@ -50,7 +50,7 @@
           </b-field>
         </b-datepicker>
       </b-field>
-      <b-button v-on:click="saveGoal" type="is-primary"
+      <b-button v-on:click="saveGoal" type="is-primary" 
         >Add Exercise Goal</b-button
       >
     </section>
@@ -69,6 +69,7 @@ const locale = "en-US";
 export default {
   data() {
     return {
+      showForm: true,
       newGoal: {
         userId: "",
         categoryId: 1,
@@ -124,6 +125,7 @@ export default {
       goalService.add(this.newGoal).then((response) => {
         if (response.status === 201) {
           this.$store.commit("ADD_NEW", response.data); 
+          this.showForm = false;
           this.newGoal = {
             userId: "",
             categoryId: 1,

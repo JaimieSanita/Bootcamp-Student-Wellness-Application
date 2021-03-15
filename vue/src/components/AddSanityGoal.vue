@@ -1,5 +1,5 @@
 <template>
-  <form class="box form" v-on:submit.prevent>
+  <form class="box form" v-on:submit.prevent v-if="showForm">
     <section>
       <b-field label="ADD SANITY GOAL"> </b-field>
 
@@ -77,6 +77,7 @@ export default {
   },
   data() {
     return {
+       showForm: true,
       newGoal: {
         userGoalsId: "",
         userId: "",
@@ -146,6 +147,7 @@ export default {
       goalService.add(this.newGoal).then((response) => {
         if (response.status === 201) {
           this.$store.commit("ADD_NEW", response.data);
+          this.showForm = false;
           this.newGoal = {
             userGoalsId: "",
             userId: "",
