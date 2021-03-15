@@ -52,7 +52,7 @@ UPDATE user_profile
 SET first_name = 'steve',last_name = 'jobs', age=2,feet=2,inches=2,current_weight=2
 WHERE profile_id = 3;
 
-back;
+ROLLBACK;
 
 
 SELECT profile_id, first_name, last_name, age, feet, inches, current_weight FROM user_profile JOIN users ON user_profile.profile_id = users.user_id WHERE username = 'Miked';
