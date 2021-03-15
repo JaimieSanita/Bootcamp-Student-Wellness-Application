@@ -24,7 +24,7 @@
     </b-button> -->
 
     <footer class="card-footer">
-      <a href="#" class="card-footer-item">Edit</a>
+      <a href="#" class="card-footer-item"  v-bind:userGoalsId="$route.params.userGoalsId">Edit</a>
       <a href="#" class="card-footer-item" v-on:click="deleteGoal(goal.userGoalsId)"
         >Delete</a
       >
@@ -37,6 +37,7 @@ import goalService from "../services/GoalService.js";
 import exerciseGoalContent from "../components/ExerciseGoalContent.vue";
 import nutritionGoalContent from "../components/NutritionGoalContent.vue";
 import sanityGoalContent from "../components/SanityGoalContent.vue";
+//import AddSanityGoal from "../components/AddSanityGoal.vue";
 
 export default {
   name: "goal-card",
@@ -44,7 +45,8 @@ export default {
   components: {
     exerciseGoalContent,
     nutritionGoalContent,
-    sanityGoalContent
+    sanityGoalContent,
+   // AddSanityGoal,
   },
   data() {
     return {
@@ -67,6 +69,13 @@ export default {
       this.$store.commit("DELETE_GOAL", id);
        }
        });
+    },
+    updateGoal(goal){
+      goalService.update(this.$store.state.user.username, goal).then((response)=>{
+        if(response.status === 201){
+          this.$store.commit("UPDATE_GOAL", goal);
+        }
+      });
     },
   },
 };

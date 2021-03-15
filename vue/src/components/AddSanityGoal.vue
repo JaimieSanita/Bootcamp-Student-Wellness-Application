@@ -65,6 +65,16 @@ const dateFormat = {
 };
 const locale = "en-US";
 export default {
+  props: ["existingGoalId"],
+  created() {
+    if (this.existingGoalId) {
+      goalService.getGoalById(this.existingGoalId).then((response) => {
+        if (response.status === 200) {
+          this.newGoal=response.data;
+        }
+      });
+    }
+  },
   data() {
     return {
       newGoal: {
@@ -123,9 +133,19 @@ export default {
     },
     saveGoal() {
       this.newGoal.complete = false;
+    
+      if (this.existingGoalId) {
+        goalService
+          .update(this.$store.state.user.username, this.newGoal)
+          .then((response) => {
+            if (response.status === 201) {
+              this.$store.commit("UPDATE_GOAL", this.newGoal);
+            }
+          });
+      }
       goalService.add(this.newGoal).then((response) => {
         if (response.status === 201) {
-          this.$store.commit("ADD_NEW", response.data); 
+          this.$store.commit("ADD_NEW", response.data);
           this.newGoal = {
             userGoalsId: "",
             userId: "",
