@@ -65,6 +65,7 @@ const dateFormat = {
 };
 const locale = "en-US";
 export default {
+  name:"add-nutrition-goal",
   data() {
     return {
       showForm: true,

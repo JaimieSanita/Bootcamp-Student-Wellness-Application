@@ -23,7 +23,7 @@
       {{ goal.complete ? "Complete" : "Incomplete" }}
     </b-button> -->
 
-    <footer class="card-footer">
+    <footer class="card-footer"> //view-router
       <a href="#" class="card-footer-item"  v-bind:userGoalsId="$route.params.userGoalsId">Edit</a>
       <a href="#" class="card-footer-item" v-on:click="deleteGoal(goal.userGoalsId)"
         >Delete</a

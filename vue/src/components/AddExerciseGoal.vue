@@ -67,6 +67,7 @@ const dateFormat = {
 };
 const locale = "en-US";
 export default {
+  name:"add-exercise-goal",
   data() {
     return {
       showForm: true,

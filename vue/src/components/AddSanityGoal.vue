@@ -50,7 +50,7 @@
         </b-datepicker>
       </b-field>
       <b-button v-on:click="saveGoal" type="is-primary"
-        >Add Sanity Goal</b-button
+        >{{existingGoalId === false ? 'Add' : 'Edit'}} Sanity Goal</b-button
       >
     </section>
   </form>
@@ -65,6 +65,7 @@ const dateFormat = {
 };
 const locale = "en-US";
 export default {
+  name:"add-sanity-goal",
   props: ["existingGoalId"],
   created() {
     if (this.existingGoalId) {
@@ -147,6 +148,7 @@ export default {
       goalService.add(this.newGoal).then((response) => {
         if (response.status === 201) {
           this.$store.commit("ADD_NEW", response.data);
+          this.existingGoalId = false;
           this.showForm = false;
           this.newGoal = {
             userGoalsId: "",
