@@ -1,9 +1,14 @@
 <template>
   <div class="header">
     <div class="banner-container">
+      <div style="position:relative; left:-780px;"        id="nav">
+      <router-link id="link" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+    </div>
+   
       <h3 class="banner-title">Never forget, you're always elevating!</h3>
     </div>
     <div class="welcome-container">
+      <img class="logo-image" src="../assets/logo.png">
       <h1 class="title">
         Welcome to {{ this.$store.state.profile.firstName }}'s Tech Wellovater!
       </h1>
@@ -27,8 +32,8 @@ export default {
 .welcome-container {
   background-color: #00adee;
   display: flex;
-  justify-content: space-around;
-
+  justify-content: flex-start;
+  
   height: 90px;
   margin: 10px;
 }
@@ -36,5 +41,19 @@ h1 {
   color: white;
   display: flex;
   padding: 30px;
+  position: relative;
+  padding-left: 23%;
+  
+}
+.logo-image{
+
+}
+#nav{
+  
+  justify-content:left  !important;
+
+}
+#link{
+ color: white;
 }
 </style>

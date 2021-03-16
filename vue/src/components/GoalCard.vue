@@ -23,9 +23,9 @@
       {{ goal.complete ? "Complete" : "Incomplete" }}
     </b-button> -->
 
-    <footer class="card-footer"> //view-router
-      <a href="#" class="card-footer-item"  v-bind:userGoalsId="$route.params.userGoalsId">Edit</a>
-      <a href="#" class="card-footer-item" v-on:click="deleteGoal(goal.userGoalsId)"
+    <footer class="card-footer">
+      <a href="#" class="card-footer-item" v-on:click.prevent="editGoal">Edit</a>
+      <a href="#" class="card-footer-item" v-on:click.prevent="deleteGoal(goal.userGoalsId)"
         >Delete</a
       >
     </footer>
@@ -52,6 +52,7 @@ export default {
     return {
       selectedCategory: "",
       isComplete: false,
+ 
     };
   },
 
@@ -76,6 +77,9 @@ export default {
           this.$store.commit("UPDATE_GOAL", goal);
         }
       });
+    },
+    editGoal(){
+      this.$store.commit('SET_CURRENT_EDITING_GOAL', this.goal.userGoalsId);
     },
   },
 };

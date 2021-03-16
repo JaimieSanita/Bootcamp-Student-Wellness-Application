@@ -1,12 +1,11 @@
 <template>
-<div class="navbar">
+<div class="menu">
  <new-goal-form >New Goal Form</new-goal-form>
     <new-exercise-form/>
-    <div class="goal-container">
       <goal-list />
     </div>
 
-</div>
+
   
 </template>
 
@@ -26,17 +25,9 @@ export default {
 </script>
 
 <style>
-.container {
+.navbar{
   display: flex;
-  justify-content: space-evenly;
 }
 
-.goal-container {
-  margin-top: 20px;
-  display: flex;
-}
-.exercise-container {
-  margin-top: 20px;
-  display: flex;
-}
+
 </style>

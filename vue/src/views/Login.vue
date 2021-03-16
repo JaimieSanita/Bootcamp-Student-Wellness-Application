@@ -1,7 +1,16 @@
 <template>
+<div>
+  <div class="welcome-container">
+      <h1 class="title">
+        Welcome to The Tech Elevator<br> Wellovater!
+      </h1>
+    </div>
+<div class="container">
+   <img class="background" src="https://media.istockphoto.com/photos/elevator-picture-id180821428?k=6&m=180821428&s=612x612&w=0&h=SLXASBb52_ekAmTp4qz5i2_VYehC4X2qA9DsuySCe7A=">
   <div id="login" class="text-center">
+    <div class="banner-container">
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Please Sign In or Sign Up to Begin Your Wellness</h1>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
@@ -34,6 +43,9 @@
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
       <button type="submit">Sign in</button>
     </form>
+    </div>
+ </div>
+  </div>
   </div>
 </template>
 
@@ -85,3 +97,29 @@ export default {
   },
 };
 </script>
+<style scoped>
+
+.container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+.welcome-container {
+  background-color: #00adee;
+  display: flex;
+  justify-content: space-around;
+
+  height: 90px;
+  margin: 10px;
+}
+.banner-container {
+  background-color: #8cc63f;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+ width: 100% !important;
+}
+
+
+</style>

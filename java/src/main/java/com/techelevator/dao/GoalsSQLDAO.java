@@ -25,12 +25,12 @@ public class GoalsSQLDAO implements GoalsDAO{
 		try {
 			conn.setAutoCommit(false);
 			String insertGoals = "INSERT INTO user_goals (user_id, date_assigned, category_id, activity, times_per_week, duration, is_completed) "+
-			"VALUES (?,?,?,?,?,?,?) RETURNING *";
-			SqlRowSet results = jdbcTemplate.queryForRowSet(insertGoals, newGoals.getUserId(), newGoals.getDate(), newGoals.getCategoryId(), newGoals.getActivity(),
+			"VALUES (?,?,?,?,?,?,?) RETURNING user_goals_id";
+			Integer goalId = jdbcTemplate.queryForObject(insertGoals, Integer.class, newGoals.getUserId(), newGoals.getDate(), newGoals.getCategoryId(), newGoals.getActivity(),
 															newGoals.getTimesPerWeek(), newGoals.getDuration(), newGoals.isCompleted());
-			if(results.next()) {
-				goals= this.mapRowToGoals(results);
-			}
+			
+				goals= this.getByUserGoalsId(goalId);
+			
 			conn.commit();
 			return goals;			
 		}
@@ -66,8 +66,9 @@ public class GoalsSQLDAO implements GoalsDAO{
 	@Override
 	public Goals getByUserGoalsId(int userGoalsId) {
 		Goals goals = null;
-		String query = "SELECT * FROM user_goals "+
+		String query = "SELECT user_goals.*, goal_category.category  FROM user_goals "+
 				"JOIN users ON users.user_id = user_goals.user_id  "+
+				"JOIN goal_category ON goal_category.goal_category_id = user_goals.category_id " +
 				"WHERE user_goals_id =?";
 		SqlRowSet results = this.jdbcTemplate.queryForRowSet(query, userGoalsId);
 		if(results.next()) {
@@ -75,10 +76,10 @@ public class GoalsSQLDAO implements GoalsDAO{
 		}return goals;
 	}
 
-	@Override
+	@Override //fix query
 	public List<Goals> listAllGoalsByUsername(String username) {
 		List<Goals> goals = new ArrayList<>();
-		String query = "SELECT user_goals.* FROM user_goals JOIN users ON user_goals.user_id = users.user_id WHERE users.username=?";
+		String query = "SELECT user_goals.*, goal_category.category FROM user_goals JOIN users ON user_goals.user_id = users.user_id JOIN goal_category ON goal_category.goal_category_id = user_goals.category_id WHERE users.username=?";
 		SqlRowSet results = this.jdbcTemplate.queryForRowSet(query, username);
 		while(results.next()) {
 			Goals resultGoals = this.mapRowToGoals(results);
@@ -96,6 +97,7 @@ public class GoalsSQLDAO implements GoalsDAO{
 		goals.setTimesPerWeek(rs.getInt("times_per_week"));
 		goals.setDuration(rs.getInt("duration"));
 		goals.setCompleted(rs.getBoolean("is_completed"));
+		goals.setCategory(rs.getString("category"));
 		return goals;	
 		
 	}
