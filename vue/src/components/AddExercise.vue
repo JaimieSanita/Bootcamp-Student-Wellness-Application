@@ -1,8 +1,15 @@
 <template>
   <form class="box form" v-on:submit.prevent>
-    
     <section>
       <b-field label="ADD EXERCISE"> </b-field>
+      <b-field :expanded="true" label="Type" type="is-primary">
+        <b-select>
+          <option value="balance">Balance</option>
+          <option value="flexibility">flexibility</option>
+          <option value="strength">Strength</option>
+          <option value="endurance">Endurance</option>
+        </b-select>
+      </b-field>
 
       <b-field label="Name">
         <b-input v-model="name"></b-input>
@@ -32,28 +39,25 @@
         </b-datepicker>
       </b-field>
       <b-field label="Duration">
-      <b-numberinput v-model="number"></b-numberinput>
-    </b-field>
+        <b-numberinput v-model="number"></b-numberinput>
+      </b-field>
       <b-field label="Exercise Descripiton">
         <b-input maxlength="200" type="textarea"></b-input>
       </b-field>
       <b-field label="Calories Burned">
-      <b-numberinput v-model="number"></b-numberinput>
-    </b-field>
-    <b-field label="Was Equipment Used">
-            <b-radio v-model='leftLabel' :native-value='false'>No</b-radio>
-            <b-radio v-model='leftLabel' :native-value='true'>Yes</b-radio>
-        </b-field>
+        <b-numberinput v-model="number"></b-numberinput>
+      </b-field>
+      <b-field label="Was Equipment Used">
+        <b-radio v-model="leftLabel" :native-value="false">No</b-radio>
+        <b-radio v-model="leftLabel" :native-value="true">Yes</b-radio>
+      </b-field>
 
-      <b-button v-on:click="saveExercise" class="button is-link" type="is-info"
-        >Add Exercise</b-button
-      >
+      <b-button v-on:click="saveExercise" type="is-primary">{{this.exisitingExercise ? "Edit" : "Add"}}Exercise</b-button>
     </section>
   </form>
 </template>
 
 <script>
-
 import exerciseService from "../services/ExerciseService.js";
 const dateFormat = {
   year: "numeric",
@@ -62,10 +66,16 @@ const dateFormat = {
 };
 const locale = "en-US";
 export default {
-  components:{
-    
+  components: {},
+  name: "add-exercise",
+  props: ["exisitingExercise"],
+  mounted() {
+    if (this.exisitingExercise) {
+      //target    //source
+      const gl = {};
+     this.newExercise = Object.assign(gl, this.exisitingExercise); //enumerates over properties of existing goal and copy onto new goal
+    }
   },
-  name:"add-exercise",
   data() {
     return {
       newExercise: {
@@ -78,7 +88,8 @@ export default {
         caloriesBurned: 0,
         equipmentUsed: false,
       },
-      leftLabel:false,
+      showForm: true,
+      leftLabel: false,
       date: new Date(),
       month: null,
       months: [
@@ -122,21 +133,32 @@ export default {
     },
     saveExercise() {
       this.newExercise.complete = false;
-      exerciseService.add(this.newExercise).then((response) => {
-        if (response.status === 201) {
-          this.$store.commit("ADD_NEW", response.data);
-          this.newExercise = {
-            userExerciseId: "",
-            userId: "",
-            exerciseCategoryId: "",
-            exerciseName: "",
-            date: new Date().toLocaleDateString(locale, dateFormat),
-            duration: "",
-            caloriesBurned: "",
-            equipmentUsed: false,
-          };
-        }
-      });
+      if (this.exisitingExercise) {
+        exerciseService.update(this.newExercise).then((response) => {
+          if (response.status === 200) {
+            this.$store.commit("UPDATE_EXERCISE", this.newExercise);
+            this.$store.commit("SET_CURRENT_EDITING_EXERCISE", null);
+          }
+        });
+      } else {
+        exerciseService.add(this.newExercise).then((response) => {
+          if (response.status === 201) {
+            this.$store.commit("ADD_NEW_EXERCISE", response.data);
+            this.$store.commit("SET_CURRENT_EDITING_EXERCISE", null);
+            this.showForm = false;
+            this.newExercise = {
+              userExerciseId: "",
+              userId: "",
+              exerciseCategoryId: "",
+              exerciseName: "",
+              date: new Date().toLocaleDateString(locale, dateFormat),
+              duration: 0,
+              caloriesBurned: 0,
+              equipmentUsed: false,
+            };
+          }
+        });
+      }
     },
   },
 };

@@ -5,11 +5,11 @@ const http = ()=>axios.create({
   });
 
 export default {
-    listAll(username){
-        return http().get(`user/exercise/${username}`)
+    listAll(){
+        return http().get("user/exercise/")
     },
-    add(username, exercise){
-        return http().post(`user/exercise/${username}`, exercise);
+    add(exercise){
+        return http().post("user/exercise", exercise);
     },
     update(exerciseId, exercise){
         return http().put(`user/exercise/${exerciseId}`, exercise)
