@@ -11,18 +11,16 @@
           v-model="newGoal.activity"
         >
           <option value=""></option>
-          <option value="minimum calorie intake" >Min Calorie Intake</option>
+          <option value="minimum calorie intake">Min Calorie Intake</option>
           <option value="maximum calorie intake">Max Calorie Intake</option>
-         
         </b-select>
       </b-field>
 
-        <b-field label="">
+      <b-field label="">
         <b-numberinput
           class="duration-input"
           v-model="newGoal.duration"
           type="is-primary"
-         
         ></b-numberinput>
       </b-field>
 
@@ -50,7 +48,7 @@
         </b-datepicker>
       </b-field>
       <b-button v-on:click="saveGoal" type="is-primary"
-        >Add Nutrition Goal</b-button
+        >{{ this.exisitingGoal ? "Edit" : "Add" }} Nutrition Goal</b-button
       >
     </section>
   </form>
@@ -65,16 +63,23 @@ const dateFormat = {
 };
 const locale = "en-US";
 export default {
-  name:"add-nutrition-goal",
+  name: "add-nutrition-goal",
+  props: ["exisitingGoal"],
+  mounted() {
+    if (this.exisitingGoal) {
+      Object.assign(this.newGoal, this.exisitingGoal);
+    }
+  },
   data() {
     return {
       showForm: true,
       newGoal: {
-        userId: '',
+        userGoalsId: "",
+        userId: "",
         categoryId: 2,
-        category: "Nutrition",
+        category: "nutrition",
         activity: "",
-        date: (new Date()).toLocaleDateString(locale, dateFormat),
+        date: new Date().toLocaleDateString(locale, dateFormat),
         perWeek: 0,
         duration: 0,
         complete: false,
@@ -122,21 +127,35 @@ export default {
     },
     saveGoal() {
       this.newGoal.complete = false;
-      goalService.add(this.newGoal).then((response) => {
-        if (response.status === 201) {
-          this.$store.commit("ADD_NEW", response.data); 
-          this.showForm = false;
-          this.newGoal = {
-            userId: "",
-            categoryId: 2,
-            category: "Nutrition",
-            activity: "",
-            date: new Date().toLocaleDateString(locale, dateFormat),
-            perWeek: 0,
-            duration: 0,
-          };
-        }
-      });
+
+      if (this.exisitingGoal) {
+        goalService
+          .update(this.newGoal)
+          .then((response) => {
+            if (response.status === 200) {
+              this.$store.commit("UPDATE_GOAL", this.newGoal);
+              this.$store.commit('SET_CURRENT_EDITING_GOAL', null);
+            }
+          });
+      } else {
+        goalService.add(this.newGoal).then((response) => {
+          if (response.status === 201) {
+            this.$store.commit("ADD_NEW", response.data);
+            this.$store.commit('SET_CURRENT_EDITING_GOAL', null);
+            this.showForm = false;
+            this.newGoal = {
+              userGoalsId: "",
+              userId: "",
+              categoryId: 2,
+              category: "Nutrition",
+              activity: "",
+              date: new Date().toLocaleDateString(locale, dateFormat),
+              perWeek: 0,
+              duration: 0,
+            };
+          }
+        });
+      }
     },
   },
 };

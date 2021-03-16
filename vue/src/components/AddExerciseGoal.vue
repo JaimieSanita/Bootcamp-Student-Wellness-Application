@@ -51,7 +51,7 @@
         </b-datepicker>
       </b-field>
       <b-button v-on:click="saveGoal" type="is-primary" 
-        >Add Exercise Goal</b-button
+        >{{ this.exisitingGoal ? "Edit" : "Add" }}  Exercise Goal</b-button
       >
     </section>
   </form>
@@ -68,13 +68,21 @@ const dateFormat = {
 const locale = "en-US";
 export default {
   name:"add-exercise-goal",
+  props: ["exisitingGoal"],
+  mounted() {
+    if (this.exisitingGoal) {
+      //target    //source
+      Object.assign(this.newGoal, this.exisitingGoal); //enumerates over properties of existing goal and copy onto new goal
+    }
+  },
   data() {
     return {
       showForm: true,
       newGoal: {
+        userGoalsId: "",
         userId: "",
         categoryId: 1,
-        category: "Exercise",
+        category: "exercise",
         activity: "",
         date: new Date().toLocaleDateString(locale, dateFormat),
         perWeek: 0,
@@ -123,22 +131,35 @@ export default {
     },
     saveGoal() {
       this.newGoal.complete = false;
-      goalService.add(this.newGoal).then((response) => {
-        if (response.status === 201) {
-          this.$store.commit("ADD_NEW", response.data); 
-          this.showForm = false;
-          this.newGoal = {
-            userId: "",
-            categoryId: 1,
-            category: "Exercise",
-            activity: "",
-            date: new Date().toLocaleDateString(locale, dateFormat),
-            perWeek: 0,
-            duration: 0,
-            complete: false,
-          };
-        }
-      });
+
+      if (this.exisitingGoal) {
+        goalService
+          .update(this.newGoal)
+          .then((response) => {
+            if (response.status === 200) {
+              this.$store.commit("UPDATE_GOAL", this.newGoal);
+              this.$store.commit('SET_CURRENT_EDITING_GOAL', null);
+            }
+          });
+      } else {
+        goalService.add(this.newGoal).then((response) => {
+          if (response.status === 201) {
+            this.$store.commit("ADD_NEW", response.data);
+            this.$store.commit('SET_CURRENT_EDITING_GOAL', null);
+            this.showForm = false;
+            this.newGoal = {
+              userGoalsId: "",
+              userId: "",
+              categoryId: 1,
+              category: "Exercise",
+              activity: "",
+              date: new Date().toLocaleDateString(locale, dateFormat),
+              perWeek: 0,
+              duration: 0,
+            };
+          }
+        });
+      }
     },
   },
 };

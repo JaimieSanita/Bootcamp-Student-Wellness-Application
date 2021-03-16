@@ -6,8 +6,8 @@ const http = ()=>axios.create({
 
 export default {
 
-    update(username, goal){
-        return http().put(`user/goals/${username}`, goal);
+    update(goal){
+        return http().put(`user/goals/${goal.userGoalsId}`, goal);
     },
     getAll(){
         return http().get('user/goals/');

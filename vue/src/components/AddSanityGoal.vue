@@ -50,7 +50,7 @@
         </b-datepicker>
       </b-field>
       <b-button v-on:click="saveGoal" type="is-primary"
-        >{{existingGoalId === false ? 'Add' : 'Edit'}} Sanity Goal</b-button
+        >{{ this.exisitingGoal ? "Edit" : "Add" }} Sanity Goal</b-button
       >
     </section>
   </form>
@@ -65,25 +65,22 @@ const dateFormat = {
 };
 const locale = "en-US";
 export default {
-  name:"add-sanity-goal",
-  props: ["existingGoalId"],
-  created() {
-    if (this.existingGoalId) {
-      goalService.getGoalById(this.existingGoalId).then((response) => {
-        if (response.status === 200) {
-          this.newGoal=response.data;
-        }
-      });
+  name: "add-sanity-goal",
+  props: ["exisitingGoal"],
+  mounted() {
+    if (this.exisitingGoal) {
+      //target    //source
+      Object.assign(this.newGoal, this.exisitingGoal); //enumerates over properties of existing goal and copy onto new goal
     }
   },
   data() {
     return {
-       showForm: true,
+      showForm: true,
       newGoal: {
         userGoalsId: "",
         userId: "",
         categoryId: 3,
-        category: "Sanity",
+        category: "sanity",
         activity: "",
         date: new Date().toLocaleDateString(locale, dateFormat),
         perWeek: 0,
@@ -135,33 +132,35 @@ export default {
     },
     saveGoal() {
       this.newGoal.complete = false;
-    
-      if (this.existingGoalId) {
+
+      if (this.exisitingGoal) {
         goalService
-          .update(this.$store.state.user.username, this.newGoal)
+          .update(this.newGoal)
           .then((response) => {
-            if (response.status === 201) {
+            if (response.status === 200) {
               this.$store.commit("UPDATE_GOAL", this.newGoal);
+              this.$store.commit('SET_CURRENT_EDITING_GOAL', null);
             }
           });
+      } else {
+        goalService.add(this.newGoal).then((response) => {
+          if (response.status === 201) {
+            this.$store.commit("ADD_NEW", response.data);
+            this.$store.commit('SET_CURRENT_EDITING_GOAL', null);
+            this.showForm = false;
+            this.newGoal = {
+              userGoalsId: "",
+              userId: "",
+              categoryId: 3,
+              category: "Sanity",
+              activity: "",
+              date: new Date().toLocaleDateString(locale, dateFormat),
+              perWeek: 0,
+              duration: 0,
+            };
+          }
+        });
       }
-      goalService.add(this.newGoal).then((response) => {
-        if (response.status === 201) {
-          this.$store.commit("ADD_NEW", response.data);
-          this.existingGoalId = false;
-          this.showForm = false;
-          this.newGoal = {
-            userGoalsId: "",
-            userId: "",
-            categoryId: 3,
-            category: "Sanity",
-            activity: "",
-            date: new Date().toLocaleDateString(locale, dateFormat),
-            perWeek: 0,
-            duration: 0,
-          };
-        }
-      });
     },
   },
 };

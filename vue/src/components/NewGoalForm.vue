@@ -9,15 +9,15 @@
             :expanded="true"
           >
             <option value=""></option>
-            <option value="Exercise">Exercise</option>
-            <option value="Nutrition">Nutrition</option>
-            <option value="Sanity">Sanity</option>
+            <option value="exercise">Exercise</option>
+            <option value="nutrition">Nutrition</option>
+            <option value="sanity">Sanity</option>
           </b-select>
         </b-field>
 
-        <add-exercise-goal v-if="selectedCategory === 'Exercise'" />
-        <add-nutrition-goal v-if="selectedCategory === 'Nutrition'" />
-        <add-sanity-goal v-if="selectedCategory === 'Sanity'" />
+        <add-exercise-goal v-if="selectedCategory === 'exercise'" :exisitingGoal="currentGoal"/>
+        <add-nutrition-goal v-if="selectedCategory === 'nutrition'" :exisitingGoal="currentGoal"/>
+        <add-sanity-goal v-if="selectedCategory === 'sanity'" :exisitingGoal="currentGoal"/>
       </section>
     </form>
   </div>
@@ -27,6 +27,7 @@
 import AddExerciseGoal from "./AddExerciseGoal.vue";
 import AddNutritionGoal from "./AddNutritionGoal.vue";
 import AddSanityGoal from "./AddSanityGoal.vue";
+import GoalService from "../services/GoalService.js";
 
 const dateFormat = {
   year: "numeric",
@@ -39,22 +40,15 @@ export default {
     AddExerciseGoal,
     AddNutritionGoal,
     AddSanityGoal,
+    
   },
   data() {
     return {
-      newGoal: {
-        userId: "",
-        category: "",
-        categoryId: "",
-        activtity: "",
-        date: "03/11/2021",
-        perWeek: 0,
-        duration: 0,
-        complete: false,
-      },
+      currentGoal: null,
       selectedCategory: "",
     };
   },
+
   computed: {
     assignDate: {
       get: function () {
@@ -63,6 +57,20 @@ export default {
       set: function (dt) {
         this.newGoal.date = dt.toLocaleDateString(locale, dateFormat);
       },
+    },
+  },
+  watch: {
+    "$store.state.currentEditingGoal": function () {
+      const goalId = this.$store.state.currentEditingGoal;
+      if (goalId) {
+        GoalService.getGoalById(goalId).then((response)=>{
+          this.currentGoal=response.data;
+          this.selectedCategory = this.currentGoal.category;
+        });
+      } else { //reset
+        this.currentGoal = null;
+        this.selectedCategory = '';
+      }
     },
   },
   methods: {
