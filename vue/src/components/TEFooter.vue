@@ -7,6 +7,7 @@ Copyright © 2021 Tech Elevator Inc.</p>
 
 <script>
 export default {
+  name:"te-footer"
 
 }
 </script>

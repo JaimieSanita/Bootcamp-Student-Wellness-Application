@@ -1,74 +1,75 @@
 <template>
-  <div class="home">
-    <div class="banner-container">
-      <h3 class="banner-title">Never forget, you're always elevating!</h3>
+  <body class="HolyGrail">
+    <te-header>Header</te-header>
+    <div class="HolyGrail-body">
+      <main class="HolyGrail-content">Main</main>
+      <te-navbar class="HolyGrail-nav">navbar</te-navbar>
+      <aside class="HolyGrail-ads">aside</aside>
     </div>
-    <div class="welcome-container">
-      <h1 class="title">
-        Welcome to {{ this.$store.state.profile.firstName }}'s Tech Wellovater!
-      </h1>
-    </div>
-    <new-goal-form />
-    <new-exercise-form/>
-    <div class="goal-container">
-      <goal-list />
-    </div>
-    
-  </div>
-  
+    <te-footer>footer</te-footer>
+  </body>
 </template>
 
 <script>
+import TEFooter from "../components/TEFooter.vue";
 
-import GoalList from "../components/GoalList";
-import NewExerciseForm from '../components/NewExerciseForm.vue';
-
-import NewGoalForm from "../components/NewGoalForm.vue";
+import TEHeader from "../components/TEHeader.vue";
+import TENavbar from "../components/TENavbar.vue";
 
 export default {
   name: "home",
   components: {
-    GoalList,
-    NewGoalForm,
-    NewExerciseForm,
-    
-  
+    TEHeader,
+    TENavbar,
+    TEFooter,
   },
 };
 </script>
 <style scoped>
-.container {
+.HolyGrail {
   display: flex;
-  justify-content: space-evenly;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
-.banner-container {
-  background-color: #8cc63f;
-  color: white;
+.HolyGrail-body {
   display: flex;
-  justify-content: center;
+  flex: 1;
 }
-.welcome-container {
-  background-color: #00adee;
+.HolyGrail,
+.HolyGrail-body {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+}
 
-  height: 90px;
-  margin: 10px;
+.HolyGrail-nav {
+  order: -1;
 }
-h1 {
-  color: white;
-  display: flex;
-  padding: 30px;
+
+@media (min-width: 768px) {
+  .HolyGrail-body {
+    flex-direction: row;
+    flex: 1;
+  }
+  .HolyGrail-content {
+    flex: 1;
+  }
+  .HolyGrail-nav, .HolyGrail-ads {
+    /* 12em is the width of the columns */
+    flex: 0 0 12em;
+  }
 }
-.goal-container{
-  margin-top: 20px;
-  display: flex;
-  
+.HolyGrail-content {
+  flex: 1;
 }
-.exercise-container{
-  margin-top: 20px;
-  display: flex;
-  
+
+.HolyGrail-nav, .HolyGrail-ads {
+  /* 12em is the width of the columns */
+  flex: 0 0 12em;
+}
+
+.HolyGrail-nav {
+  /* put the nav on the left */
+  order: -1;
 }
 </style>
