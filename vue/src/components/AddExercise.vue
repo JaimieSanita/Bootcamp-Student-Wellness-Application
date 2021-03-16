@@ -60,6 +60,7 @@ const dateFormat = {
 };
 const locale = "en-US";
 export default {
+  name:"add-exercise",
   data() {
     return {
       newExercise: {
