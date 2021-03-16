@@ -7,6 +7,7 @@
       </te-main>
       <left-menu class="HolyGrail-nav"></left-menu>
       <te-aside class="HolyGrail-ads"></te-aside>
+
     </div>
     <te-footer>footer</te-footer>
   </div>
