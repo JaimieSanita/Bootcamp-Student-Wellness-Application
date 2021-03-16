@@ -3,7 +3,7 @@
   <te-header></te-header>
     <div class="HolyGrail-body">
       <main class="HolyGrail-content">Main</main>
-      <te-navbar class="HolyGrail-nav">navbar</te-navbar>
+      <left-menu class="HolyGrail-nav"></left-menu>
       <te-aside class="HolyGrail-ads"></te-aside>
     </div>
     <te-footer>footer</te-footer>
@@ -13,17 +13,17 @@
 <script>
 import TeAside from '../components/TeAside.vue';
 import TeFooter from '../components/TeFooter.vue';
-import TeHeader from '../components/TeHeader.vue';
-import TeNavbar from '../components/TeNavbar.vue';
+import LeftMenu from '../components/LeftMenu.vue';
+import TeHeader from '../components/TeHeader'
 
 
 export default {
   name: "home",
   components: {
-    TeHeader,
-    TeNavbar,
+    LeftMenu,
     TeFooter,
     TeAside,
+    TeHeader
    
    
   },

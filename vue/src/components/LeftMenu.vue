@@ -12,10 +12,9 @@
 <script>
 import GoalList from "../components/GoalList";
 import NewExerciseForm from "./NewExerciseForm.vue";
-
 import NewGoalForm from "./NewGoalForm.vue";
 export default {
-  name:"te-navbar",
+  name:"left-menu",
   components: {
     GoalList,
     NewGoalForm,
