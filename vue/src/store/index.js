@@ -104,7 +104,7 @@ export default new Vuex.Store({
           return exercise;
         }return currentExercise;
       })
-    }
+    },
     SET_CURRENT_EDITING_GOAL(state, goalId) {
       state.currentEditingGoal = goalId;
     },
