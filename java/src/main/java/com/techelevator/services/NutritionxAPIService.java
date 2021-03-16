@@ -34,4 +34,8 @@ public class NutritionxAPIService implements CalorieDAO {
 //			HttpEntity<NutritionxWrapper> resultEntity = restTemplate(queryUrl, HttpMethod.GET, input, NutritionxWrapper.class, params);
 //		}
 //	 }
+<<<<<<< HEAD
 }
+=======
+//}
+>>>>>>> 7e127179182146b1df0ee1f3e92514061d2413f2

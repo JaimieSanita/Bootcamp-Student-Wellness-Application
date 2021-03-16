@@ -7,14 +7,23 @@
 
 <script>
 import GoalCard from './GoalCard.vue';
+import GoalService from "../services/GoalService.js";
 
 
 export default {
+  name: "goal-list",
   components: { 
       GoalCard,
      
       },
-  name: "goal-list",
+      created(){
+        GoalService.getAll().then((response)=>{
+          if(response.status === 200){
+          this.$store.commit('SET_GOALS', response.data);
+          }
+        });
+      }
+ 
 };
 
 </script>
