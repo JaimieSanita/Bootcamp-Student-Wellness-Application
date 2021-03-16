@@ -31,11 +31,10 @@ export default new Vuex.Store({
       inches: 0,
       weight: 0,
     },
-    goals: [
-
-
-    ],
+    goals: [],
+    meals:[],
     currentEditingGoal: null,
+    currentEditingMeal: null,
     currentEditingExercise: null,
    
   },
@@ -105,11 +104,32 @@ export default new Vuex.Store({
         }return currentExercise;
       })
     },
-    SET_CURRENT_EDITING_GOAL(state, goalId) {
-      state.currentEditingGoal = goalId;
-    },
+
     SET_GOALS(state, goals) {
       state.goals = goals;
+    },
+    SET_MEALS(state,meals){
+      state.meals = meals;
+    },
+    SET_CURRENT_EDITING_MEAL(state, mealId){
+      state.currentEditingMeal = mealId;
+    },
+    UPDATE_MEAL(state, meal){
+      state.meals = state.meals.map((currentMeal) => {
+        if (currentMeal.userMealsId === meal.userMealsId) {
+          return meal;
+        }
+        return currentMeal;
+      });
+    },
+    ADD_NEW_MEAL(state, meal) {
+      state.meals.push(meal);
+    },
+    DELETE_MEAL(state, id) {
+      state.meals = state.meals.filter((meal) => {
+        return meal.userMealsId != id;
+      });
+
     },
   }
 })

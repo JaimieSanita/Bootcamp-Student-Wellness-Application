@@ -2,7 +2,7 @@
   <div class="container">
     <form class="box form">
       <section>
-        <b-field label="Let's log a meal!" type="is-primary">
+        <b-field label="Let's log a meal!" type="is-primary" v-if="!this.$store.state.currentEditingMeal">
           <b-select
             v-model="selectedCategory"
             placeholder="Category"
@@ -79,33 +79,33 @@ export default {
     },
   },
   watch: {
-    "$store.state.currentEditingGoal": function () {
-      const goalId = this.$store.state.currentEditingGoal;
-      if (goalId) {
-        GoalService.getGoalById(goalId).then((response) => {
+    "$store.state.meals": function(){
+      this.$store.commit('SET_CURRENT_EDITING_MEAL', null);
+      this.selectedCategory = '';
+      this.currentMeal = null;
+    },
+    "$store.state.currentEditingMeal": function () {
+      const mealId = this.$store.state.currentEditingMeal;
+      if (mealId) {
+        this.selectedCategory = "";
+        MealService.getMealById(mealId).then((response) => {
           this.currentMeal = response.data;
           this.selectedCategory = this.currentMeal.category;
         });
-      } else {
-        //reset
-        this.currentMeal = null;
-        this.selectedCategory = "";
       }
     },
   },
   methods: {
-    saveGoal() {
-      this.newGoal.complete = false;
-      this.$store.commit("ADD_NEW", this.newGoal);
-      this.newGoal = {
+    saveFood() {
+      this.newFood.complete = false;
+      this.$store.commit("ADD_NEW_MEAL", this.newFood);
+      this.newFood = {
+        userFoodsId: '',
+        foodId: "",
+        name: "",
+        servings: "",
         userId: "",
-        categoryId: "",
-        category: "",
-        activtity: "",
-        date: "01/01/1900",
-        perWeek: 0,
-        duration: 0,
-        complete: false,
+        userMealsId: 0,
       };
     },
   },
