@@ -1,6 +1,6 @@
 <template>
   <body class="HolyGrail">
-    <te-header>Header</te-header>
+  <te-header></te-header>
     <div class="HolyGrail-body">
       <main class="HolyGrail-content">Main</main>
       <te-navbar class="HolyGrail-nav">navbar</te-navbar>
@@ -11,17 +11,19 @@
 </template>
 
 <script>
-import TEFooter from "../components/TEFooter.vue";
+import TeFooter from '../components/TeFooter.vue';
+import TeHeader from '../components/TeHeader.vue';
+import TeNavbar from '../components/TeNavbar.vue';
 
-import TEHeader from "../components/TEHeader.vue";
-import TENavbar from "../components/TENavbar.vue";
 
 export default {
   name: "home",
   components: {
-    TEHeader,
-    TENavbar,
-    TEFooter,
+    TeHeader,
+    TeNavbar,
+    TeFooter,
+   
+   
   },
 };
 </script>
