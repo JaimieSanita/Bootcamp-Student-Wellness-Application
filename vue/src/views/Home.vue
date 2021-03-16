@@ -4,13 +4,14 @@
     <div class="HolyGrail-body">
       <main class="HolyGrail-content">Main</main>
       <te-navbar class="HolyGrail-nav">navbar</te-navbar>
-      <aside class="HolyGrail-ads">aside</aside>
+      <te-aside class="HolyGrail-ads"></te-aside>
     </div>
     <te-footer>footer</te-footer>
   </body>
 </template>
 
 <script>
+import TeAside from '../components/TeAside.vue';
 import TeFooter from '../components/TeFooter.vue';
 import TeHeader from '../components/TeHeader.vue';
 import TeNavbar from '../components/TeNavbar.vue';
@@ -22,6 +23,7 @@ export default {
     TeHeader,
     TeNavbar,
     TeFooter,
+    TeAside,
    
    
   },

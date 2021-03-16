@@ -1,5 +1,6 @@
 <template>
   <form class="box form" v-on:submit.prevent>
+    
     <section>
       <b-field label="ADD EXERCISE"> </b-field>
 
@@ -52,6 +53,7 @@
 </template>
 
 <script>
+
 import exerciseService from "../services/ExerciseService.js";
 const dateFormat = {
   year: "numeric",
@@ -60,6 +62,9 @@ const dateFormat = {
 };
 const locale = "en-US";
 export default {
+  components:{
+    
+  },
   name:"add-exercise",
   data() {
     return {
