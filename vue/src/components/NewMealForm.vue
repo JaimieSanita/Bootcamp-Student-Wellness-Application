@@ -2,34 +2,40 @@
   <div class="container">
     <form class="box form">
       <section>
-        <b-field
-          label="Let's set a goal!"
-          type="is-primary"
-          v-if="!this.$store.state.currentEditingGoal"
-        >
+        <b-field label="Let's log a meal!" type="is-primary">
           <b-select
             v-model="selectedCategory"
             placeholder="Category"
             :expanded="true"
           >
             <option value=""></option>
-            <option value="exercise">Exercise</option>
-            <option value="nutrition">Nutrition</option>
-            <option value="sanity">Sanity</option>
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="dessert">Dessert</option>
+            <option value="snack">Snack</option>
           </b-select>
         </b-field>
 
         <add-exercise-goal
-          v-if="selectedCategory === 'exercise'"
-          :exisitingGoal="currentGoal"
+          v-if="selectedCategory === 'breakfast'"
+          :exisitingMeal="currentMeal"
         />
         <add-nutrition-goal
-          v-if="selectedCategory === 'nutrition'"
-          :exisitingGoal="currentGoal"
+          v-if="selectedCategory === 'lunch'"
+          :exisitingMeal="currentMeal"
         />
         <add-sanity-goal
-          v-if="selectedCategory === 'sanity'"
-          :exisitingGoal="currentGoal"
+          v-if="selectedCategory === 'dinner'"
+          :exisitingMeal="currentMeal"
+        />
+          <add-sanity-goal
+          v-if="selectedCategory === 'dessert'"
+          :exisitingMeal="currentMeal"
+        />
+          <add-sanity-goal
+          v-if="selectedCategory === 'snack'"
+          :exisitingMeal="currentMeal"
         />
       </section>
     </form>
@@ -49,7 +55,7 @@ const dateFormat = {
 };
 const locale = "en-US";
 export default {
-  name: "new-goal-form",
+  name: "new-meal-form",
   components: {
     AddExerciseGoal,
     AddNutritionGoal,
@@ -57,7 +63,7 @@ export default {
   },
   data() {
     return {
-      currentGoal: null,
+      currentMeal: null,
       selectedCategory: "",
     };
   },
@@ -73,19 +79,17 @@ export default {
     },
   },
   watch: {
-    "$store.state.goals": function(){
-      this.$store.commit('SET_CURRENT_EDITING_GOAL', null);
-      this.selectedCategory = '';
-      this.currentGoal = null;
-    },
     "$store.state.currentEditingGoal": function () {
       const goalId = this.$store.state.currentEditingGoal;
       if (goalId) {
-        this.selectedCategory = "";
         GoalService.getGoalById(goalId).then((response) => {
-          this.currentGoal = response.data;
-          this.selectedCategory = this.currentGoal.category;
+          this.currentMeal = response.data;
+          this.selectedCategory = this.currentMeal.category;
         });
+      } else {
+        //reset
+        this.currentMeal = null;
+        this.selectedCategory = "";
       }
     },
   },
