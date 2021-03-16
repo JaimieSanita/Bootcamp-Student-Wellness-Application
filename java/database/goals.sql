@@ -54,7 +54,7 @@ VALUES (1, '05/24/2020' , 1, 'running', 2, 10, false);
 Select * from goal_category;
 SELECT * FROM user_goals;
 
-ROLLBACK;
+COMMIT;
 
 
 COMMIT;

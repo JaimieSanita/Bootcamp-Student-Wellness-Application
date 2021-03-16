@@ -8,6 +8,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Goals {
 	private Integer userGoalsId;
+	private String category;
+	
+
 	private Integer userId;
 	@JsonFormat( pattern="MM/dd/yyyy")
 	private LocalDate date;
@@ -16,6 +19,13 @@ public class Goals {
 	private int timesPerWeek;
 	private int duration;
 	private boolean isCompleted;
+	
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	public Integer getUserId() {
 		return userId;
 	}

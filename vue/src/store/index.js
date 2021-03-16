@@ -35,6 +35,7 @@ export default new Vuex.Store({
      
     
     ],
+    currentEditingGoal: null,
    
   },
   mutations: {
@@ -90,5 +91,8 @@ export default new Vuex.Store({
     ADD_NEW_EXERCISE(state, exercise){
       state.exercise.push(exercise);
     },
+    SET_CURRENT_EDITING_GOAL(state, goalId){
+      state.currentEditingGoal = goalId; 
+    }
   }
 })
