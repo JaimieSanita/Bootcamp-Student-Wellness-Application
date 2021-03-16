@@ -1,14 +1,13 @@
 <template>
-<div>
-  <body class="HolyGrail">
-  <te-header></te-header>
-    <div class="HolyGrail-body">
-      <te-main class="HolyGrail-content">
-      </te-main>
-      <left-menu class="HolyGrail-nav"></left-menu>
-      <te-aside class="HolyGrail-ads"></te-aside>
-
-    </div>
+  <div>
+    <body class="HolyGrail">
+      <te-header></te-header>
+      <div class="HolyGrail-body">
+        <te-main class="HolyGrail-content"> </te-main>
+        <left-menu class="HolyGrail-nav"></left-menu>
+        <te-aside class="HolyGrail-ads"></te-aside>
+      </div>
+    </body>
     <te-footer>footer</te-footer>
   </div>
 </template>
@@ -37,7 +36,7 @@ export default {
   min-height: 100vh;
   flex-direction: column;
 }
-.HolyGrail-content{
+.HolyGrail-content {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
