@@ -19,6 +19,7 @@
 
       <b-field label="Duration">
         <b-numberinput
+         icon-pack="fas"
           class="duration-input"
           v-model="newGoal.duration"
           type="is-primary"

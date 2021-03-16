@@ -1,3 +1,5 @@
+
+
 package com.techelevator.services;
 
 import java.util.HashMap;
@@ -17,6 +19,7 @@ import com.techelevator.dao.ExerciseDBApiService;
 
 @Component
 public class NutritionxAPIService implements CalorieDAO {
+<<<<<<< HEAD
 //	 private final RestTemplate restTemplate = new RestTemplate();
 //	 private final Logger log = org.slf4j.LoggerFactory.getLogger(ExerciseDBApiService.class);
 //	 private final String BASE_URL = "https://trackapi.nutritionix.com/v2/natural/exercise";
@@ -34,8 +37,5 @@ public class NutritionxAPIService implements CalorieDAO {
 //			HttpEntity<NutritionxWrapper> resultEntity = restTemplate(queryUrl, HttpMethod.GET, input, NutritionxWrapper.class, params);
 //		}
 //	 }
-<<<<<<< HEAD
 }
-=======
-//}
->>>>>>> 7e127179182146b1df0ee1f3e92514061d2413f2
+
