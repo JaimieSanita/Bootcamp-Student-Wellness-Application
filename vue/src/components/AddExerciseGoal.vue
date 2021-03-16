@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-  <form class="box form" v-on:submit.prevent v-if="showForm">
+  <form class="box form" v-on:submit.prevent >
     <section>
       <b-field label="ADD EXERCISE GOAL"> </b-field>
 
@@ -69,10 +69,9 @@ const locale = "en-US";
 export default {
   name:"add-exercise-goal",
   props: ["exisitingGoal"],
-  mounted() {
+  beforeMount() {
     if (this.exisitingGoal) {
-      //target    //source
-      Object.assign(this.newGoal, this.exisitingGoal); //enumerates over properties of existing goal and copy onto new goal
+      this.newGoal = Object.assign({}, this.exisitingGoal); //enumerates over properties of existing goal and copy onto new goal
     }
   },
   data() {
