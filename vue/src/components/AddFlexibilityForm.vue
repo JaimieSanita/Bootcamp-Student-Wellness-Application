@@ -98,6 +98,7 @@ export default {
         userExerciseId: "",
         userId: "",
         exerciseCategoryId: 2,
+        exerciseCategory: "",
         exerciseName: "",
         date: new Date().toLocaleDateString(locale, dateFormat),
         exerciseLength: 0,

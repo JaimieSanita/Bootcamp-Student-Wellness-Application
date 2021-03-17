@@ -57,4 +57,10 @@ public class ExerciseController {
 		}
 	}
 	
+	@RequestMapping(path="/user/exercise/{userExerciseId}", method = RequestMethod.GET)
+	public Exercise getExerciseById(@PathVariable int userExerciseId) {
+		return this.dao.getByUserExerciseID(userExerciseId);
+	}
+	
+	
 }

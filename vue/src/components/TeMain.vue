@@ -16,6 +16,7 @@ import ExerciseList from "./ExerciseList.vue";
 import GoalList from "./GoalList.vue";
 
 export default {
+  name: 'te-main',
   components: {
     GoalList,
     ExerciseList,
@@ -29,7 +30,7 @@ export default {
   justify-content: flex-start;
   flex-wrap: wrap;
   width: auto;
-  height: 300px;
+  height: 250px;
   margin-bottom: 20px;
 }
 .exercise-container {

@@ -29,7 +29,7 @@ public class ExerciseSqlDAO implements ExerciseDAO {
 			String insertExercises = "INSERT INTO user_exercises(user_id, exercise_category_id, exercise_name, date_assigned, exercise_length, exercise_description, calories_burn, equipment) "+
 			"VALUES(?,?,?,?,?,?,?,?) RETURNING *";
 			SqlRowSet results = jdbcTemplate.queryForRowSet(insertExercises, exercise.getUserId(), exercise.getExerciseCategoryId(),exercise.getExerciseName(),exercise.getDate(),
-															exercise.getExerciseLength(), exercise.getExerciseDescription(), exercise.getCaloriedBurned(), exercise.isEquipmentUsed());
+															exercise.getExerciseLength(), exercise.getExerciseDescription(), exercise.getCaloriesBurn(), exercise.isEquipmentUsed());
 			
 			if(results.next()) {
 				exercises= this.mapRowToExercise(results);
@@ -54,7 +54,7 @@ public class ExerciseSqlDAO implements ExerciseDAO {
 		String query = "UPDATE user_exercises SET exercise_category_id =?, exercise_name = ?, assigned_date=?,exercise_description = ?, calories_burn = ?, equipment = ? "+
 				"WHERE user_exercise_id = ?";
 		return jdbcTemplate.update(query, exercise.getExerciseCategoryId(), exercise.getExerciseName(), exercise.getDate(),exercise.getExerciseDescription(), 
-				exercise.getCaloriedBurned(), exercise.isEquipmentUsed(), exerciseId);
+				exercise.getCaloriesBurn(), exercise.isEquipmentUsed(), exerciseId);
 	}
 
 	@Override
@@ -90,7 +90,7 @@ public class ExerciseSqlDAO implements ExerciseDAO {
 		exercise.setDate(rs.getDate("date_assigned").toLocalDate());
 		exercise.setExerciseLength(rs.getInt("exercise_length"));
 		exercise.setExerciseDescription(rs.getString("exercise_description"));
-		exercise.setCaloriedBurned(rs.getInt("calories_burn"));
+		exercise.setCaloriesBurn(rs.getInt("calories_burn"));
 		exercise.setEquipmentUsed(rs.getBoolean("equipment"));
 		return exercise;
 
@@ -118,6 +118,22 @@ public class ExerciseSqlDAO implements ExerciseDAO {
 						"WHERE u.username = ? AND ue.user_exercise_id = ?";
 		int rowCount = this.jdbcTemplate.queryForObject(query, Integer.class, username, exerciseId);
 		return rowCount ==1;
+	}
+
+
+	@Override
+	public Exercise getByUserExerciseID(int userExerciseId) {
+		Exercise exercise = null;
+		String query = "SELECT ue.*, exercise.exercise_category FROM user_exercises AS ue " + 
+				"Join users on users.user_id = ue.user_id " + 
+				"JOIN exercise ON exercise.exercise_id = ue.exercise_category_id " + 
+				"WHERE user_exercise_id = ?";
+		SqlRowSet results = this.jdbcTemplate.queryForRowSet(query, userExerciseId);
+		if(results.next()) {
+			exercise = this.mapRowToExercise(results);
+		}
+		
+		return exercise;
 	}
 
 }

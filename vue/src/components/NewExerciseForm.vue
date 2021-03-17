@@ -88,27 +88,12 @@ export default {
         this.selectedCategory = "";
         ExerciseService.getExerciseById(exerciseId).then((response) => {
           this.currentExercise = response.data;
-          this.selectedCategory = this.currentExercise.category;
+          this.selectedCategory = this.currentExercise.exerciseCategory;
         });
       }
     },
   },
-  methods: {
-    saveExercise() {
-      this.newExercise.complete = false;
-      this.$store.commit("ADD_NEW_EXERCISE", this.newExercise);
-      this.newExercise = {
-        userExerciseId: "",
-        userId: "",
-        exerciseCategoryId: "",
-        exerciseName: "",
-        date: "01/01/2021",
-        duration: 0,
-        caloriesBurned: 0,
-        equipmentUsed: false,
-      };
-    },
-  },
+
 };
 </script>
 

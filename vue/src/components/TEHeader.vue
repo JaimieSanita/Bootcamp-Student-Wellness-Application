@@ -45,9 +45,7 @@ h1 {
   padding-left: 23%;
   
 }
-.logo-image{
 
-}
 #nav{
   
   justify-content:left  !important;

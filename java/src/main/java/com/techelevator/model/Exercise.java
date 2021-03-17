@@ -13,7 +13,7 @@ public class Exercise {
 	private LocalDate date;
 	private int exerciseLength;
 	private String exerciseDescription;
-	private int caloriedBurned;
+	private int caloriesBurn;
 	private boolean equipmentUsed;
 	
 	
@@ -70,11 +70,11 @@ public class Exercise {
 	public void setEquipmentUsed(boolean equipmentUsed) {
 		this.equipmentUsed = equipmentUsed;
 	}
-	public int getCaloriedBurned() {
-		return caloriedBurned;
+	public int getCaloriesBurn() {
+		return caloriesBurn;
 	}
-	public void setCaloriedBurned(int caloriedBurned) {
-		this.caloriedBurned = caloriedBurned;
+	public void setCaloriesBurn(int caloriedBurned) {
+		this.caloriesBurn = caloriesBurn;
 	}
 	public Exercise() {
 		

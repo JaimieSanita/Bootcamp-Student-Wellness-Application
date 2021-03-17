@@ -37,7 +37,7 @@ import goalService from "../services/GoalService.js";
 import exerciseGoalContent from "../components/ExerciseGoalContent.vue";
 import nutritionGoalContent from "../components/NutritionGoalContent.vue";
 import sanityGoalContent from "../components/SanityGoalContent.vue";
-//import AddSanityGoal from "../components/AddSanityGoal.vue";
+
 
 export default {
   name: "goal-card",
@@ -46,7 +46,7 @@ export default {
     exerciseGoalContent,
     nutritionGoalContent,
     sanityGoalContent,
-   // AddSanityGoal,
+
   },
   data() {
     return {
@@ -65,11 +65,13 @@ export default {
       alert("Congrats! You did it!");
     },
     deleteGoal(id) {
+     if( confirm("Are you sure you want to delete this goal?")){
       goalService.delete(id).then((response)=>{
       if(response.status === 204){
       this.$store.commit("DELETE_GOAL", id);
        }
        });
+     }
     },
     updateGoal(goal){
       goalService.update(this.$store.state.user.username, goal).then((response)=>{
