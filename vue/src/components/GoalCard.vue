@@ -96,7 +96,12 @@ export default {
   margin: 20px;
 }
 .card{
-  width: 200px;
+ margin: 10px;
+  margin-bottom: 20px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .goal .goal-complete {

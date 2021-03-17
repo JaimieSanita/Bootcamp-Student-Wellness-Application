@@ -12,7 +12,7 @@
 
       <h3 class="banner-title">Never forget, you're always elevating!</h3>
     </div>
-    <div class="welcome-container">
+    <div class="hello-container">
       <img class="logo-image" src="../assets/logo.png" />
       <h1 class="title">
         Welcome to {{ this.$store.state.profile.firstName }}'s Tech Wellovater!
@@ -34,11 +34,11 @@ export default {
   display: flex;
   justify-content: center;
 }
-.welcome-container {
+.hello-container {
   background-color: #00adee;
   display: flex;
   justify-content: flex-start;
-
+font-family: proxima-nova;
   height: 90px;
   margin: 10px;
 }

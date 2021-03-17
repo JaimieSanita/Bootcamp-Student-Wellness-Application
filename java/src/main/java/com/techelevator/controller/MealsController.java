@@ -53,7 +53,7 @@ public class MealsController {
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@RequestMapping(path = "/user/goals/{goalId}", method = RequestMethod.DELETE)
+	@RequestMapping(path = "/user/meals/{mealId}", method = RequestMethod.DELETE)
 	public void delete(Principal principal, @PathVariable int mealId) {
 		if (dao.userOwnsMeal(principal.getName(), mealId)) {
 			this.dao.delete(mealId);
