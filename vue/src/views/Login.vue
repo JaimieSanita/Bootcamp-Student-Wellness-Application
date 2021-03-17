@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="all">
   <div class="header">
     <div class="banner-container">
       <div style="position:relative; left:-780px;"        id="nav">
@@ -124,12 +124,13 @@ export default {
   margin-left: auto;
   margin-right: auto;
   width: 30%;
+  font-family: proxima-nova;
 }
 .welcome-container {
   background-color: #00adee;
   display: flex;
   justify-content: flex-start;
-
+font-family: proxima-nova;
   height: 90px;
   margin: 10px;
 }
@@ -138,7 +139,7 @@ export default {
   color: white;
   display: flex;
   justify-content: center;
- 
+ font-family: proxima-nova;
 }
 .title{
   color: white;
@@ -146,17 +147,30 @@ export default {
   padding: 30px;
   position: relative;
   padding-left: 28%;
-  
+  font-family: proxima-nova;
 }
 #submit{
   background-color: #00adee;
+  font-family: proxima-nova;
 }
 .sign-up{
   color: black;
   padding: 10px;
+  font-family: proxima-nova;
 }
 .button{
-  
+  font-family: proxima-nova;
   margin: 2px;
+}
+#username{
+  border-radius: 5px;
+  font-family: proxima-nova;
+}
+#password{
+  border-radius: 5px;
+  font-family: proxima-nova;
+}
+.all{
+  font-family: proxima-nova;
 }
 </style>

@@ -8,10 +8,9 @@ import com.techelevator.model.Food;
 public interface FoodDAO {
 	
 	Food create(Food food) throws SQLException;
+	Food getByUserFoodsId(int userFoodsId);
+
 	
-	List<Food>findAll();
-	
-	 Food getFoodByName(String foodName);
 	 
 	 void delete(int foodId);
 	 
