@@ -87,4 +87,30 @@ public class MealsSqlDAO implements MealsDAO {
 		return null;
 	}
 
-}
+	@Override
+	public Meals getMealById(int mealId) {
+		// TODO Auto-generated method stub
+		
+		return null;
+	}
+
+	@Override
+	public int findUserIdByUsername(String username) {
+		// TODO Auto-generated method stub
+		return jdbcTemplate.queryForObject("SELECT meal_id FROM meals "
+				+ "JOIN users ON users.user_id = meals.user_id"
+				+ "	WHERE useraname = ? ", int.class, username);
+	}
+
+	@Override
+	public boolean userOwnsMeal(String username, int mealId) {
+		// TODO Auto-generated method stub
+		String query = "SELECT count(*) FROM user_meals AS um JOIN users AS u ON um.user_id = u.user_id"
+				+ "WHERE u.username = ? AND um.meal_id = ?";
+		int rowCount = this.jdbcTemplate.queryForObject(query, Integer.class, username, mealId);
+		return rowCount ==1;
+	}
+	}
+
+
+
