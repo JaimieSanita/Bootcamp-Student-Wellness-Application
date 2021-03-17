@@ -1,5 +1,5 @@
 <template>
-  <div class="exercise-container" >
+  <div class="exercise-list-container" >
     <exercise-card
     v-for="ex in $store.state.exercises" v-bind:key="ex.id" v-bind:exercise="ex"/>
   </div>
@@ -29,9 +29,10 @@ export default {
 </script>
 
 <style>
-.goal-container {
+.exercise-list-container {
   display: flex;
   justify-content: space-evenly;
+  flex-direction: row;
   flex-wrap: wrap;
 }
 </style>

@@ -119,6 +119,10 @@ img {
 .card {
   margin: 10px;
   margin-bottom: 20px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .congratulations{
   color: gold;

@@ -1,5 +1,5 @@
 <template>
-  <div class="goal-container" >
+  <div class="goal-list-container" >
     <goal-card
     v-for="gl in $store.state.goals" v-bind:key="gl.id" v-bind:goal="gl"/>
   </div>
@@ -29,9 +29,10 @@ export default {
 </script>
 
 <style>
-.goal-container {
+.goal-list-container {
   display: flex;
   justify-content: space-evenly;
+  flex-direction: row;
   flex-wrap: wrap;
 }
 </style>
