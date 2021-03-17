@@ -72,6 +72,7 @@ export default new Vuex.Store({
         goalToChange.classList.add("nutrition-goal");
       }
     },
+    
     ADD_NEW(state, goal) {
       state.goals.push(goal);
     },
