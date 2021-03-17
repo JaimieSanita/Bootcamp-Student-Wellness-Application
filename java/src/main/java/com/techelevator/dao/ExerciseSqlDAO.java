@@ -27,13 +27,11 @@ public class ExerciseSqlDAO implements ExerciseDAO {
 		try {
 			conn.setAutoCommit(false);
 			String insertExercises = "INSERT INTO user_exercises(user_id, exercise_category_id, exercise_name, date_assigned, exercise_length, exercise_description, calories_burn, equipment) "+
-			"VALUES(?,?,?,?,?,?,?,?) RETURNING *";
-			SqlRowSet results = jdbcTemplate.queryForRowSet(insertExercises, exercise.getUserId(), exercise.getExerciseCategoryId(),exercise.getExerciseName(),exercise.getDate(),
+			"VALUES(?,?,?,?,?,?,?,?) RETURNING exercise_id";
+			Integer exerciseId = jdbcTemplate.queryForObject(insertExercises, Integer.class, exercise.getUserId(), exercise.getExerciseCategoryId(),exercise.getExerciseName(),exercise.getDate(),
 															exercise.getExerciseLength(), exercise.getExerciseDescription(), exercise.getCaloriesBurn(), exercise.isEquipmentUsed());
+			exercises = this.getByUserExerciseID(exerciseId);
 			
-			if(results.next()) {
-				exercises= this.mapRowToExercise(results);
-			}
 			conn.commit();
 			return exercises;			
 		}
@@ -51,7 +49,7 @@ public class ExerciseSqlDAO implements ExerciseDAO {
 
 	@Override
 	public int updateExercise(Exercise exercise, int exerciseId) {
-		String query = "UPDATE user_exercises SET exercise_category_id =?, exercise_name = ?, assigned_date=?,exercise_description = ?, calories_burn = ?, equipment = ? "+
+		String query = "UPDATE user_exercises SET exercise_category_id =?, exercise_name = ?, date_assigned=?,exercise_description = ?, calories_burn = ?, equipment = ? "+
 				"WHERE user_exercise_id = ?";
 		return jdbcTemplate.update(query, exercise.getExerciseCategoryId(), exercise.getExerciseName(), exercise.getDate(),exercise.getExerciseDescription(), 
 				exercise.getCaloriesBurn(), exercise.isEquipmentUsed(), exerciseId);
@@ -72,7 +70,10 @@ public class ExerciseSqlDAO implements ExerciseDAO {
 	@Override
 	public List<Exercise> listAllExercisesByUsername(String username) {
 		List<Exercise> exercises = new ArrayList<>();
-		String query = "SELECT user_exercises.* FROM user_exercises JOIN users ON user_exercises.user_id = users.user_id WHERE users.username=?";
+		String query = "SELECT user_exercises.*, exercise.exercise_category FROM user_exercises  " 
+				+ "JOIN users ON user_exercises.user_id = users.user_id " 
+				+ "JOIN exercise ON exercise.exercise_id = user_exercises.exercise_category_id " 
+				+ " WHERE users.username=?";
 		SqlRowSet results = this.jdbcTemplate.queryForRowSet(query, username);
 		while(results.next()) {
 			Exercise resultExercises = this.mapRowToExercise(results);
@@ -86,6 +87,7 @@ public class ExerciseSqlDAO implements ExerciseDAO {
 		exercise.setUserExerciseId(rs.getInt("user_exercise_id"));
 		exercise.setUserId(rs.getInt("user_id"));
 		exercise.setExerciseCategoryId(rs.getInt("exercise_category_id"));
+		exercise.setExerciseCategory(rs.getString("exercise_category"));
 		exercise.setExerciseName(rs.getString("exercise_name"));
 		exercise.setDate(rs.getDate("date_assigned").toLocalDate());
 		exercise.setExerciseLength(rs.getInt("exercise_length"));

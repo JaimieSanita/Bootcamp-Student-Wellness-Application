@@ -106,7 +106,7 @@ export default new Vuex.Store({
 
     },
     UPDATE_EXERCISE(state, exercise) {
-      state.exercise = state.exercise.map((currentExercise) => {
+      state.exercises = state.exercises.map((currentExercise) => {
         if (currentExercise.userExerciseId === exercise.userExerciseId) {
           return exercise;
         } return currentExercise;

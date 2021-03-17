@@ -12,7 +12,7 @@ export default {
         return http().post("user/exercise", exercise);
     },
     updateExercise(exercise){
-        return http().put(`user/exercise/${exerciseId}`, exercise);
+        return http().put(`user/exercise/${exercise.userExerciseId}`, exercise);
     },
     delete(exerciseId){
         return http().delete(`user/exercise/${exerciseId}`);

@@ -9,7 +9,7 @@
           v-model="newExercise.exerciseName"
         >
           <option value="planking">Planking</option>
-          <option value="curtsy lunges">Curtsy Lunge</option>
+          <option value="curtsy lunge">Curtsy Lunge</option>
           <option value="sumo squats">Sumo Squat</option>
           <option value="standing crunchs">Standing Crunch</option>
         </b-select>
@@ -151,7 +151,7 @@ export default {
     saveExercise() {
       this.newExercise.complete = false;
       if (this.exisitingExercise) {
-        exerciseService.update(this.newExercise).then((response) => {
+        exerciseService.updateExercise(this.newExercise).then((response) => {
           if (response.status === 200) {
             this.$store.commit("UPDATE_EXERCISE", this.newExercise);
             this.$store.commit("SET_CURRENT_EDITING_EXERCISE", null);

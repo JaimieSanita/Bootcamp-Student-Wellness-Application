@@ -95,6 +95,9 @@ export default {
   height: auto;
   margin: 20px;
 }
+.card{
+  width: 200px;
+}
 
 .goal .goal-complete {
   font-size: 1.5rem;

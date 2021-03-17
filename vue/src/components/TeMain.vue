@@ -27,21 +27,20 @@ export default {
 <style scoped>
 .goal-container {
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
   flex-wrap: wrap;
-  width: auto;
-  height: 250px;
   margin-bottom: 20px;
 }
 .exercise-container {
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
   flex-wrap: wrap;
-  width: auto;
-  height: 300px;
   margin-bottom: 20px;
 }
 .te-main {
   margin-left: 20px;
 }
+
 </style>

@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Exercise {
 	private int userExerciseId;
 	private int userId;
+	private String exerciseCategory;
+
 	private int exerciseCategoryId;
 	private String exerciseName;
 	@JsonFormat( pattern="MM/dd/yyyy")
@@ -26,7 +28,12 @@ public class Exercise {
 		this.date = date;
 	}
 	
-	
+	public String getExerciseCategory() {
+		return exerciseCategory;
+	}
+	public void setExerciseCategory(String exerciseCategory) {
+		this.exerciseCategory = exerciseCategory;
+	}
 	
 	public int getUserExerciseId() {
 		return userExerciseId;
