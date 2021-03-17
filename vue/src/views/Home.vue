@@ -39,7 +39,7 @@ export default {
 .HolyGrail-content {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  
 }
 
 .HolyGrail-body {
