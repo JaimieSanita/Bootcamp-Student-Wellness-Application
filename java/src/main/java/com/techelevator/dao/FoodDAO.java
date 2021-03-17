@@ -14,6 +14,7 @@ public interface FoodDAO {
 	 
 	 void delete(int foodId);
 	 
-	 int update(Food food, int foodId);
+	 int update(Food food, int userFoodsId);
+	boolean userOwnsFood(String username, int userFoodsId);
 
 }

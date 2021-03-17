@@ -78,8 +78,19 @@ public class FoodSqlDAO implements FoodDAO {
 
 	@Override
 	public Food getByUserFoodsId(int userFoodsId) {
-		// TODO Auto-generated method stub
-		return null;
+		Food foods = null;
+		String query = "SELECT * FROM user_foods WHERE user_foods_id = ?";
+		SqlRowSet results = this.jdbcTemplate.queryForRowSet(query, userFoodsId);
+		if(results.next()) {
+			foods = this.mapRowToFood(results);
+		}return foods;
+	}
+	@Override
+	public boolean userOwnsFood(String username, int userFoodsId) {
+		String query = "SELECT count(*) FROM user_foods AS uf JOIN users AS u ON uf.user_id = u.user_id "+
+						"WHERE u.username = ? AND uf.user_foods_id = ?";
+		int rowCount = this.jdbcTemplate.queryForObject(query, Integer.class, username, userFoodsId);
+		return rowCount ==1;
 	}
 
 }
