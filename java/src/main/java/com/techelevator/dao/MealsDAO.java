@@ -16,5 +16,12 @@ public interface MealsDAO {
 	void delete(int MealId);
 	
 	List<Meals>listAllMeals();
+	
+	Meals getMealById(int mealId);
+	
+	int findUserIdByUsername(String username);
+
+
+	boolean userOwnsMeal(String name, int mealId);
 
 }
