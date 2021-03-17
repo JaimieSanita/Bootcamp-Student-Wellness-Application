@@ -73,7 +73,7 @@ public class Exercise {
 	public int getCaloriesBurn() {
 		return caloriesBurn;
 	}
-	public void setCaloriesBurn(int caloriedBurned) {
+	public void setCaloriesBurn(int caloriesBurn) {
 		this.caloriesBurn = caloriesBurn;
 	}
 	public Exercise() {
