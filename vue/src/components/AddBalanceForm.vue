@@ -9,9 +9,9 @@
           v-model="newExercise.exerciseName"
         >
           <option value="planking">Planking</option>
-          <option value="curtsy lunge">Curtsy Lunge</option>
-          <option value="sumo squat">Sumo Squat</option>
-          <option value="standing crunch">Standing Crunch</option>
+          <option value="curtsy lunges">Curtsy Lunge</option>
+          <option value="sumo squats">Sumo Squat</option>
+          <option value="standing crunchs">Standing Crunch</option>
         </b-select>
       </b-field>
 

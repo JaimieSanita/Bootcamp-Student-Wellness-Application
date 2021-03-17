@@ -18,7 +18,10 @@ public interface ExerciseDAO {
 	List<Exercise>listAllExercises();
 
 	List<Exercise> listAllExercisesByUsername(String username);
+	
 	public boolean userOwnsExercise(String username, int exerciseId);
+	
+	Exercise getByUserExerciseID(int userExerciseId);
 
 	
 }

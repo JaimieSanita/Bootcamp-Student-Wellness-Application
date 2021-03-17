@@ -11,7 +11,7 @@ export default {
     add(exercise){
         return http().post("user/exercise", exercise);
     },
-    update(exercise){
+    updateExercise(exercise){
         return http().put(`user/exercise/${exerciseId}`, exercise);
     },
     delete(exerciseId){
@@ -20,6 +20,9 @@ export default {
     getAllExercise(){
         return http().get('user/exercise/');
     },
+    getExerciseById(userExerciseId){
+        return http().get(`user/exercise/${userExerciseId}`);
+    }
     
     
 }

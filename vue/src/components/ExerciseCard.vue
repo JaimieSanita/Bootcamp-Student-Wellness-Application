@@ -11,8 +11,12 @@
       <p class="card-header-title">{{ exercise.date }}'s Exercise</p>
     </header>
     <div class="card-content">
-      <img src="../assets/exerciseIcon.png" class="exerciseIcon" />
-      <p> Wow! You
+      <h3 class="congratulations">CONGRATULATIONS!</h3>
+      <img src="../assets/balance.png" class="balanceIcon" v-if="exercise.exerciseCategoryId === 1"/>
+      <img src="../assets/flexibility.png" class="flexibilityIcon" v-if="exercise.exerciseCategoryId === 2"/>
+      <img src="../assets/strength.png" class="strengthIcon" v-if="exercise.exerciseCategoryId === 3"/>
+      <img src="../assets/endurance.png" class="enduranceIcon" v-if="exercise.exerciseCategoryId === 4"/>
+      <p> You did
         <strong>{{ exercise.exerciseName }}</strong> for
       </p>
       <p>
@@ -56,11 +60,13 @@ export default {
       alert("Congrats! You did it!");
     },
     deleteExercise(id) {
+      if( confirm("Are you sure you want to delete this exercise?")){
       exerciseService.delete(id).then((response) => {
         if (response.status === 204) {
           this.$store.commit("DELETE_EXERCISE", id);
         }
       });
+      }
     },
     updateExercise(exercise) {
       exerciseService
@@ -72,10 +78,7 @@ export default {
         });
     },
     editExercise() {
-      this.$store.commit(
-        "SET_CURRENT_EDITING_EXERCISE",
-        this.exercise.userExerciseId
-      );
+      this.$store.commit("SET_CURRENT_EDITING_EXERCISE", this.exercise.userExerciseId);
     },
   },
 };
@@ -101,20 +104,24 @@ img {
   font-size: 1.5rem;
 }
 .balance-exercise {
-  background-color: lightgreen;
+  background-color: green;
 }
 .flexibility-exercise {
-  background-color: lightsalmon;
+  background-color: rgb(1, 151, 1);
 }
 .strength_exercise {
-  background-color: lightyellow;
+  background-color: rgb(2, 196, 2);
 }
 .endurance-exercise {
-  background-color: lightskyblue;
+  background-color: rgb(4, 228, 4);
 }
 
 .card {
   margin: 10px;
   margin-bottom: 20px;
+}
+.congratulations{
+  color: gold;
+  margin-bottom: 5px;
 }
 </style>
