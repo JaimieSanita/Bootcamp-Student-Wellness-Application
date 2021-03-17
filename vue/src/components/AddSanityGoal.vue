@@ -1,5 +1,5 @@
 <template>
-  <form class="box form" v-on:submit.prevent v-if="showForm">
+  <form class="box form" v-on:submit.prevent >
     <section>
       <b-field label="ADD SANITY GOAL"> </b-field>
 
@@ -19,6 +19,7 @@
 
       <b-field label="Duration">
         <b-numberinput
+         icon-pack="fas"
           class="duration-input"
           v-model="newGoal.duration"
           type="is-primary"

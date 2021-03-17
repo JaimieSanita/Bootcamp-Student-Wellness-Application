@@ -2,7 +2,11 @@
   <div class="container">
     <form class="box form">
       <section>
-        <b-field label="Let's set a goal!" type="is-primary">
+        <b-field
+          label="Let's set a goal!"
+          type="is-primary"
+          v-if="!this.$store.state.currentEditingGoal"
+        >
           <b-select
             v-model="selectedCategory"
             placeholder="Category"
@@ -15,9 +19,18 @@
           </b-select>
         </b-field>
 
-        <add-exercise-goal v-if="selectedCategory === 'exercise'" :exisitingGoal="currentGoal"/>
-        <add-nutrition-goal v-if="selectedCategory === 'nutrition'" :exisitingGoal="currentGoal"/>
-        <add-sanity-goal v-if="selectedCategory === 'sanity'" :exisitingGoal="currentGoal"/>
+        <add-exercise-goal
+          v-if="selectedCategory === 'exercise'"
+          :exisitingGoal="currentGoal"
+        />
+        <add-nutrition-goal
+          v-if="selectedCategory === 'nutrition'"
+          :exisitingGoal="currentGoal"
+        />
+        <add-sanity-goal
+          v-if="selectedCategory === 'sanity'"
+          :exisitingGoal="currentGoal"
+        />
       </section>
     </form>
   </div>
@@ -36,11 +49,11 @@ const dateFormat = {
 };
 const locale = "en-US";
 export default {
+  name: "new-goal-form",
   components: {
     AddExerciseGoal,
     AddNutritionGoal,
     AddSanityGoal,
-    
   },
   data() {
     return {
@@ -60,16 +73,19 @@ export default {
     },
   },
   watch: {
+    "$store.state.goals": function(){
+      this.$store.commit('SET_CURRENT_EDITING_GOAL', null);
+      this.selectedCategory = '';
+      this.currentGoal = null;
+    },
     "$store.state.currentEditingGoal": function () {
       const goalId = this.$store.state.currentEditingGoal;
       if (goalId) {
-        GoalService.getGoalById(goalId).then((response)=>{
-          this.currentGoal=response.data;
+        this.selectedCategory = "";
+        GoalService.getGoalById(goalId).then((response) => {
+          this.currentGoal = response.data;
           this.selectedCategory = this.currentGoal.category;
         });
-      } else { //reset
-        this.currentGoal = null;
-        this.selectedCategory = '';
       }
     },
   },

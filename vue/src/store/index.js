@@ -31,11 +31,12 @@ export default new Vuex.Store({
       inches: 0,
       weight: 0,
     },
-    goals: [
-     
-    
-    ],
+    goals: [],
+    meals:[],
+    exercises: [],
     currentEditingGoal: null,
+    currentEditingMeal: null,
+    currentEditingExercise: null,
    
   },
   mutations: {
@@ -62,37 +63,75 @@ export default new Vuex.Store({
     FLIP_STATUS(state, goalToChange) {
       goalToChange.complete = !goalToChange.complete;
     },
-    CHANGE_COLOR(state, goalToChange){
-      if(goalToChange.category === 'Sanity'){
+    CHANGE_COLOR(state, goalToChange) {
+      if (goalToChange.category === 'Sanity') {
         goalToChange.classList.add("sanity-goal");
-      } else if (goalToChange.category === 'Exercise'){
+      } else if (goalToChange.category === 'Exercise') {
         goalToChange.classList.add("exercise-goal");
       } else {
         goalToChange.classList.add("nutrition-goal");
       }
     },
-    ADD_NEW(state, goal){
+    
+    ADD_NEW(state, goal) {
       state.goals.push(goal);
     },
-    DELETE_GOAL(state, id){
-     state.goals = state.goals.filter((goal)=>{
-       return goal.userGoalsId !=    id;
-        });
-      
+    DELETE_GOAL(state, id) {
+      state.goals = state.goals.filter((goal) => {
+        return goal.userGoalsId != id;
+      });
+
     },
     UPDATE_GOAL(state, goal) {
-      state.goals = state.goals.map((currentGoal)=>{
-       if(currentGoal.userGoalsId === goal.userGoalsId){
-         return goal;
-       }
+      state.goals = state.goals.map((currentGoal) => {
+        if (currentGoal.userGoalsId === goal.userGoalsId) {
+          return goal;
+        }
         return currentGoal;
       });
     },
-    ADD_NEW_EXERCISE(state, exercise){
+    ADD_NEW_EXERCISE(state, exercise) {
       state.exercise.push(exercise);
     },
     SET_CURRENT_EDITING_GOAL(state, goalId){
       state.currentEditingGoal = goalId; 
-    }
+    },
+    SET_CURRENT_EDITING_EXERCISE(state, exerciseId){
+      state.currentEditingExercise = exerciseId;
+    },
+    UPDATE_EXERCISE(state, exercise){
+      state.exercise = state.exercise.map((currentExercise)=>{
+        if(currentExercise.userExerciseId === exercise.userExerciseId){
+          return exercise;
+        }return currentExercise;
+      })
+    },
+
+    SET_GOALS(state, goals) {
+      state.goals = goals;
+    },
+    SET_MEALS(state,meals){
+      state.meals = meals;
+    },
+    SET_CURRENT_EDITING_MEAL(state, mealId){
+      state.currentEditingMeal = mealId;
+    },
+    UPDATE_MEAL(state, meal){
+      state.meals = state.meals.map((currentMeal) => {
+        if (currentMeal.userMealsId === meal.userMealsId) {
+          return meal;
+        }
+        return currentMeal;
+      });
+    },
+    ADD_NEW_MEAL(state, meal) {
+      state.meals.push(meal);
+    },
+    DELETE_MEAL(state, id) {
+      state.meals = state.meals.filter((meal) => {
+        return meal.userMealsId != id;
+      });
+
+    },
   }
 })

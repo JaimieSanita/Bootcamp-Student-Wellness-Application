@@ -1,8 +1,10 @@
 <template>
+
   <body class="HolyGrail">
   <te-header></te-header>
     <div class="HolyGrail-body">
-      <main class="HolyGrail-content">Main</main>
+      <te-main class="HolyGrail-content">
+      </te-main>
       <left-menu class="HolyGrail-nav"></left-menu>
       <te-aside class="HolyGrail-ads"></te-aside>
     </div>
@@ -11,11 +13,11 @@
 </template>
 
 <script>
-import TeAside from '../components/TeAside.vue';
-import TeFooter from '../components/TeFooter.vue';
-import LeftMenu from '../components/LeftMenu.vue';
-import TeHeader from '../components/TeHeader'
-
+import TeAside from "../components/TeAside.vue";
+import TeFooter from "../components/TeFooter.vue";
+import LeftMenu from "../components/LeftMenu.vue";
+import TeHeader from "../components/TeHeader.vue";
+import TeMain from "../components/TeMain.vue";
 
 export default {
   name: "home",
@@ -23,9 +25,8 @@ export default {
     LeftMenu,
     TeFooter,
     TeAside,
-    TeHeader
-   
-   
+    TeHeader,
+    TeMain,
   },
 };
 </script>
@@ -34,6 +35,11 @@ export default {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+}
+.HolyGrail-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .HolyGrail-body {
@@ -58,7 +64,8 @@ export default {
   .HolyGrail-content {
     flex: 1;
   }
-  .HolyGrail-nav, .HolyGrail-ads {
+  .HolyGrail-nav,
+  .HolyGrail-ads {
     /* 12em is the width of the columns */
     flex: 0 0 12em;
   }
@@ -67,7 +74,8 @@ export default {
   flex: 1;
 }
 
-.HolyGrail-nav, .HolyGrail-ads {
+.HolyGrail-nav,
+.HolyGrail-ads {
   /* 12em is the width of the columns */
   flex: 0 0 12em;
 }
