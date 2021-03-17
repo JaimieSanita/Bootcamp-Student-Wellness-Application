@@ -81,7 +81,7 @@ export default {
       newExercise: {
         userExerciseId: "",
         userId: "",
-        exerciseCategoryId: "",
+        exerciseCategoryId: 3,
         exerciseName: "",
         date: new Date().toLocaleDateString(locale, dateFormat),
         duration: 0,
@@ -149,7 +149,7 @@ export default {
             this.newExercise = {
               userExerciseId: "",
               userId: "",
-              exerciseCategoryId: "",
+              exerciseCategoryId: 3,
               exerciseName: "",
               date: new Date().toLocaleDateString(locale, dateFormat),
               duration: 0,
