@@ -33,6 +33,7 @@ export default new Vuex.Store({
     },
     goals: [],
     meals:[],
+    exercises: [],
     currentEditingGoal: null,
     currentEditingMeal: null,
     currentEditingExercise: null,

@@ -1,18 +1,28 @@
 <template>
   <form class="box form" v-on:submit.prevent>
     <section>
-      <b-field label="ADD EXERCISE"> </b-field>
-      <b-field :expanded="true" label="Type" type="is-primary">
-        <b-select>
-          <option value="balance">Balance</option>
-          <option value="flexibility">Flexibility</option>
-          <option value="strength">Strength</option>
-          <option value="endurance">Endurance</option>
+      <b-field label="Name" type="is-primary">
+        <b-select
+          placeholder="Exercise"
+          :expanded="true"
+          class="exercise-input"
+          v-model="newExercise.exerciseName"
+        >
+          <option value="planking">Planking</option>
+          <option value="curtsy lunge">Curtsy Lunge</option>
+          <option value="sumo squat">Sumo Squat</option>
+          <option value="standing crunch">Standing Crunch</option>
         </b-select>
       </b-field>
 
-      <b-field label="Name">
-        <b-input v-model="name"></b-input>
+      <b-field label="Duration">
+        <b-numberinput
+          icon-pack="fas"
+          class="duration-input"
+          v-model="newExercise.exerciseLength"
+          type="is-primary"
+          value="times"
+        ></b-numberinput>
       </b-field>
 
       <b-field label="Select a date">
@@ -38,21 +48,27 @@
           </b-field>
         </b-datepicker>
       </b-field>
-      <b-field label="Duration">
-        <b-numberinput v-model="number"></b-numberinput>
-      </b-field>
       <b-field label="Exercise Descripiton">
-        <b-input maxlength="200" type="textarea"></b-input>
+        <b-input
+          maxlength="200"
+          type="textarea"
+          v-model="newExercise.exerciseDescription"
+        ></b-input>
       </b-field>
       <b-field label="Calories Burned">
-        <b-numberinput v-model="number"></b-numberinput>
+        <b-numberinput v-model="newExercise.caloriesBurn"></b-numberinput>
       </b-field>
       <b-field label="Was Equipment Used">
-        <b-radio v-model="leftLabel" :native-value="false">No</b-radio>
-        <b-radio v-model="leftLabel" :native-value="true">Yes</b-radio>
+        <b-radio v-model="newExercise.equipment" :native-value="false"
+          >No</b-radio
+        >
+        <b-radio v-model="newExercise.equipment" :native-value="true"
+          >Yes</b-radio
+        >
       </b-field>
-
-      <b-button v-on:click="saveExercise" type="is-primary">{{this.exisitingExercise ? "Edit" : "Add"}}Exercise</b-button>
+      <b-button v-on:click="saveExercise" type="is-primary"
+        >{{ this.exisitingExercise ? "Edit" : "Add" }} Exercise Goal</b-button
+      >
     </section>
   </form>
 </template>
@@ -67,13 +83,13 @@ const dateFormat = {
 const locale = "en-US";
 export default {
   components: {},
-  name: "add-exercise",
+  name: "add-balance-form",
   props: ["exisitingExercise"],
   mounted() {
     if (this.exisitingExercise) {
       //target    //source
       const gl = {};
-     this.newExercise = Object.assign(gl, this.exisitingExercise); //enumerates over properties of existing goal and copy onto new goal
+      this.newExercise = Object.assign(gl, this.exisitingExercise); //enumerates over properties of existing goal and copy onto new goal
     }
   },
   data() {
@@ -81,12 +97,13 @@ export default {
       newExercise: {
         userExerciseId: "",
         userId: "",
-        exerciseCategoryId: 3,
+        exerciseCategoryId: 1,
         exerciseName: "",
         date: new Date().toLocaleDateString(locale, dateFormat),
-        duration: 0,
-        caloriesBurned: 0,
-        equipmentUsed: false,
+        exerciseLength: 0,
+        exerciseDescription: "",
+        caloriesBurn: 0,
+        equipment: false,
       },
       showForm: true,
       leftLabel: false,
@@ -149,12 +166,13 @@ export default {
             this.newExercise = {
               userExerciseId: "",
               userId: "",
-              exerciseCategoryId: 3,
+              exerciseCategoryId: 1,
               exerciseName: "",
               date: new Date().toLocaleDateString(locale, dateFormat),
-              duration: 0,
-              caloriesBurned: 0,
-              equipmentUsed: false,
+              exerciseLength: 0,
+              exerciseDescription: "",
+              caloriesBurn: 0,
+              equipment: false,
             };
           }
         });
