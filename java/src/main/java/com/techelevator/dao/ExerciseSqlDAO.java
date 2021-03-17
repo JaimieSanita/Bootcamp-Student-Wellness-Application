@@ -27,7 +27,7 @@ public class ExerciseSqlDAO implements ExerciseDAO {
 		try {
 			conn.setAutoCommit(false);
 			String insertExercises = "INSERT INTO user_exercises(user_id, exercise_category_id, exercise_name, date_assigned, exercise_length, exercise_description, calories_burn, equipment) "+
-			"VALUES(?,?,?,?,?,?,?,?) RETURNING exercise_id";
+			"VALUES(?,?,?,?,?,?,?,?) RETURNING user_exercise_id";
 			Integer exerciseId = jdbcTemplate.queryForObject(insertExercises, Integer.class, exercise.getUserId(), exercise.getExerciseCategoryId(),exercise.getExerciseName(),exercise.getDate(),
 															exercise.getExerciseLength(), exercise.getExerciseDescription(), exercise.getCaloriesBurn(), exercise.isEquipmentUsed());
 			exercises = this.getByUserExerciseID(exerciseId);
