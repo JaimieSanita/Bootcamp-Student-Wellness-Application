@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techelevator.dao.ExerciseDAO;
+import com.techelevator.dao.UserDAO;
 import com.techelevator.model.Exercise;
 
 @PreAuthorize("isAuthenticated()")
@@ -23,9 +24,10 @@ import com.techelevator.model.Exercise;
 @CrossOrigin()
 public class ExerciseController {
 	private ExerciseDAO dao;
-
-	public ExerciseController(ExerciseDAO dao) {
+	private UserDAO uDao;
+	public ExerciseController(ExerciseDAO dao, UserDAO uDao) {
 		this.dao = dao;
+		this.uDao = uDao;
 	}
 	@RequestMapping(path = "/user/exercise", method = RequestMethod.GET)
 	public List<Exercise> getAllExercises(Principal principal){
@@ -35,9 +37,10 @@ public class ExerciseController {
 		
 	}
 	@ResponseStatus(HttpStatus.CREATED)
-	@RequestMapping(path="/user/exercise/{username}", method = RequestMethod.POST)
-	public Exercise createExercise(@RequestBody Exercise newExercise) throws SQLException {
-		
+	@RequestMapping(path="/user/exercise", method = RequestMethod.POST)
+	public Exercise createExercise(Principal principal,@RequestBody Exercise newExercise) throws SQLException {
+		int userId = this.uDao.findIdByUsername(principal.getName());
+		newExercise.setUserId(userId);
 		//TODO call API to fetch calories burned
 		//update new exercise with calories burned
 		return dao.create(newExercise);
