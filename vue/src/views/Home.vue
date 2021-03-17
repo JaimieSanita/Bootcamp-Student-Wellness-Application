@@ -1,5 +1,5 @@
 <template>
-<div>
+
   <body class="HolyGrail">
   <te-header></te-header>
     <div class="HolyGrail-body">
@@ -9,7 +9,7 @@
       <te-aside class="HolyGrail-ads"></te-aside>
     </div>
     <te-footer>footer</te-footer>
-  </div>
+  </body>
 </template>
 
 <script>
