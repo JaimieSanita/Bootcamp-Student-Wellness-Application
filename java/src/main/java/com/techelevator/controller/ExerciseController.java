@@ -37,6 +37,9 @@ public class ExerciseController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(path="/user/exercise/{username}", method = RequestMethod.POST)
 	public Exercise createExercise(@RequestBody Exercise newExercise) throws SQLException {
+		
+		//TODO call API to fetch calories burned
+		//update new exercise with calories burned
 		return dao.create(newExercise);
 	}
 	@ResponseStatus(HttpStatus.OK)

@@ -1,5 +1,8 @@
 package com.techelevator.dao;
 
-public interface CalorieDAO {
+import com.techelevator.model.CaloriesBurned;
 
+public interface CalorieDAO {
+	
+	CaloriesBurned create();
 }
