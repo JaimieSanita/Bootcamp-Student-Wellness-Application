@@ -106,7 +106,6 @@ export default {
         equipment: false,
       },
       showForm: true,
-      leftLabel: false,
       date: new Date(),
       month: null,
       months: [

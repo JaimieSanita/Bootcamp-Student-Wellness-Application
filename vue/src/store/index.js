@@ -32,12 +32,12 @@ export default new Vuex.Store({
       weight: 0,
     },
     goals: [],
-    meals:[],
+    meals: [],
     exercises: [],
     currentEditingGoal: null,
     currentEditingMeal: null,
     currentEditingExercise: null,
-   
+
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -72,7 +72,7 @@ export default new Vuex.Store({
         goalToChange.classList.add("nutrition-goal");
       }
     },
-    
+
     ADD_NEW(state, goal) {
       state.goals.push(goal);
     },
@@ -90,33 +90,42 @@ export default new Vuex.Store({
         return currentGoal;
       });
     },
-    ADD_NEW_EXERCISE(state, exercise) {
-      state.exercise.push(exercise);
+    SET_CURRENT_EDITING_GOAL(state, goalId) {
+      state.currentEditingGoal = goalId;
     },
-    SET_CURRENT_EDITING_GOAL(state, goalId){
-      state.currentEditingGoal = goalId; 
-    },
-    SET_CURRENT_EDITING_EXERCISE(state, exerciseId){
-      state.currentEditingExercise = exerciseId;
-    },
-    UPDATE_EXERCISE(state, exercise){
-      state.exercise = state.exercise.map((currentExercise)=>{
-        if(currentExercise.userExerciseId === exercise.userExerciseId){
-          return exercise;
-        }return currentExercise;
-      })
-    },
-
     SET_GOALS(state, goals) {
       state.goals = goals;
     },
-    SET_MEALS(state,meals){
+    ADD_NEW_EXERCISE(state, exercise) {
+      state.exercises.push(exercise);
+    },
+    DELETE_EXERCISE(state, id) {
+      state.exercises = state.exercises.filter((exercise) => {
+        return exercise.userExerciseId != id;
+      });
+
+    },
+    UPDATE_EXERCISE(state, exercise) {
+      state.exercise = state.exercise.map((currentExercise) => {
+        if (currentExercise.userExerciseId === exercise.userExerciseId) {
+          return exercise;
+        } return currentExercise;
+      })
+    },
+    SET_CURRENT_EDITING_EXERCISE(state, exerciseId) {
+      state.currentEditingExercise = exerciseId;
+    },
+    SET_EXERCISES(state, exercises) {
+      state.exercises = exercises;
+    },
+
+    SET_MEALS(state, meals) {
       state.meals = meals;
     },
-    SET_CURRENT_EDITING_MEAL(state, mealId){
+    SET_CURRENT_EDITING_MEAL(state, mealId) {
       state.currentEditingMeal = mealId;
     },
-    UPDATE_MEAL(state, meal){
+    UPDATE_MEAL(state, meal) {
       state.meals = state.meals.map((currentMeal) => {
         if (currentMeal.userMealsId === meal.userMealsId) {
           return meal;

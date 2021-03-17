@@ -1,5 +1,5 @@
 <template>
- <div class="container">
+  <div class="container">
     <form class="box form">
       <section>
         <b-field
@@ -16,29 +16,37 @@
             <option value="balance">Balance</option>
             <option value="flexibility">Flexibility</option>
             <option value="strength">Strength</option>
-             <option value="endurance">Endurance</option>
+            <option value="endurance">Endurance</option>
           </b-select>
         </b-field>
 
-        <add-strength-form v-if="selectedCategory === 'strength'"
-          :exisitingExercise="currentExercise"/>
-          <add-flexibility-form v-if="selectedCategory === 'flexibility'"
-          :exisitingExercise="currentExercise"/>\
-          <add-balance-form v-if="selectedCategory === 'balance'"
-          :exisitingExercise="currentExercise"/>
-          <add-endurance-form v-if="selectedCategory === 'endurance'"
-          :exisitingExercise="currentExercise"/>
-        </section>
+        <add-strength-form
+          v-if="selectedCategory === 'strength'"
+          :exisitingExercise="currentExercise"
+        />
+        <add-flexibility-form
+          v-if="selectedCategory === 'flexibility'"
+          :exisitingExercise="currentExercise"
+        />
+        <add-balance-form
+          v-if="selectedCategory === 'balance'"
+          :exisitingExercise="currentExercise"
+        />
+        <add-endurance-form
+          v-if="selectedCategory === 'endurance'"
+          :exisitingExercise="currentExercise"
+        />
+      </section>
     </form>
   </div>
 </template>
 
 <script>
-import addStrengthForm from '../components/AddStrengthForm.vue';
+import addStrengthForm from "../components/AddStrengthForm.vue";
 import ExerciseService from "../services/ExerciseService.js";
-import AddBalanceForm from './AddBalanceForm.vue';
-import AddEnduranceForm from './AddEnduranceForm.vue';
-import AddFlexibilityForm from './AddFlexibilityForm.vue';
+import AddBalanceForm from "./AddBalanceForm.vue";
+import AddEnduranceForm from "./AddEnduranceForm.vue";
+import AddFlexibilityForm from "./AddFlexibilityForm.vue";
 const dateFormat = {
   year: "numeric",
   month: "2-digit",
@@ -47,7 +55,7 @@ const dateFormat = {
 const locale = "en-US";
 export default {
   components: {
-   addStrengthForm,
+    addStrengthForm,
     AddFlexibilityForm,
     AddBalanceForm,
     AddEnduranceForm,
@@ -56,7 +64,6 @@ export default {
     return {
       currentExercise: null,
       selectedCategory: "",
- 
     };
   },
   computed: {
@@ -69,10 +76,10 @@ export default {
       },
     },
   },
-    watch: {
-    "$store.state.exercises": function(){
-      this.$store.commit('SET_CURRENT_EDITING_EXERCISE', null);
-      this.selectedCategory = '';
+  watch: {
+    "$store.state.exercises": function () {
+      this.$store.commit("SET_CURRENT_EDITING_EXERCISE", null);
+      this.selectedCategory = "";
       this.currentExercise = null;
     },
     "$store.state.currentEditingExercise": function () {
@@ -89,9 +96,9 @@ export default {
   methods: {
     saveExercise() {
       this.newExercise.complete = false;
-                this.$store.commit("ADD_NEW_EXERCISE", this.newExercise); 
-          this.newExercise = {
-            userExerciseId:"",
+      this.$store.commit("ADD_NEW_EXERCISE", this.newExercise);
+      this.newExercise = {
+        userExerciseId: "",
         userId: "",
         exerciseCategoryId: "",
         exerciseName: "",
@@ -99,9 +106,9 @@ export default {
         duration: 0,
         caloriesBurned: 0,
         equipmentUsed: false,
-          };
-        },
-      },
+      };
+    },
+  },
 };
 </script>
 

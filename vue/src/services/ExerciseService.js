@@ -6,17 +6,20 @@ const http = ()=>axios.create({
 
 export default {
     listAll(){
-        return http().get("user/exercise/")
+        return http().get("user/exercise/");
     },
     add(exercise){
         return http().post("user/exercise", exercise);
     },
-    update(exerciseId, exercise){
-        return http().put(`user/exercise/${exerciseId}`, exercise)
+    update(exercise){
+        return http().put(`user/exercise/${exerciseId}`, exercise);
     },
     delete(exerciseId){
-        return http().delete(`user/goals/${exerciseId}`)
-    }
+        return http().delete(`user/exercise/${exerciseId}`);
+    },
+    getAllExercise(){
+        return http().get('user/exercise/');
+    },
     
     
 }

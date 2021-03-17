@@ -238,3 +238,5 @@ TO final_capstone_appuser;
 COMMIT;
 
 ROLLBACK;
+
+SELECT * FROM user_exercises;

@@ -1,30 +1,33 @@
 <template>
-<div class="card">
-    <header v-bind:class="{
+  <div class="card">
+    <header
+      v-bind:class="{
         'balance-exercise': exercise.exerciseCategoryId === 1,
         'flexibility-exercise': exercise.exerciseCategoryId === 2,
         'strength-exercise': exercise.exerciseCategoryId === 3,
         'endurance-exercise': exercise.exerciseCategoryId === 4,
-      }">
+      }"
+    >
       <p class="card-header-title">{{ exercise.date }}'s Exercise</p>
     </header>
     <div class="card-content">
-        <add-balance-form v-if="exercise.exerciseCategoryId === 1" v-bind:key="exercise.userId" v-bind:exercise="exercise"/>
-        <add-flexibility-form v-if="exercise.exerciseCategoryId === 2" v-bind:key="exercise.userId" v-bind:exercise="exercise"/>
-        <add-strength-form v-if="exercise.exerciseCategoryId === 3" v-bind:key="exercise.userId" v-bind:exercise="exercise"/>
-         <add-endurance-form v-if="exercise.exerciseCategoryId === 4" v-bind:key="exercise.userId" v-bind:exercise="exercise"/>
-  <div class="content-container">
-    <img src="../assets/exerciseIcon.png" class="exerciseIcon" />
-    <p>
-      <strong>{{ exercise.exerciseName }}</strong> for
-    </p>
-    <p>
-      <strong>{{ exercise.exerciseLength }}</strong> minutes today!
-    </p>
-    <p> You burned {{exercise.caloriesBurn}}!!!!!!
+      <img src="../assets/exerciseIcon.png" class="exerciseIcon" />
+      <p> Wow! You
+        <strong>{{ exercise.exerciseName }}</strong> for
+      </p>
+      <p>
+        <strong>{{ exercise.exerciseLength }}</strong> minutes today!
+      </p>
+      <p>You burned {{ exercise.caloriesBurn }}!!!!!!</p>
+    </div>
     <footer class="card-footer">
-      <a href="#" class="card-footer-item" v-on:click.prevent="editExercise">Edit</a>
-      <a href="#" class="card-footer-item" v-on:click.prevent="deleteExercise(exercise.userExerciseId)"
+      <a href="#" class="card-footer-item" v-on:click.prevent="editExercise"
+        >Edit</a
+      >
+      <a
+        href="#"
+        class="card-footer-item"
+        v-on:click.prevent="deleteExercise(exercise.userExerciseId)"
         >Delete</a
       >
     </footer>
@@ -33,14 +36,11 @@
 
 <script>
 import exerciseService from "../services/ExerciseService.js";
-import AddEnduranceForm from './AddEnduranceForm.vue';
-import AddFlexibilityForm from './AddFlexibilityForm.vue';
-import AddStrengthForm from './AddStrengthForm.vue';
-import AddBalanceForm from './AddBalanceForm.vue'
+
 export default {
-  components: { AddFlexibilityForm, AddStrengthForm, AddEnduranceForm, AddBalanceForm },
-  name: "user-exercises",
+  name: "exercise-card",
   props: ["exercise"],
+  components: {},
   data() {
     return {
       selectedCategory: "",
@@ -56,21 +56,26 @@ export default {
       alert("Congrats! You did it!");
     },
     deleteExercise(id) {
-      exerciseService.delete(id).then((response)=>{
-      if(response.status === 204){
-      this.$store.commit("DELETE_EXERCISE", id);
-       }
-       });
-    },
-    updateExercise(exercise){
-     exerciseService.updateExercise(this.$store.state.user.username, exercise).then((response)=>{
-        if(response.status === 201){
-          this.$store.commit("UPDATE_EXERCISE", exercise);
+      exerciseService.delete(id).then((response) => {
+        if (response.status === 204) {
+          this.$store.commit("DELETE_EXERCISE", id);
         }
       });
     },
-    editExercise(){
-      this.$store.commit('SET_CURRENT_EDITING_EXERCISE', this.exercise.userExerciseId);
+    updateExercise(exercise) {
+      exerciseService
+        .updateExercise(this.$store.state.user.username, exercise)
+        .then((response) => {
+          if (response.status === 201) {
+            this.$store.commit("UPDATE_EXERCISE", exercise);
+          }
+        });
+    },
+    editExercise() {
+      this.$store.commit(
+        "SET_CURRENT_EDITING_EXERCISE",
+        this.exercise.userExerciseId
+      );
     },
   },
 };
@@ -104,11 +109,11 @@ img {
 .strength_exercise {
   background-color: lightyellow;
 }
-.endurance-exercise{
-    background-color: lightskyblue;
+.endurance-exercise {
+  background-color: lightskyblue;
 }
 
-.card{
+.card {
   margin: 10px;
   margin-bottom: 20px;
 }
