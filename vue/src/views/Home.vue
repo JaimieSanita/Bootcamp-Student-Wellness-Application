@@ -36,7 +36,7 @@ export default {
   min-height: 100vh;
   flex-direction: column;
 }
-.HolyGrail-content{
+.HolyGrail-content {
   display: flex;
   flex-direction: column;
   align-items: flex-end;

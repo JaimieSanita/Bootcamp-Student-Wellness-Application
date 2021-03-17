@@ -5,7 +5,7 @@
       <b-field :expanded="true" label="Type" type="is-primary">
         <b-select>
           <option value="balance">Balance</option>
-          <option value="flexibility">flexibility</option>
+          <option value="flexibility">Flexibility</option>
           <option value="strength">Strength</option>
           <option value="endurance">Endurance</option>
         </b-select>

@@ -21,7 +21,7 @@ export default {
 <style scoped>
 .goal-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   flex-wrap: wrap;
   width: auto;
   height: 250px;
