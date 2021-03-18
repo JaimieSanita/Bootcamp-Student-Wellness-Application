@@ -1,6 +1,10 @@
 <template>
+<<<<<<< HEAD
 <div class="banner-container">
   <div  class="banner-title mq1" >
+=======
+<marquee behavior="scroll" direction="up" class="banner-title" loop:-1>
+>>>>>>> 2ca96fe22ad816bde6cd2147e1bce9cb6f6724aa
   <figure class="image is-128x128">
     <img
       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNWtlMVK2OOB_OECK6UQTkFhOeVk3GwmZ3kg&usqp=CAU"

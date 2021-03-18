@@ -108,16 +108,16 @@ img {
   font-size: 1.5rem;
 }
 .balance-exercise {
-  background-color: green;
+  background-color: #8CC63F;
 }
 .flexibility-exercise {
-  background-color: rgb(1, 151, 1);
+  background-color: #8CC63F;
 }
 .strength-exercise {
-  background-color: rgb(2, 196, 2);
+  background-color: #8CC63F;
 }
 .endurance-exercise {
-  background-color: rgb(4, 228, 4);
+  background-color: #8CC63F;
 }
 
 .card {
@@ -139,8 +139,8 @@ img {
 .card-header-title{
   justify-content: center;
 }
-p{
-
+.message{
+  background-color: white;
   align-items: center;
 }
 

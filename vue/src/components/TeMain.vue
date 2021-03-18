@@ -29,8 +29,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   margin-bottom: 20px;
+  
 }
 .exercise-container {
   display: flex;
@@ -42,5 +42,6 @@ export default {
 .te-main {
   margin-left: 20px;
 }
+
 
 </style>

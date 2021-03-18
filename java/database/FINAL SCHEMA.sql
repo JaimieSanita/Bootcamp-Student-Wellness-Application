@@ -240,3 +240,8 @@ COMMIT;
 ROLLBACK;
 
 SELECT * FROM user_exercises;
+
+SELECT ue.*, exercise.exercise_category FROM user_exercises AS ue
+Join users on users.user_id = ue.user_id
+JOIN exercise ON exercise.exercise_id = ue.exercise_category_id
+WHERE user_exercise_id = 1;
