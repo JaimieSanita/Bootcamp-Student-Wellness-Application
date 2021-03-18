@@ -1,6 +1,6 @@
 <template>
 
-  <body class="HolyGrail">
+  <main class="HolyGrail">
   <te-header></te-header>
     <div class="HolyGrail-body">
       <te-main class="HolyGrail-content">
@@ -9,7 +9,7 @@
       <aside class="HolyGrail-ads"><te-aside ></te-aside></aside>
     </div>
     <te-footer>footer</te-footer>
-  </body>
+  </main>
 </template>
 
 <script>
@@ -56,9 +56,15 @@ export default {
   order: -1;
 }
 .HolyGrail-ads{
-  min-height: 900px;
+  /* min-height: 1800px;
   position:absolute;
   top:-360px;
+  right:0px; */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: -400%;
+  
 
 }
 @media (min-width: 768px) {
