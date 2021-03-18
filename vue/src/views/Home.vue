@@ -6,7 +6,7 @@
       <te-main class="HolyGrail-content">
       </te-main>
       <left-menu class="HolyGrail-nav"></left-menu>
-      <te-aside class="HolyGrail-ads"></te-aside>
+      <aside class="HolyGrail-ads"><te-aside ></te-aside></aside>
     </div>
     <te-footer>footer</te-footer>
   </body>
@@ -55,7 +55,12 @@ export default {
 .HolyGrail-nav {
   order: -1;
 }
+.HolyGrail-ads{
+  min-height: 900px;
+  position:absolute;
+  top:-360px;
 
+}
 @media (min-width: 768px) {
   .HolyGrail-body {
     flex-direction: row;
