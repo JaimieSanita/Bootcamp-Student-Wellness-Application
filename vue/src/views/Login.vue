@@ -211,6 +211,7 @@ export default {
   display: flex;
   justify-content: center;
   padding-top: 15px;
+  font-family: provima-nova;
 }
 
 #page-container {

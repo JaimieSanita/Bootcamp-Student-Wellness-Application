@@ -1,7 +1,16 @@
 <template>
   <div class="header">
     <div class="banner-container">
-      <div style="position: relative; left: -780px" id="nav">
+      
+
+      <marquee behavior="scroll" direction="left" class="banner-title">Never forget, you're always elevating!</marquee>
+    </div>
+    <div class="hello-container">
+      <img class="logo-image" src="../assets/logo.png" />
+      <h1 class="title" style="position:relative; left:180px">
+        Welcome to {{ this.$store.state.profile.firstName }}'s Tech Wellovater!
+      </h1>
+      <div style="position: relative; left: 700px; top:36px; font-size:24px" id="nav">
         <router-link
           id="link"
           v-bind:to="{ name: 'logout' }"
@@ -9,14 +18,6 @@
           >Logout</router-link
         >
       </div>
-
-      <marquee behavior="scroll" direction="left" class="banner-title">Never forget, you're always elevating!</marquee>
-    </div>
-    <div class="hello-container">
-      <img class="logo-image" src="../assets/logo.png" />
-      <h1 class="title">
-        Welcome to {{ this.$store.state.profile.firstName }}'s Tech Wellovater!
-      </h1>
     </div>
   </div>
 </template>
