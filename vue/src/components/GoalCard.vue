@@ -112,13 +112,13 @@ export default {
   font-size: 1.5rem;
 }
 .exercise-goal {
-  background-color: lightgreen;
+  background-color: #8CC63F;
 }
 .nutrition-goal {
-  background-color: lightsalmon;
+  background-color: #00ADEE;
 }
 .sanity-goal {
-  background-color: lightyellow;
+  background-color: #999999;
 }
 .card{
   flex: 1 1 0px;
