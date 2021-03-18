@@ -165,9 +165,10 @@ section {
   background-size: cover;
   
 }
-.form{
-  
+.form-container{
+  background-color: rgba(248, 248, 255, 0.90);
   position:relative;
+  padding: 0 20px;
  
 }
 .title{

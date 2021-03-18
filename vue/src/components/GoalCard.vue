@@ -120,17 +120,13 @@ export default {
 .sanity-goal {
   background-color: lightyellow;
 }
-
-
-
 .card{
   flex: 1 1 0px;
   transition: transform 300ms ease 100ms;
 }
-
-
-
-
+.card-header-title{
+  justify-content: center;
+}
 
 .box:hover .card {
   transform: translateX(-25%);

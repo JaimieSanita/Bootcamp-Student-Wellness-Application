@@ -17,13 +17,15 @@
       <img src="../assets/flexibility.png" class="flexibilityIcon" v-if="exercise.exerciseCategoryId === 2"/>
       <img src="../assets/strength.png" class="strengthIcon" v-if="exercise.exerciseCategoryId === 3"/>
       <img src="../assets/endurance.png" class="enduranceIcon" v-if="exercise.exerciseCategoryId === 4"/>
+      <div class="message">
       <p> You did
-        <strong>{{ exercise.exerciseName }}</strong> for
+        <strong>{{ exercise.exerciseName }}</strong>
       </p>
-      <p>
+      <p>  for
         <strong>{{ exercise.exerciseLength }}</strong> minutes today!
       </p>
-      <p>You burned {{ exercise.caloriesBurn }}!</p>
+      <p>You burned {{ exercise.caloriesBurn }} calories.</p>
+      </div>
     </div>
     <footer class="card-footer">
       <a href="#" class="card-footer-item" v-on:click.prevent="editExercise"
@@ -134,10 +136,13 @@ img {
   flex: 1 1 0px;
   transition: transform 300ms ease 100ms;
 }
+.card-header-title{
+  justify-content: center;
+}
+p{
 
-
-
-
+  align-items: center;
+}
 
 .box:hover .card {
   transform: translateX(-25%);
