@@ -1,4 +1,5 @@
 <template>
+<div class="box">
   <div class="card">
     <header
       v-bind:class="{
@@ -22,7 +23,7 @@
       <p>
         <strong>{{ exercise.exerciseLength }}</strong> minutes today!
       </p>
-      <p>You burned {{ exercise.caloriesBurn }}!!!!!!</p>
+      <p>You burned {{ exercise.caloriesBurn }}!</p>
     </div>
     <footer class="card-footer">
       <a href="#" class="card-footer-item" v-on:click.prevent="editExercise"
@@ -35,6 +36,7 @@
         >Delete</a
       >
     </footer>
+  </div>
   </div>
 </template>
 
@@ -109,7 +111,7 @@ img {
 .flexibility-exercise {
   background-color: rgb(1, 151, 1);
 }
-.strength_exercise {
+.strength-exercise {
   background-color: rgb(2, 196, 2);
 }
 .endurance-exercise {
@@ -127,5 +129,29 @@ img {
 .congratulations{
   color: gold;
   margin-bottom: 5px;
+}
+.card{
+  flex: 1 1 0px;
+  transition: transform 300ms ease 100ms;
+}
+
+
+
+
+
+.box:hover .card {
+  transform: translateX(-25%);
+}
+
+.card:hover ~ .card {
+  transform: translateX(25%);
+}
+
+.box .card:hover {
+  transform: scale(1.5);
+}
+
+body {
+  overflow: hidden;
 }
 </style>

@@ -1,4 +1,6 @@
 <template>
+
+<div class="box">
   <div class="card">
     <header v-bind:class="{
         'exercise-goal': goal.categoryId === 1,
@@ -30,6 +32,8 @@
       >
     </footer>
   </div>
+  </div>
+  
 </template>
 
 <script>
@@ -116,8 +120,35 @@ export default {
 .sanity-goal {
   background-color: lightyellow;
 }
+
+
+
 .card{
-  margin: 10px;
-  margin-bottom: 20px;
+  flex: 1 1 0px;
+  transition: transform 300ms ease 100ms;
 }
+
+
+
+
+
+.box:hover .card {
+  transform: translateX(-25%);
+}
+
+.card:hover ~ .card {
+  transform: translateX(25%);
+}
+
+.box .card:hover {
+  transform: scale(1.5);
+}
+
+body {
+  overflow: hidden;
+}
+
+
+
+
 </style>

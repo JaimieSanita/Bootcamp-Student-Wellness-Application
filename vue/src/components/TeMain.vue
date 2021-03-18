@@ -6,7 +6,7 @@
     </div>
     <div class="exercise-container">
       <h1 class="title">Your Exercises</h1>
-      <exercise-list />
+      <exercise-list class/>
     </div>
   </div>
 </template>
@@ -29,14 +29,14 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
+
   margin-bottom: 20px;
 }
 .exercise-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
+
   margin-bottom: 20px;
 }
 .te-main {
