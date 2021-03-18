@@ -1,4 +1,5 @@
 <template>
+<body>
   <div id="page-container" class="all">
     <div id="content-wrap">
     <div class="header">
@@ -85,6 +86,7 @@
     </div>
     <te-footer id="footer" />
   </div>
+</body>
 </template>
 
 <script>
@@ -167,8 +169,14 @@ export default {
   justify-content: center;
   font-family: proxima-nova;
   padding-bottom: 20px;
-
   
+}
+.page-container{
+  background: url(../assets/backgroundRegister.jpg);
+  position:relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .title {
   color: white;

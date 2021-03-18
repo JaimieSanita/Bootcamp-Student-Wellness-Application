@@ -139,8 +139,8 @@ img {
 .card-header-title{
   justify-content: center;
 }
-p{
-
+.message{
+  background-color: white;
   align-items: center;
 }
 
