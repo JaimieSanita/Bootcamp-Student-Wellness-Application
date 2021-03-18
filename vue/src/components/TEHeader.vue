@@ -10,7 +10,7 @@
         >
       </div>
 
-      <h3 class="banner-title">Never forget, you're always elevating!</h3>
+      <marquee behavior="scroll" direction="left" class="banner-title">Never forget, you're always elevating!</marquee>
     </div>
     <div class="hello-container">
       <img class="logo-image" src="../assets/logo.png" />

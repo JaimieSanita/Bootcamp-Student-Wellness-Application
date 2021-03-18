@@ -64,8 +64,7 @@
     </div>
  </div>
   </div >
-  <te-footer id= "footer"></te-footer>
-  
+  <te-footer/>
   </div>
 </template>
 
