@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
-    <form class="box form">
-      <section>
+  <div class="container" >
+    <form class="box form" >
+      <section >
         <b-field
-          label="Let's log an exercise!"
+          label="LOG AN EXERCISE"
           type="is-primary"
           v-if="!this.$store.state.currentEditingExercise"
         >
@@ -98,8 +98,5 @@ export default {
 </script>
 
 <style scoped>
-.box {
-  display: inline-flex;
-  align-items: center;
-}
+
 </style>

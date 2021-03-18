@@ -2,7 +2,7 @@
   <div class="container">
     <form class="box form">
       <section>
-        <b-field label="Let's log a meal!" type="is-primary" v-if="!this.$store.state.currentEditingMeal">
+        <b-field label="LOG A MEAL" type="is-primary" v-if="!this.$store.state.currentEditingMeal">
           <b-select
             v-model="selectedCategory"
             placeholder="Category"
@@ -17,7 +17,7 @@
           </b-select>
         </b-field>
 
-       <add-meal v-if="selectedCategory != ''"/>
+       
        
 
            
@@ -29,7 +29,7 @@
 
 <script>
 
-import AddMeal from "../components/AddMeal.vue";
+
 
 const dateFormat = {
   year: "numeric",
@@ -40,7 +40,7 @@ const locale = "en-US";
 export default {
   name: "meal-form",
   components: {
-    AddMeal,
+
   },
   data() {
     return {

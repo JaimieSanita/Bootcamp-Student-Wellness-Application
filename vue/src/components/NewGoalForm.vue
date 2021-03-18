@@ -3,7 +3,7 @@
     <form class="box form">
       <section>
         <b-field
-          label="Let's set a goal!"
+          label="SET A GOAL"
           type="is-primary"
           v-if="!this.$store.state.currentEditingGoal"
         >
@@ -109,4 +109,5 @@ export default {
 </script>
 
 <style>
+
 </style>
