@@ -66,7 +66,7 @@
           >Yes</b-radio
         >
       </b-field>
-      <b-button v-on:click="saveExercise" type="is-primary"
+      <b-button v-on:click.prevent="saveExercise" type="is-primary"
         >{{ this.exisitingExercise ? "Edit" : "Add" }} Exercise Goal</b-button
       >
     </section>

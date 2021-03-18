@@ -17,24 +17,10 @@
           </b-select>
         </b-field>
 
+       <add-meal v-if="selectedCategory != ''"/>
        
-            <b-autocomplete
-                rounded
-                v-model="food"
-                :data="filteredDataArray"
-                placeholder="Find a food"
-               
-                clearable
-                @select="option => selected = option">
-                <template #empty>No results found</template>
-            </b-autocomplete>
 
-        <div class="buttons">
-            <b-button size="is-small"
-                icon-left="">
-                Add Food
-            </b-button>
-        </div>
+           
      
       </section>
     </form>
@@ -43,7 +29,7 @@
 
 <script>
 
-
+import AddMeal from "../components/AddMeal.vue";
 
 const dateFormat = {
   year: "numeric",
@@ -54,42 +40,19 @@ const locale = "en-US";
 export default {
   name: "meal-form",
   components: {
- 
+    AddMeal,
   },
   data() {
     return {
-      food: '',
+     
       currentMeal: null,
       selectedCategory: "",
-      selected: null,
-      data: [
-                    'Banana',
-                    'Apple',
-                    'Coffee',
-                    'Muffin',
-                    'Bagel',
-                    'Pork Chop',
-                    'Steak',
-                    'Chicken',
-                    'Whole Wheat Pasta',
-                    'Pasta',
-                    'Brown Rice',
-                    'White Rice',
-                    'Ice Cream',
-                    'Fruit Salad',
-                ],
+      
     };
   },
 
   computed: {
-    filteredDataArray() {
-                return this.data.filter((option) => {
-                    return option
-                        .toString()
-                        .toLowerCase()
-                        .indexOf(this.food.toLowerCase()) >= 0
-                })
-            },
+
     assignDate: {
       get: function () {
         return new Date(this.newGoal.date);

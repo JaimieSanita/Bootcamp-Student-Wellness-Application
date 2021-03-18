@@ -1,56 +1,134 @@
 <template>
-    <section>
-        <p class="content"><b>Selected:</b> {{ selected }}</p>
-        <b-field label="Search for your food">
+  <div class="container">
+    <form class="box form">
+      <section>
+
+          
+       
             <b-autocomplete
                 rounded
-                v-model="name"
+                v-model="food"
                 :data="filteredDataArray"
-                
-                icon="magnify"
+                placeholder="Find a food"
+              :expanded="true"
                 clearable
                 @select="option => selected = option">
                 <template #empty>No results found</template>
             </b-autocomplete>
-        </b-field>
-    </section>
+
+          <div class="buttons" >
+            <b-button 
+            class="btn"
+            size="is-small" 
+            v-on:click.prevent="addMoreFood"
+                icon-left="">
+                Add
+            </b-button>
+          </div>
+            <b-autocomplete
+                v-if="addFood"
+                rounded
+                v-model="food2"
+                :data="filteredDataArray2"
+                placeholder="Find a food"
+              :expanded="true"
+                clearable
+                @select="option => selected = option">
+                <template #empty>No results found</template>
+            </b-autocomplete>
+        
+     
+      </section>
+    </form>
+  </div>
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                data: [
+
+
+
+
+export default {
+  name: "add-meal",
+  components: {
+ 
+  },
+  data() {
+    return {
+      food: '',
+      food2: '',
+      addFood: false,
+      currentMeal: null,
+      selectedCategory: "",
+      selected: null,
+      data: [
                     'Banana',
+                    'Apple',
                     'Coffee',
-                    'Waffle',
-                    'Pancake',
+                    'Muffin',
+                    'Bagel',
+                    'Pork Chop',
+                    'Steak',
+                    'Chicken',
+                    'Whole Wheat Pasta',
+                    'Pasta',
+                    'Brown Rice',
+                    'White Rice',
+                    'Ice Cream',
                     'Fruit Salad',
-                    'Fresh Juice',
-                    'Omelete',
-                    'Node.js',
-                    'Polymer',
-                    'React',
-                    'RxJS',
-                    'Vue.js'
                 ],
-                name: '',
-                selected: null
-            }
-        },
-        computed: {
-            filteredDataArray() {
+    };
+  },
+
+  computed: {
+    filteredDataArray() {
                 return this.data.filter((option) => {
                     return option
                         .toString()
                         .toLowerCase()
-                        .indexOf(this.name.toLowerCase()) >= 0
+                        .indexOf(this.food.toLowerCase()) >= 0
                 })
-            }
-        }
-    }
+            },
+                filteredDataArray2() {
+                return this.data.filter((option) => {
+                    return option
+                        .toString()
+                        .toLowerCase()
+                        .indexOf(this.food2.toLowerCase()) >= 0
+                })
+            },
+  
+  },
+  
+  
+  
+ 
+  methods: {
+    saveFood() {
+      this.newFood.complete = false;
+      this.$store.commit("ADD_NEW_MEAL", this.newFood);
+      this.newFood = {
+        userFoodsId: '',
+        foodId: "",
+        name: "",
+        servings: "",
+        userId: "",
+        userMealsId: 0,
+      };
+    },
+    addMoreFood(){
+        this.addFood = true;
+    },
+  },
+};
 </script>
 
-<style scoped>
-
+<style>
+.form{
+    display: flex;
+}
+.btn{
+    display: flex;
+    align-content: flex-end;
+}
 </style>
