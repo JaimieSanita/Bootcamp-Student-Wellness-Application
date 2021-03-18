@@ -158,15 +158,14 @@ section {
 }
 
 .text-center-container{
-  background: url(../assets/backgroundRegister.jpg);
+  background: url(../assets/colors.jpg);
   position:relative;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  
 }
 .form-container{
-  background-color: rgba(248, 248, 255, 0.90);
+  background-color: rgba(248, 248, 255, 0.75);
   position:relative;
   padding: 0 20px;
  
@@ -176,5 +175,7 @@ section {
 }
 * {
   box-sizing: border-box;
+ 
 }
+
 </style>

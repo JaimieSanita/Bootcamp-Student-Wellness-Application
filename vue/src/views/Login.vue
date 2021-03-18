@@ -1,92 +1,78 @@
 <template>
-<body>
-  <div id="page-container" class="all">
-    <div id="content-wrap">
-    <div class="header">
-      <div class="banner-container">
-        <div style="position: relative; left: -780px" id="nav">
-          <router-link
-            id="link"
-            v-bind:to="{ name: 'logout' }"
-            v-if="$store.state.token != ''"
-            >Logout</router-link
+  <body>
+    <div id="page-container" class="all">
+      <div class="container">
+        
+          <div
+            class="box"
+            box-shadow="0 0.5em 1em -0.125em rgba($scheme-invert, 0.1), 0 0px 0 1px rgba($scheme-invert, 0.02)"
           >
-        </div>
-
-        <marquee behavior="scroll" direction="left" class="banner-title">Never forget, as you elevate, Wellovate!</marquee>
-      </div>
-      <div class="welcome-container">
-        <img class="logo-image" src="../assets/logo.png" />
-        <h1 class="title">Welcome to Tech Elevator Wellovater!</h1>
-      </div>
-    </div>
-    <div class="container">
-     
-      <div id="login" class="text-center">
-        <div class="box" box-shadow="0 0.5em 1em -0.125em rgba($scheme-invert, 0.1), 0 0px 0 1px rgba($scheme-invert, 0.02)">
-          <form class="form-signin" @submit.prevent="login">
-            <h1 class="title">Log In</h1>
-            <div
-              class="alert alert-danger"
-              role="alert"
-              v-if="invalidCredentials"
-            >
-              Invalid username and password!
-            </div>
-            <div
-              class="alert alert-success"
-              role="alert"
-              v-if="this.$route.query.registration"
-            >
-              Thank you for registering, please sign in.
-            </div>
-            <div class="control">
-              <b-input
-                type="text"
-                id="username"
-                class="form-control"
-                placeholder="Username"
-                v-model="user.username"
-                required
-                autofocus
-              />
-
-              <b-input
-                type="password"
-                id="password"
-                class="form-control"
-                placeholder="Password"
-                v-model="user.password"
-                required
-              />
-            </div>
-
-            <div class="login-button">
-              <b-button
-                id="in"
-                class="button is-primary is-focused"
-                :expanded="true"
-                type="submit"
-                v-on:click.prevent="login"
-                >Sign in</b-button
-              >
-            </div>
+            <form class="form-signin" @submit.prevent="login">
+              <h1 class="title">Log In</h1>
            
-            <div class="register-container">
-               <p class="register-question">Don't have an account?</p>
-                <router-link style="color: #00ADEE" class="sign-up" :to="{ name: 'register' }"
+              <img class="logo-image" src="../assets/ElevateYourself.png" />
+              <div
+                class="alert alert-danger"
+                role="alert"
+                v-if="invalidCredentials"
+              >
+                Invalid username and password!
+              </div>
+              <div
+                class="alert alert-success"
+                role="alert"
+                v-if="this.$route.query.registration"
+              >
+                Thank you for registering, please sign in.
+              </div>
+              <div class="control">
+                <b-input
+                  type="text"
+                  id="username"
+                  class="form-control"
+                  placeholder="Username"
+                  v-model="user.username"
+                  required
+                  autofocus
+                />
+
+                <b-input
+                  type="password"
+                  id="password"
+                  class="form-control"
+                  placeholder="Password"
+                  v-model="user.password"
+                  required
+                />
+              </div>
+
+              <div class="login-button">
+                <b-button
+                  id="in"
+                  class="button is-primary is-focused"
+                  :expanded="true"
+                  type="submit"
+                  v-on:click.prevent="login"
+                  >Sign in</b-button
+                >
+              </div>
+
+              <div class="register-container">
+                <p class="register-question">Don't have an account?</p>
+                <router-link
+                  style="color: #00adee"
+                  class="sign-up"
+                  :to="{ name: 'register' }"
                   >Sign Up</router-link
                 >
-             
-            </div>
-          </form>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-    </div>
+    
     <te-footer id="footer" />
-  </div>
-</body>
+  </body>
 </template>
 
 <script>
@@ -144,47 +130,38 @@ export default {
   width: 30%;
   font-family: proxima-nova;
   text-align: center;
+  background-color: rgba(248, 248, 255, 0.75);
+  position:relative;
+  
 }
-.welcome-container {
-  background-color: #00adee;
-  display: flex;
-  justify-content: flex-start;
-  font-family: proxima-nova;
-  height: 90px;
-  margin: 10px;
-}
-.banner-container {
-  background-color: #8cc63f;
-  color: white;
-  display: flex;
-  justify-content: center;
-  font-family: proxima-nova;
-}
+
+
 .box {
-  margin-top: 50px;
+  margin-top: 150px;
   padding-top: 10px;
-  background-color: #c2c0c0;
-  color: white;
+  background-color: rgba(248, 248, 255, 0.75);
+  color: #3B3E42;
   display: flex;
   justify-content: center;
   font-family: proxima-nova;
   padding-bottom: 20px;
-  
+
+
 }
-.page-container{
+.page-container {
   background: url(../assets/backgroundRegister.jpg);
-  position:relative;
+  position: relative;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 .title {
-  color: white;
+  color: #3B3E42;
   display: flex;
   position: relative;
   font-family: proxima-nova;
-  padding: 30px;
-  padding-left: 25%;
+  padding-left: 37%;
+  margin-bottom: 0px;
 }
 #submit {
   background-color: #00adee;
@@ -194,6 +171,7 @@ export default {
   color: white;
   font-family: proxima-nova;
   font-weight: bold;
+  text-decoration: underline;
 }
 .button {
   font-family: proxima-nova;
@@ -207,10 +185,15 @@ export default {
   border-radius: 5px;
   font-family: proxima-nova;
 }
-.all {
-  font-family: proxima-nova;
+body {
+  background: url(../assets/colors.jpg);
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+ 
 }
-.register-container{
+.register-container {
   padding-top: 10px;
 }
 
@@ -228,7 +211,7 @@ export default {
 }
 
 #content-wrap {
-  padding-bottom: 2.5rem;   
+  padding-bottom: 2.5rem;
 }
 
 #footer {
@@ -236,6 +219,7 @@ export default {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 2.5rem;           
+  height: 2.5rem;
 }
+
 </style>

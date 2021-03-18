@@ -135,4 +135,7 @@ export default {
 </script>
 
 <style scoped>
+*{
+  color: #3B3E42;
+}
 </style>
