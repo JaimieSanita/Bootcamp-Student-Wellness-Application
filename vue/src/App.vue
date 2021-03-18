@@ -18,6 +18,6 @@ export default {
 
 
 *{
-  font-family: "proxima nova", sans-serif;
+  font-family: "proxima-nova", sans-serif;
 }
 </style>
