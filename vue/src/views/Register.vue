@@ -1,7 +1,8 @@
 <template>
-  <div id="register" class="text-center">
+<body>
+  <div id="register" class="text-center-container">
     <section class="form">
-      <form class="form-register" @submit.prevent="register">
+      <form class="form-container" @submit.prevent="register">
         <h3 class="title">Let's Get You an Account!</h3>
         <h1 class="subtitle">
           Please fill out the following fields to create your account
@@ -54,7 +55,9 @@
         </div>
       </form>
     </section>
+  
   </div>
+  </body>
 </template>
 
 <script>
@@ -129,6 +132,7 @@ section {
 .button is-link {
   display: flex;
   justify-content: center;
+
 }
 .link {
   display: block;
@@ -151,5 +155,25 @@ section {
 }
 .have-an-account {
   color: rgb(28, 139, 230);
+}
+
+.text-center-container{
+  background: url(../assets/backgroundRegister.jpg);
+  position:relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+.form{
+  
+  position:relative;
+ 
+}
+.title{
+  margin-top: 20px;
+}
+* {
+  box-sizing: border-box;
 }
 </style>

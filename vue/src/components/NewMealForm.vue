@@ -17,36 +17,33 @@
           </b-select>
         </b-field>
 
-        <add-exercise-goal
-          v-if="selectedCategory === 'breakfast'"
-          :exisitingMeal="currentMeal"
-        />
-        <add-nutrition-goal
-          v-if="selectedCategory === 'lunch'"
-          :exisitingMeal="currentMeal"
-        />
-        <add-sanity-goal
-          v-if="selectedCategory === 'dinner'"
-          :exisitingMeal="currentMeal"
-        />
-          <add-sanity-goal
-          v-if="selectedCategory === 'dessert'"
-          :exisitingMeal="currentMeal"
-        />
-          <add-sanity-goal
-          v-if="selectedCategory === 'snack'"
-          :exisitingMeal="currentMeal"
-        />
+       
+            <b-autocomplete
+                rounded
+                v-model="food"
+                :data="filteredDataArray"
+                placeholder="Find a food"
+               
+                clearable
+                @select="option => selected = option">
+                <template #empty>No results found</template>
+            </b-autocomplete>
+
+        <div class="buttons">
+            <b-button size="is-small"
+                icon-left="">
+                Add Food
+            </b-button>
+        </div>
+     
       </section>
     </form>
   </div>
 </template>
 
 <script>
-import AddExerciseGoal from "./AddExerciseGoal.vue";
-import AddNutritionGoal from "./AddNutritionGoal.vue";
-import AddSanityGoal from "./AddSanityGoal.vue";
-import GoalService from "../services/GoalService.js";
+
+
 
 const dateFormat = {
   year: "numeric",
@@ -55,20 +52,44 @@ const dateFormat = {
 };
 const locale = "en-US";
 export default {
-  name: "new-meal-form",
+  name: "meal-form",
   components: {
-    AddExerciseGoal,
-    AddNutritionGoal,
-    AddSanityGoal,
+ 
   },
   data() {
     return {
+      food: '',
       currentMeal: null,
       selectedCategory: "",
+      selected: null,
+      data: [
+                    'Banana',
+                    'Apple',
+                    'Coffee',
+                    'Muffin',
+                    'Bagel',
+                    'Pork Chop',
+                    'Steak',
+                    'Chicken',
+                    'Whole Wheat Pasta',
+                    'Pasta',
+                    'Brown Rice',
+                    'White Rice',
+                    'Ice Cream',
+                    'Fruit Salad',
+                ],
     };
   },
 
   computed: {
+    filteredDataArray() {
+                return this.data.filter((option) => {
+                    return option
+                        .toString()
+                        .toLowerCase()
+                        .indexOf(this.food.toLowerCase()) >= 0
+                })
+            },
     assignDate: {
       get: function () {
         return new Date(this.newGoal.date);
@@ -78,23 +99,7 @@ export default {
       },
     },
   },
-  watch: {
-    "$store.state.meals": function(){
-      this.$store.commit('SET_CURRENT_EDITING_MEAL', null);
-      this.selectedCategory = '';
-      this.currentMeal = null;
-    },
-    "$store.state.currentEditingMeal": function () {
-      const mealId = this.$store.state.currentEditingMeal;
-      if (mealId) {
-        this.selectedCategory = "";
-        MealService.getMealById(mealId).then((response) => {
-          this.currentMeal = response.data;
-          this.selectedCategory = this.currentMeal.category;
-        });
-      }
-    },
-  },
+ 
   methods: {
     saveFood() {
       this.newFood.complete = false;

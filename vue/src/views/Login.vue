@@ -54,17 +54,17 @@
       />
       </div>
      
-      <div>
+      <div class= "login-buttons">
+         <button id="up" class="button is-primary is-small is-focused" type="submit">
       <router-link class="sign-up" :to="{ name: 'register' }">Sign Up</router-link>
-     
-      <button class="button is-primary is-small is-focused" type="submit">Sign in</button>
+         </button>
+      <button id ="in" class="button is-primary is-small is-focused" type="submit">Sign in</button>
     </div>
     </form>
     </div>
  </div>
-  </div>
-  <te-footer></te-footer>
-  
+  </div >
+  <te-footer/>
   </div>
 </template>
 
@@ -125,6 +125,7 @@ export default {
   margin-right: auto;
   width: 30%;
   font-family: proxima-nova;
+  text-align: center;
 }
 .welcome-container {
   background-color: #00adee;
@@ -154,8 +155,7 @@ font-family: proxima-nova;
   font-family: proxima-nova;
 }
 .sign-up{
-  color: black;
-  padding: 10px;
+  color: white;
   font-family: proxima-nova;
 }
 .button{
@@ -165,6 +165,7 @@ font-family: proxima-nova;
 #username{
   border-radius: 5px;
   font-family: proxima-nova;
+ 
 }
 #password{
   border-radius: 5px;
@@ -173,4 +174,20 @@ font-family: proxima-nova;
 .all{
   font-family: proxima-nova;
 }
+
+.login-buttons{
+  text-decoration-color: white;
+  display: flex;
+  justify-content: center;
+  padding-top: 15px;
+}
+#footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:60px;   /* Height of the footer */
+   background: white;
+}
+
+
 </style>

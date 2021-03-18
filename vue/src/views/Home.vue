@@ -1,7 +1,7 @@
 <template>
 
   <body class="HolyGrail">
-  <te-header>hello</te-header>
+  <te-header></te-header>
     <div class="HolyGrail-body">
       <te-main class="HolyGrail-content">
       </te-main>
