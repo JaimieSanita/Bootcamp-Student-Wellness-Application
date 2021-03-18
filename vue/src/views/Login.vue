@@ -2,17 +2,19 @@
 <div class="all">
   <div class="header">
     <div class="banner-container">
-      <div style="position:relative; left:-780px;"        id="nav">
-      <router-link id="link" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+     
+      
+    <marquee behavior="scroll" direction="left" class="banner-title">
+      <h3 class="banner-title">Never forget, as you elevate, Wellovate!  </h3>
+    </marquee>
     </div>
-   
-      <h3 class="banner-title">Never forget, as you elevate, Wellovate!</h3>
-    </div>
+    
     <div class="welcome-container">
       <img class="logo-image" src="../assets/logo.png">
-      <h1 class="title">
+      <h1 class="title" style="postion:relative; left:30px">
         Welcome to The Tech Elevator Wellovater!
       </h1>
+      
     </div>
   </div>
 <div class="container">
@@ -58,7 +60,7 @@
          <button id="up" class="button is-primary is-small is-focused" type="submit">
       <router-link class="sign-up" :to="{ name: 'register' }">Sign Up</router-link>
          </button>
-      <button id ="in" class="button is-primary is-small is-focused" type="submit">Sign in</button>
+      <button id ="in" class="button is-primary is-small is-focused" type="submit">Sign In</button>
     </div>
     </form>
     </div>
@@ -180,6 +182,7 @@ font-family: proxima-nova;
   display: flex;
   justify-content: center;
   padding-top: 15px;
+  font-family: provima-nova;
 }
 #footer {
    position:absolute;
@@ -187,6 +190,10 @@ font-family: proxima-nova;
    width:100%;
    height:60px;   /* Height of the footer */
    background: white;
+}
+
+*{
+  font-family: "proxima-nova";
 }
 
 
