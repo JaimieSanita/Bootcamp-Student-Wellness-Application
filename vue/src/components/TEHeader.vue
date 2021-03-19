@@ -41,7 +41,8 @@ export default {
   justify-content: flex-start;
 font-family: proxima-nova;
   height: 90px;
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 h1 {
   color: white;
