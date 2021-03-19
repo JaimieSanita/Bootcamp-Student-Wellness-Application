@@ -10,10 +10,10 @@
           class="activity-input"
           v-model="newGoal.activity"
         >
-          <option value="Meditiate">Meditate</option>
-          <option value="Yoga">Yoga</option>
-          <option value="Go Outside">Go Outside</option>
-          <option value="Breathing Exercises">Breathing Exercises</option>
+          <option value="meditiate">Meditate</option>
+          <option value="yoga">Yoga</option>
+          <option value="go outside">Go Outside</option>
+          <option value="breathing exercises">Breathing Exercises</option>
         </b-select>
       </b-field>
 

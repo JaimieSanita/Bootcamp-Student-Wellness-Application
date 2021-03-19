@@ -50,7 +50,7 @@ h1 {
   display: flex;
   padding: 30px;
   position: relative;
-  padding-left: 17%;
+  padding-left: 24%;
 }
 
 #nav {
