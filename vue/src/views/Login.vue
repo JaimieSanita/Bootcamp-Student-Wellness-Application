@@ -1,5 +1,6 @@
 <template>
   <body>
+    <h1 class="title">Tech Wellovator</h1>
     <div id="page-container" class="all">
       <div class="container">
         
@@ -8,7 +9,7 @@
             box-shadow="0 0.5em 1em -0.125em rgba($scheme-invert, 0.1), 0 0px 0 1px rgba($scheme-invert, 0.02)"
           >
             <form class="form-signin" @submit.prevent="login">
-              <h1 class="title">Log In</h1>
+              
            
               <img class="logo-image" src="../assets/ElevateYourself.png" />
               <div
@@ -137,8 +138,8 @@ export default {
 
 
 .box {
-  margin-top: 150px;
-  padding-top: 10px;
+  
+
   background-color: rgba(248, 248, 255, 0.75);
   color: #3B3E42;
   display: flex;
@@ -156,12 +157,15 @@ export default {
   background-size: cover;
 }
 .title {
+  text-shadow: 2px 2px 1px #00adee;
   color: #3B3E42;
   display: flex;
   position: relative;
   font-family: proxima-nova;
-  padding-left: 37%;
+  font: bold;
+  font-size: 100px;
   margin-bottom: 0px;
+  padding-top: 100px;
 }
 #submit {
   background-color: #00adee;
@@ -220,6 +224,11 @@ body {
   bottom: 0;
   width: 100%;
   height: 2.5rem;
+}
+h1{
+  display: flex;
+  justify-content: center;
+  
 }
 
 </style>

@@ -1,4 +1,6 @@
 <template>
+<div>
+<title>Tech Wellovator</title>
 
   <main class="HolyGrail">
   <te-header></te-header>
@@ -10,6 +12,7 @@
     </div>
     <te-footer>footer</te-footer>
   </main>
+  </div>
 </template>
 
 <script>
