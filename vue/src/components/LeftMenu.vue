@@ -1,9 +1,14 @@
 <template>
   <div class="menu">
+    <div class="goals">
     <new-goal-form/>
+    </div>
+    <div class="exercise">
     <new-exercise-form />
+    </div>
+    <div class="meal">
     <new-meal-form/>
-    
+    </div>
   </div>
 </template>
 
@@ -31,6 +36,15 @@ export default {
 }
 menu{
   width: 200;
+}
+.goals{
+padding: 20px;
+}
+.exercise{
+padding:20px;
+}
+.meal{
+padding: 20px;
 }
 
 </style>
