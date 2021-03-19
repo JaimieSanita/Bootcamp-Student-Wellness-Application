@@ -43,13 +43,14 @@ font-family: proxima-nova;
   height: 90px;
   margin-top: 10px;
   margin-bottom: 10px;
+  
 }
 h1 {
   color: white;
   display: flex;
   padding: 30px;
   position: relative;
-  padding-left: 23%;
+  padding-left: 17%;
 }
 
 #nav {

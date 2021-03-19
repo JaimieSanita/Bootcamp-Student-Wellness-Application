@@ -152,7 +152,7 @@ export default {
     saveExercise() {
       this.newExercise.complete = false;
       if (this.exisitingExercise) {
-        exerciseService.update(this.newExercise).then((response) => {
+        exerciseService.updateExercise(this.newExercise).then((response) => {
           if (response.status === 200) {
             this.$store.commit("UPDATE_EXERCISE", this.newExercise);
             this.$store.commit("SET_CURRENT_EDITING_EXERCISE", null);
