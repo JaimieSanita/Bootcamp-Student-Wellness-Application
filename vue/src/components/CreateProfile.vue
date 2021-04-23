@@ -9,31 +9,33 @@
     <b-field label="Last Name">
       <b-input v-model="lastName"></b-input>
     </b-field>
+
     <b-field label="Age">
-      <b-numberinput type="is-primary" v-model="age"> </b-numberinput>
+      <b-input type="is-primary" v-model="age"> </b-input>
     </b-field>
+
     <b-field label="Height"
       ><b-field class="height" type="is-primary">
-        <b-numberinput
+        <b-input
           placeholder="Feet"
           type="is-primary"
-          controls-alignment="left"
           v-model="feet"
+          :expanded="true"
         >
-        </b-numberinput>
-        <b-numberinput
+        </b-input>
+        <b-input
           placeholder="Inches"
           type="is-primary"
-          controls-alignment="right"
           v-model="inches"
+          :expanded="true"
         >
-        </b-numberinput>
+        </b-input>
       </b-field>
     </b-field>
 
     <b-field label="Current Weight">
-      <b-numberinput step="0.1" type="is-primary" v-model="weight">
-      </b-numberinput>
+      <b-input  type="is-primary" v-model="weight">
+      </b-input>
     </b-field>
   </div>
 </template>
@@ -52,10 +54,10 @@ export default {
       firstName: "",
       lastName: "",
       email: "",
-      age: 0,
-      feet: 0,
-      inches: 0,
-      weight: 0,
+      age: "",
+      feet: "",
+      inches: "",
+      weight: "",
     });
     }
   },
