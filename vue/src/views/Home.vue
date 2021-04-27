@@ -37,6 +37,13 @@ export default {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background: url(../assets/colors.jpg);
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+ 
+
 }
 .HolyGrail-content {
   display: flex;
