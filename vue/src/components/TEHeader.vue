@@ -48,9 +48,10 @@ export default {
 }
 
 #title{
-  color: black;
+  font: bold;
   padding: 5px;
-  
+  text-shadow: 1px 1px 1px #00adee;
+  color: #3B3E42;
   
 }
 

@@ -1,11 +1,11 @@
 <template>
   <div class="te-main">
     <div class="goal-container">
-      <h1 class="title">Your Goals</h1>
+      <h3 class="title">Your Goals</h3>
       <goal-list />
     </div>
     <div class="exercise-container">
-      <h1 class="title">Your Exercises</h1>
+      <h2 class="title">Your Exercises</h2>
       <exercise-list class/>
     </div>
   </div>
@@ -35,14 +35,7 @@ export default {
 .exercise-container {
   display: flex;
   flex-direction: column;
-  
-
   margin-bottom: 20px;
-}
-.te-main {
-  
- 
-  
 }
 
 
