@@ -1,16 +1,7 @@
 <template>
   <div class="header">
     <div class="banner-container">
-      
-
-      <marquee behavior="scroll" direction="left" class="banner-title">Never forget, you're always elevating!</marquee>
-    </div>
-    <div class="hello-container">
-      <img class="logo-image" src="../assets/logo.png" />
-      <h1 class="title" style="position:relative; left:180px">
-        Welcome to {{ this.$store.state.profile.firstName }}'s Tech Wellovater!
-      </h1>
-      <div style="position: relative; left: 700px; top:36px; font-size:24px" id="nav">
+      <div id="nav">
         <router-link
           id="link"
           v-bind:to="{ name: 'logout' }"
@@ -18,6 +9,12 @@
           >Logout</router-link
         >
       </div>
+    </div>
+    <div class="hello-container">
+      <img class="logo-image" src="../assets/logo.png" />
+      <h1 class="title" style="position: relative; left: 180px">
+        Welcome to {{ this.$store.state.profile.firstName }}'s Tech Wellovater!
+      </h1>
     </div>
   </div>
 </template>
@@ -31,22 +28,21 @@ export default {
 <style scoped>
 .banner-container {
   background-color: #8cc63f;
-  color: white;
+  color: black;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 .hello-container {
   background-color: #00adee;
   display: flex;
   justify-content: flex-start;
-font-family: proxima-nova;
+  font-family: proxima-nova;
   height: 90px;
   margin-top: 10px;
   margin-bottom: 10px;
-  
 }
 h1 {
-  color: white;
+  color: black;
   display: flex;
   padding: 30px;
   position: relative;
@@ -54,7 +50,8 @@ h1 {
 }
 
 #nav {
-  justify-content: left !important;
+ margin: 5px;
+  
 }
 #link {
   color: white;
