@@ -8,15 +8,15 @@
       <te-main class="HolyGrail-content">
       </te-main>
       <left-menu class="HolyGrail-nav"></left-menu>
-      <aside class="HolyGrail-ads"><te-aside ></te-aside></aside>
+     
     </div>
-    <te-footer>footer</te-footer>
+     <te-footer id="footer" />
   </main>
   </div>
 </template>
 
 <script>
-import TeAside from "../components/TeAside.vue";
+
 import TeFooter from "../components/TeFooter.vue";
 import LeftMenu from "../components/LeftMenu.vue";
 import TeHeader from "../components/TeHeader.vue";
@@ -27,7 +27,6 @@ export default {
   components: {
     LeftMenu,
     TeFooter,
-    TeAside,
     TeHeader,
     TeMain,
   },
@@ -97,5 +96,12 @@ export default {
 .HolyGrail-nav {
   /* put the nav on the left */
   order: -1;
+}
+#footer {
+  font-size: small;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
 }
 </style>
