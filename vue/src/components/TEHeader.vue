@@ -37,7 +37,7 @@ export default {
   align-items: center;
   font-family: proxima-nova;
   height: 90px;
-  margin-top: 10px;
+  
   margin-bottom: 10px;
   justify-content: space-between;
 }
@@ -52,7 +52,6 @@ export default {
   padding: 5px;
   text-shadow: 1px 1px 1px #00adee;
   color: #3B3E42;
-  
 }
 
 #nav {

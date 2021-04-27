@@ -9,12 +9,12 @@
       }">
       <p class="card-header-title">{{ goal.date }}'s Goal</p>
     </header>
-    <div class="card-content">
+    <div class="card-content" style="text-align: center;">
         <exercise-goal-content v-if="goal.categoryId === 1" v-bind:key="goal.userId" v-bind:goal="goal"/>
         <nutrition-goal-content v-if="goal.categoryId === 2" v-bind:key="goal.userId" v-bind:goal="goal"/>
         <sanity-goal-content v-if="goal.categoryId === 3" v-bind:key="goal.userId" v-bind:goal="goal"/>
     </div>
-  <!--  <b-button
+  <!--<b-button
       v-bind:class="{
         'goal-incomplete': goal.complete,
         'goal-complete': !goal.complete,
@@ -92,13 +92,6 @@ export default {
 </script>
 
 <style>
-.goal {
-  border: 2px solid black;
-  border-radius: 10px;
-  width: 200px;
-  height: auto;
-  margin: 20px;
-}
 .card{
  margin: 10px;
   margin-bottom: 20px;
@@ -125,6 +118,9 @@ export default {
   transition: transform 300ms ease 100ms;
 }
 .card-header-title{
+  justify-content: center;
+}
+.card-content{
   justify-content: center;
 }
 
