@@ -28,19 +28,21 @@ export default {
 .goal-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
+  margin-top: 15px;
+  margin-bottom: 90px;
   
 }
 .exercise-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  
 
   margin-bottom: 20px;
 }
 .te-main {
-  margin-left: 20px;
+  
+ 
+  
 }
 
 
