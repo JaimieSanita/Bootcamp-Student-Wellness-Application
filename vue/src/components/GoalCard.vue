@@ -1,6 +1,6 @@
 <template>
 
-<div class="box">
+
   <div class="card">
     <header v-bind:class="{
         'exercise-goal': goal.categoryId === 1,
@@ -30,7 +30,7 @@
       >
     </footer>
   </div>
-  </div>
+ 
   
 </template>
 
@@ -89,10 +89,10 @@ export default {
 </script>
 
 <style>
-.card{
+.card {
  margin: 10px;
   margin-bottom: 20px;
-    width: 200px;
+    max-width: 250px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -129,7 +129,7 @@ export default {
   transform: translateX(25%);
 }
 
-.box .card:hover {
+.card:hover {
   transform: scale(1.5);
 }
 
