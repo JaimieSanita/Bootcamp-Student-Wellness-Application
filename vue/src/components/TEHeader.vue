@@ -10,7 +10,7 @@
       </h1>
       </div>
       <div id="nav">
-        <b-button
+        <b-button id="btn" outlined style="color: #8CC63F;"
           ><router-link
             id="link"
             v-bind:to="{ name: 'logout' }"
@@ -60,4 +60,9 @@ export default {
 #link {
   color: black;
 }
+
+#link[data-v-4f3a458e] {
+    color: #8CC63F;
+}
+
 </style>

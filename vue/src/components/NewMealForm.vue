@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form class="box form">
+    <form class="box form" style="background-color: rgba(248, 248, 255, 0.5);">
       <section>
         <b-field label="LOG A MEAL" type="is-primary" v-if="!this.$store.state.currentEditingMeal">
           <b-select

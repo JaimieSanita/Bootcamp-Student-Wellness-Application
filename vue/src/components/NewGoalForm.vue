@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <form class="box form">
+  <div class="container" >
+    <form class="box form" style="background-color: rgba(248, 248, 255, 0.5);">
       <section>
         <b-field
           label="SET A GOAL"
@@ -109,5 +109,8 @@ export default {
 </script>
 
 <style>
+.box form{
+  background-color: rgba(248, 248, 255, 0.5);
+}
 
 </style>

@@ -90,12 +90,12 @@ export default {
 
 <style>
 .card {
- margin: 10px;
-  margin-bottom: 20px;
-    max-width: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  margin: 10px;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgba(248, 248, 255, 0.5);
 }
 
 .goal .goal-complete {
@@ -111,22 +111,11 @@ export default {
   background-color: #999999;
 }
 .card{
-  flex: 1 1 0px;
+  flex: .2 .2 0px;
   transition: transform 300ms ease 100ms;
 }
-.card-header-title{
+.card-header-title, .card-content{
   justify-content: center;
-}
-.card-content{
-  justify-content: center;
-}
-
-.box:hover .card {
-  transform: translateX(-25%);
-}
-
-.card:hover ~ .card {
-  transform: translateX(25%);
 }
 
 .card:hover {
@@ -136,9 +125,7 @@ export default {
 body {
   overflow: hidden;
 }
-.complete{
-  background-color: #999999;
-}
+
 
 
 
