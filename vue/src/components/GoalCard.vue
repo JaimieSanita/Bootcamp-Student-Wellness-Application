@@ -14,17 +14,15 @@
         <nutrition-goal-content v-if="goal.categoryId === 2" v-bind:key="goal.userId" v-bind:goal="goal"/>
         <sanity-goal-content v-if="goal.categoryId === 3" v-bind:key="goal.userId" v-bind:goal="goal"/>
     </div>
-  <!--<b-button
-      v-bind:class="{
-        'goal-incomplete': goal.complete,
-        'goal-complete': !goal.complete,
-      }"
-      v-on:click="goalStatusChanger()"
-      :expanded="true"
-    >
-      {{ goal.complete ? "Complete" : "Incomplete" }}
-    </b-button> -->
-
+    <div id="checkbox" style="text-align: center;">
+    <b-field>
+            <b-checkbox v-model="checkboxCustom"
+                true-value="Complete"
+                false-value="Incomplete">
+                {{ checkboxCustom }}
+            </b-checkbox>
+        </b-field>
+  </div>
     <footer class="card-footer">
       <a href="#" class="card-footer-item" v-on:click.prevent="editGoal">Edit</a>
       <a href="#" class="card-footer-item" v-on:click.prevent="deleteGoal(goal.userGoalsId)"
@@ -56,6 +54,8 @@ export default {
     return {
       selectedCategory: "",
       isComplete: false,
+       checkbox: false,
+      checkboxCustom: 'Incomplete'
  
     };
   },
@@ -63,9 +63,6 @@ export default {
   methods: {
     goalColorChanger() {
       this.$store.commit("CHANGE_COLOR", this.goal);
-    },
-    goalStatusChanger() {
-      this.$store.commit("FLIP_STATUS", this.goal);
       alert("Congrats! You did it!");
     },
     deleteGoal(id) {
@@ -138,6 +135,9 @@ export default {
 
 body {
   overflow: hidden;
+}
+.complete{
+  background-color: #999999;
 }
 
 

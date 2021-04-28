@@ -64,15 +64,9 @@ export default new Vuex.Store({
       goalToChange.complete = !goalToChange.complete;
     },
     CHANGE_COLOR(state, goalToChange) {
-      if (goalToChange.category === 'Sanity') {
-        goalToChange.classList.add("sanity-goal");
-      } else if (goalToChange.category === 'Exercise') {
-        goalToChange.classList.add("exercise-goal");
-      } else {
-        goalToChange.classList.add("nutrition-goal");
-      }
-    },
-
+      if(goalToChange.completed === 'true') {
+        goalToChange.classList.add("completed");
+      }},
     ADD_NEW(state, goal) {
       state.goals.push(goal);
     },
