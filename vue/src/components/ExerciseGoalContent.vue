@@ -1,6 +1,6 @@
 <template>
   <div class="content-container">
-    <img src="../assets/exerciseIcon.png" class="exerciseIcon" />
+    <img src="../assets/667-biking-outline.gif" class="exerciseIcon" />
     <p>
       You will <strong>{{ goal.activity }}</strong> for
     </p>

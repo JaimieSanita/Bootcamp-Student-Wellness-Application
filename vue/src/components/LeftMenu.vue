@@ -3,27 +3,29 @@
     <div class="goals">
     <new-goal-form/>
     </div>
+    <!--
     <div class="exercise">
     <new-exercise-form />
     </div>
     <div class="meal">
     <new-meal-form/>
     </div>
+    -->
   </div>
 </template>
 
 <script>
 
-import NewExerciseForm from "./NewExerciseForm.vue";
+//import NewExerciseForm from "./NewExerciseForm.vue";
 import NewGoalForm from "./NewGoalForm.vue";
-import NewMealForm from './NewMealForm.vue';
+//import NewMealForm from './NewMealForm.vue';
 
 export default {
   name: "left-menu",
   components: {
     NewGoalForm,
-    NewExerciseForm,
-    NewMealForm,
+   // NewExerciseForm,
+    //NewMealForm,
 
   },
 };

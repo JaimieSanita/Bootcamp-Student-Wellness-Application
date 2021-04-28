@@ -1,6 +1,6 @@
 <template>
   <div class="content-container">
-    <img src="../assets/nutritionIcon.png" class="nutritionIcon" />
+    <img src="../assets/543-apple-outline.gif" class="nutritionIcon" />
     <p>
       You're <strong>{{ goal.activity }}</strong>
     </p>

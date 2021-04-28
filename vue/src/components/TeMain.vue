@@ -4,22 +4,24 @@
       <h3 class="title">Your Goals</h3>
       <goal-list />
     </div>
+    <!--
     <div class="exercise-container">
       <h2 class="title">Your Exercises</h2>
-      <exercise-list class/>
+      <exercise-list />
     </div>
+    -->
   </div>
 </template>
 
 <script>
-import ExerciseList from "./ExerciseList.vue";
+//import ExerciseList from "./ExerciseList.vue";
 import GoalList from "./GoalList.vue";
 
 export default {
   name: 'te-main',
   components: {
     GoalList,
-    ExerciseList,
+    //ExerciseList,
   },
 };
 </script>

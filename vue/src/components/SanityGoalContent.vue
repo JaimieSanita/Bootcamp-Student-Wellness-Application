@@ -1,6 +1,6 @@
 <template>
   <div class="content-container">
-    <img src="../assets/sanityIcon.png" class="sanityIcon" />
+    <img src="../assets/21-avatar-outline.gif" class="sanityIcon" />
     <p>
       You will <strong>{{ goal.activity }}</strong> for
     </p>
@@ -28,7 +28,7 @@ img {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  height: 50px;
-  width: 50px;
+  height: 75px;
+  width: 75px;
 }
 </style>
